@@ -3,12 +3,10 @@ class ProductList {
     this.container = container;
     this.goods = [];
     this.allProducts = [];
-
-    this.fetchProducts();
-    this.render();
-    // this.priceAllProduct();
+    this._fetchProducts(); //protected method, работает в классе и потомках
+    this.#render(); //инкапсуляция, private method, работает только в классе
   }
-  fetchProducts() {
+  _fetchProducts() {
     this.goods = [
       { id: 1, title: 'Notebook', img: './images/Notebook.png', price: 20000 },
       { id: 2, title: 'Mouse', img: './images/Mouse.png', price: 2500 },
@@ -17,23 +15,27 @@ class ProductList {
       { id: 5, title: 'Microphone' },
     ];
   }
-  render() {
+  #render() {
     const block = document.querySelector(this.container);
 
-    for (let product of this.goods) {
-      const productObject = new ProductItem(product);
-      this.allProducts.push(productObject);
-      block.insertAdjacentHTML('beforeend', productObject.render());
+    for (let prod of this.goods) {
+      const classProductItem = new ProductItem(prod);
+      block.insertAdjacentHTML('beforeend', classProductItem.render());
+
+      this.allProducts.push(classProductItem);
     }
+  }
+  calcSum() {
+    return this.goods.reduce((sum, { price = 0 }) => sum + price, 0);
   }
 }
 
 class ProductItem {
   constructor({ title, price = 0, id, img = 'https://via.placeholder.com/200x150?text=Your+product' }) {
-    this.title = title;
-    this.price = price;
     this.id = id;
+    this.title = title;
     this.img = img;
+    this.price = price;
   }
   render() {
     return `<div class="product-item" data-id="${this.id}">
@@ -47,4 +49,18 @@ class ProductItem {
   }
 }
 
-new ProductList();
+class CartItem {
+  constructor({ title, price = 0, id, img = 'https://via.placeholder.com/200x150?text=Your+product' }) {
+    this.id = id;
+    this.title = title;
+    this.img = img;
+    this.price = price;
+  }
+  addProduct(product) { }
+  removeProduct(product) { }
+  render() { }
+}
+
+let classProductList = new ProductList('.products');
+
+console.log(classProductList.calcSum());

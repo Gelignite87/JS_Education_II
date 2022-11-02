@@ -1,22 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Интернет-магазин</title>
-    <link rel="stylesheet" href="./css/normalize.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
 <body>
-    <header>
-        <div class="logo">E-shop</div>
-        <button class="btn-cart" type="button" data-id="1234">Корзина</button>
-    </header>
-    <main>
-        <div class="products"></div>
-    </main>
-    <script src="js/main.js"></script>
-</body>
+    <p id="text-container">One: 'Hi Mary.' Two: 'Oh, hi.'
+        One: 'How are you doing?'
+        Two: 'I'm doing alright. How about you?'
+        One: 'Not too bad. The weather is great isn't it?'
+        Two: 'Yes. It's absolutely beautiful today.'
+        One: 'I wish it was like this more frequently.'
+        Two: 'Me too.'
+        One: 'So where are you going now?'
+        Two: 'I'm going to meet a friend of mine at the department store'
+        One: 'Going to do a little shopping?'
+        Two: 'Yeah, I have to buy some presents for my parents.'
+        One: 'What's the occasion?'
+        Two: 'It's their anniversary.'
+        One: 'That's great. Well, you better get going. You don't want to be late.'
+        Two: 'I'll see you next time.'
+        One: 'Sure.' Bye.'</p>
+    <br>
+    <button id="replace1">Replace first</button>
+    <br>
+    <br>
+    <button id="replace2">Replace second</button>
+    <br>
+    <br>
+    <button id="return">Return</button>
+    <script>
+        const state = document.getElementById('text-container').textContent;
+        document.getElementById('return').addEventListener('click', () => {
+            document.getElementById('text-container').textContent = state
+        });
 
+        // Первое домашнее задание
+        let re = /'/gi
+        document.getElementById('replace1').addEventListener('click', () => {
+            document.getElementById('text-container').textContent = document.getElementById('text-container').textContent.replace(re, '"');
+        });
+
+        // Второе домашнее задание
+        let re1 = /\B'|'\B/gi
+        document.getElementById('replace2').addEventListener('click', () => {
+            document.getElementById('text-container').textContent = document.getElementById('text-container').textContent.replace(re1, '"');
+        });
+    </script>
+</body>
 </html>

@@ -1,53 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <p id="text-container">One: 'Hi Mary.' Two: 'Oh, hi.'
-        One: 'How are you doing?'
-        Two: 'I'm doing alright. How about you?'
-        One: 'Not too bad. The weather is great isn't it?'
-        Two: 'Yes. It's absolutely beautiful today.'
-        One: 'I wish it was like this more frequently.'
-        Two: 'Me too.'
-        One: 'So where are you going now?'
-        Two: 'I'm going to meet a friend of mine at the department store'
-        One: 'Going to do a little shopping?'
-        Two: 'Yeah, I have to buy some presents for my parents.'
-        One: 'What's the occasion?'
-        Two: 'It's their anniversary.'
-        One: 'That's great. Well, you better get going. You don't want to be late.'
-        Two: 'I'll see you next time.'
-        One: 'Sure.' Bye.'</p>
-    <br>
-    <button id="replace1">Replace first</button>
-    <br>
-    <br>
-    <button id="replace2">Replace second</button>
-    <br>
-    <br>
-    <button id="return">Return</button>
-    <script>
-        const state = document.getElementById('text-container').textContent;
-        document.getElementById('return').addEventListener('click', () => {
-            document.getElementById('text-container').textContent = state
-        });
-
-        // Первое домашнее задание
-        let re = /'/gi
-        document.getElementById('replace1').addEventListener('click', () => {
-            document.getElementById('text-container').textContent = document.getElementById('text-container').textContent.replace(re, '"');
-        });
-
-        // Второе домашнее задание
-        let re1 = /\B'|'\B/gi
-        document.getElementById('replace2').addEventListener('click', () => {
-            document.getElementById('text-container').textContent = document.getElementById('text-container').textContent.replace(re1, '"');
-        });
-    </script>
+    <div id="app">
+        <header>
+            <div class="logo">Интернет-магазин</div>
+            <div class="cart">
+                <form action="#" class="search-form" @submit.prevent="filter">
+                    <input type="text" class="search-field" v-model="userSearch">
+                    <button class="btn-search">
+                        <i class="fas fa-bicycle"></i>
+                    </button>
+                </form>
+                <button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>
+                <div class="cart-block" v-show="showCart">
+                    <p v-if="!cartItems.length" style="border: 1px solid black;">Корзина пуста</p>
+                    <div class="cart-item" v-for="item of cartItems" :key="item.id_product">
+                        <div class="product-bio">
+                            <img :src="imgCart" alt="Some image">
+                            <div class="product-desc">
+                                <p class="product-title">{{item.product_name}}</p>
+                                <p class="product-quantity">Количество: {{item.quantity}}</p>
+                                <p class="product-single-price">{{item.price}}₽ за единицу</p>
+                            </div>
+                        </div>
+                        <div class="right-block">
+                            <p class="product-price">{{item.quantity*item.price}}₽
+                            </p>
+                            <button class="del-btn" @click="remove(item)">&times;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="products">
+                <div class="product-item" v-for="product of filtered" :key="product.id_product">
+                    <img :src="imgCatalog" alt="Some img">
+                    <div class="desc">
+                        <h3>{{product.product_name}}</h3>
+                        <p>{{product.price}}₽</p>
+                        <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>

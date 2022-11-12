@@ -1,10 +1,18 @@
-const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+import { cart } from "./CartComp";
+import { products } from "./ProducComp";
+import { error } from "./ErrorComp";
+import { filter_el } from "./FilterComp";
 
-const app = new Vue({
+export const app = {
   el: '#app',
-  components: {products},
+  components: {
+        cart,
+        products,
+        error,
+        filter_el,
+    },
   data: {
-    defaultImg: 'https://via.placeholder.com/200x150',
+    defaultImg: 'https://via.placeholder.com/250x250',
     userSearch: '',
   },
   methods: {
@@ -48,5 +56,5 @@ const app = new Vue({
         }
   },
   mounted() { }
-});
+};
 

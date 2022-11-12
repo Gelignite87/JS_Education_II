@@ -9,7 +9,7 @@ const product = {
     },
     template: `
     <div class="product-item">
-                <div class="img_block">
+                <div v-bind:style="{ backgroundImage: 'url(https://via.placeholder.com/200x200)', backgroundSize: 'cover'}" class="img_block">
                     <img class="img" :src=this.$root.getImage(product.img) alt="Some img">
                 </div>
                 <div class="desc">
@@ -20,7 +20,7 @@ const product = {
             </div>`
 };
 
-const products = {
+export const products = {
     components: { product },
     data(){
         return {

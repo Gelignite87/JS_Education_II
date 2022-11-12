@@ -1,0 +1,24 @@
+{
+  "name": "js_education_ii",
+  "version": "1.0.0",
+  "description": "Материалы со второго обучающего курса JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gelignite87/JS_Education_II.git"
+  },
+  "author": "FDA FDA@mail.ru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gelignite87/JS_Education_II/issues"
+  },
+  "homepage": "https://github.com/Gelignite87/JS_Education_II#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
+    "nodemon": "^2.0.20"
+  }
+}

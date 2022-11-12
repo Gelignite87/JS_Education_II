@@ -1,49 +1,62 @@
 Vue.component('cart', {
-    data(){
-      return {
-          imgCart: 'https://via.placeholder.com/50x100',
-          cartUrl: '/getBasket.json',
-          cartItems: [],
-          showCart: false,
-      }
+    data() {
+        return {
+            imgCart: 'https://via.placeholder.com/50x100',
+            cartItems: [],
+            showCart: false,
+        }
     },
     methods: {
-        addProduct(product){
-            this.$parent.getJson(`${API}/addToBasket.json`)
-                .then(data => {
-                    if(data.result === 1){
-                        let find = this.cartItems.find(el => el.id_product === product.id_product);
-                        if(find){
-                            find.quantity++;
-                        } else {
-                            let prod = Object.assign({quantity: 1}, product);
-                            this.cartItems.push(prod)
+        addProduct(product) {
+            let find = this.cartItems.find(el => el.id_product === product.id_product);
+            if (find) {
+                this.$parent.putJson(`/api/cart/${find.id_product}?x=10&y=12&z=14`, { quantity: 1 })
+                    .then((data) => {
+                        console.log(data);
+                        if (data.result === 1)
+                            find.quantity = data.quantity;
+                    }).catch(error => {
+                        this.$parent.$refs.error.text = `Данные не удалены! Проверьте правильность адреса сервера! ${error}`
+        });
+            } else {
+                let prod = Object.assign({ quantity: 1 }, product);
+                this.$parent.postJson('/api/cart', prod)
+                    .then(data => {
+                        if (data.result === 1) {
+                            this.cartItems.push(prod);
                         }
-                    } else {
-                        alert('Error');
-                    }
-                })
+                    })
+            }
         },
         remove(item) {
-            this.$parent.getJson(`${API}/deleteFromBasket.json`)
+            this.$parent.getJson('/api/cart')
                 .then(data => {
-                    if(data.result === 1) {
-                        if(item.quantity>1){
-                            item.quantity--;
+                    if (data) {
+                        if (item.quantity > 1) {
+                            this.$parent.putJson(`/api/cart/${item.id_product}?x=10&y=12&z=14`, { quantity: -1 })
+                                .then((data) => {
+                                    console.log(data);
+                                    if (data.result === 1)
+                                        item.quantity = data.quantity;
+                                })
                         } else {
                             this.cartItems.splice(this.cartItems.indexOf(item), 1)
+                            this.$parent.deleteJson(`/api/cart/${item.id_product}`, item);
                         }
                     }
                 })
         },
+        pushCartItems() {
+            this.$parent.getJson('/api/cart')
+                .then(data => {
+                    for (let el of data.contents) {
+                        this.cartItems.push(el);
+                    }
+                })
+        }
     },
-    mounted(){
-        this.$parent.getJson(`${API}/getBasket.json`)
-            .then(data => {
-                for(let el of data.contents){
-                    this.cartItems.push(el);
-                }
-            });
+    mounted() {
+        this.pushCartItems();
     },
     template: `
         <div>
@@ -65,18 +78,20 @@ Vue.component('cart-item', {
     props: ['cartItem', 'img'],
     template: `
                 <div class="cart-item">
-                    <div class="product-bio">
-                        <img :src="img" alt="Some image">
-                        <div class="product-desc">
-                            <p class="product-title">{{cartItem.product_name}}</p>
-                            <p class="product-quantity">Количество: {{cartItem.quantity}}</p>
-                            <p class="product-single-price">{{cartItem.price}}₽ за шт.</p>
-                        </div>
+                <div class="product-bio">
+                    <div class="img_block img_block_height">
+                        <img class="img" :src=this.$root.getImage(cartItem.img) alt="Some image">
                     </div>
-                    <div class="right-block">
-                        <p class="product-price">{{cartItem.quantity*cartItem.price}}</p>
-                        <button class="del-btn" @click="$emit('remove', cartItem)">&times;</button>
+                    <div class="product-desc">
+                        <p class="product-title">{{cartItem.product_name}}</p>
+                        <p class="product-quantity">Количество: {{cartItem.quantity}}</p>
+                        <p class="product-single-price">{{cartItem.price}}₽ за единицу</p>
                     </div>
                 </div>
+                <div class="right-block">
+                    <p class="product-price">{{cartItem.quantity*cartItem.price}}₽</p>
+                    <button class="del-btn" @click="$emit('remove', cartItem)">&times;</button>
+                </div>
+            </div>
     `
 });

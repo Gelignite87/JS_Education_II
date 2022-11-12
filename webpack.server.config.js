@@ -7,13 +7,12 @@ module.exports = {
         server: path.join(__dirname, 'src/server/server.js'),
     },
     output: {
-        path: path.join(__dirname, 'serv'),
+        path: path.join(__dirname, 'server'),
         publicPath: "/",
         filename: "[name].js"
     },
     target: "node",
     node: {
-        // Только для express приложений
         __dirname: false,
         __filename: false
     },
@@ -21,7 +20,7 @@ module.exports = {
     module: {
         rules: [
             {
-                // Перекомпилировать es6+ в  es5
+                // Перекомпилируем es6+ в es5
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"

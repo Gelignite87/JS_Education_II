@@ -6,7 +6,7 @@
   "scripts": {
     "front": "webpack --mode development --config webpack.dev.config.js --watch",
     "server": "webpack --mode development --config webpack.server.config.js --watch",
-    "start": "nodemon serv/server.js"
+    "start": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",

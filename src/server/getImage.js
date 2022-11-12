@@ -3,7 +3,7 @@ const images = express.Router();
 const fs = require('fs');
 
 images.get('/:id', (req, res) => {
-    fs.readFile(`./src/images/${req.params.id}`, (err, data) => {
+    fs.readFile(`./files/images/${req.params.id}`, (err, data) => {
         if (err) {
             res.sendStatus(404, JSON.stringify({ result: 0, text: err }));
         } else {

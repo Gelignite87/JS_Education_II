@@ -10,7 +10,7 @@ app.use('/api/cart', router);
 app.use('/images', images);
 
 app.get('/api/products', (req, res) => {
-  fs.readFile('./src/server/db/products.json', 'utf-8', (err, data) => {
+  fs.readFile('./files/db/products.json', 'utf-8', (err, data) => {
     if (err) {
       res.send(JSON.stringify({ result: 0, text: err }));
     } else {

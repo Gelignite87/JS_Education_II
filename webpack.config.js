@@ -1,5 +1,5 @@
 const path = require('path');
-// const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
@@ -49,14 +49,14 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
-        // new BrowserSyncPlugin(
-        //     {
-        //         host: 'localhost',
-        //         port: 8889,
-        //         proxy: 'http://localhost:8888/'
-        //     },
-        //     { reload: true }
-        // ),
+        new BrowserSyncPlugin(
+            {
+                host: 'localhost',
+                port: 4001,
+                proxy: 'http://localhost:4000/'
+            },
+            { reload: true }
+        ),
         new HtmlWebpackPlugin({
             template: './src/index.html'
         })

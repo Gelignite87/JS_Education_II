@@ -8,7 +8,6 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'server'),
-        publicPath: "/",
         filename: "[name].js"
     },
     target: "node",
@@ -18,16 +17,11 @@ module.exports = {
     },
     externals: [nodeExternals()], // Только для express приложений
     module: {
-        rules: [
-            {
-                // Перекомпилируем es6+ в es5
+        rules: [{
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: "babel-loader"
-            }
-        ]
+                loader: "babel-loader"   // Перекомпилируем es6+ в es5
+            }]
     },
-    plugins: [
-        new CleanWebpackPlugin(),
-    ]
+    plugins: [new CleanWebpackPlugin()]
 };

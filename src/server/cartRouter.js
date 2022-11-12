@@ -3,7 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 
 router.get('/', (req, res) => {
-    fs.readFile('./files/db/userCart.json', 'utf-8', (err, data) => {
+    fs.readFile('./src/files/db/userCart.json', 'utf-8', (err, data) => {
         if (err) {
             res.sendStatus(404, JSON.stringify({ result: 0, text: err }));
         } else {
@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     });
 });
 router.post('/', (req, res) => {
-    fs.readFile('./files/db/userCart.json', 'utf-8', (err, data) => {
+    fs.readFile('./src/files/db/userCart.json', 'utf-8', (err, data) => {
         if (err) {
             res.sendStatus(404, JSON.stringify({ result: 0, text: err }));
         } else {
@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
                 userCart.contents.push(req.body);
                 return JSON.stringify(userCart, null, 4);
             };
-            fs.writeFile('./files/db/userCart.json', add(userCart, req), (err) => {
+            fs.writeFile('./src/files/db/userCart.json', add(userCart, req), (err) => {
                 if (err) {
                     res.send('{"result": 0}');
                 } else {
@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
     });
 });
 router.put('/:id', (req, res) => {
-    fs.readFile('./files/db/userCart.json', 'utf-8', (err, data) => {
+    fs.readFile('./src/files/db/userCart.json', 'utf-8', (err, data) => {
         if (err) {
             res.sendStatus(404, JSON.stringify({ result: 0, text: err }));
         } else {
@@ -42,7 +42,7 @@ router.put('/:id', (req, res) => {
                 this.find.quantity += req.body.quantity;
                 return JSON.stringify(userCart, null, 4);
             };
-            fs.writeFile('./files/db/userCart.json', change(userCart, req), (err) => {
+            fs.writeFile('./src/files/db/userCart.json', change(userCart, req), (err) => {
                 if (err) {
                     res.send('{"result": 0}');
                 } else {
@@ -53,7 +53,7 @@ router.put('/:id', (req, res) => {
     })
 });
 router.delete('/:id', (req, res) => {
-    fs.readFile('./files/db/userCart.json', 'utf-8', (err, data) => {
+    fs.readFile('./src/files/db/userCart.json', 'utf-8', (err, data) => {
         if (err) {
             res.sendStatus(404, JSON.stringify({ result: 0, text: err }));
         } else {
@@ -63,7 +63,7 @@ router.delete('/:id', (req, res) => {
                 userCart.contents.splice(userCart.contents.indexOf(cartItem), 1);
                 return JSON.stringify(userCart, null, 4);
             };
-            fs.writeFile('./files/db/userCart.json', del(userCart, req), (err) => {
+            fs.writeFile('./src/files/db/userCart.json', del(userCart, req), (err) => {
                 if (err) {
                     res.send('{"result": 0}');
                 } else {

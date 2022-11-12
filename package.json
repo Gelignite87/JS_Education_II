@@ -4,8 +4,9 @@
   "description": "Материалы со второго обучающего курса JavaScript",
   "main": "index.js",
   "scripts": {
-    "front": "webpack --mode development --config webpack.dev.config.js --watch",
+    "front": "webpack --mode development --config webpack.config.js --watch",
     "server": "webpack --mode development --config webpack.server.config.js --watch",
+    "prod": "webpack --mode production && webpack --mode production --config webpack.server.config.js && npm start",
     "start": "nodemon server/server.js"
   },
   "repository": {
@@ -29,6 +30,7 @@
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
     "babel-loader": "^9.1.0",
+    "browser-sync-webpack-plugin": "^2.3.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",

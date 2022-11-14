@@ -2,21 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>E-shop</title>
+    <title>Online store</title>
 <script defer src="main.js"></script></head>
 <body>
-<div id="app">
-    <header>
-        <div class="logo">E-shop</div>
-        <div class="cart">
-            <filter_el></filter_el>
-            <cart ref="cart"></cart>
-        </div>
-    </header>
-    <main>
-        <products ref="products"></products>
-        <error ref="error"></error>
-    </main>
+<div class="wrapper" id="app" @click="closeDiv('.target-cart')">
+    <flexgrow ref="fg"></flexgrow>
+    <myfooter></myfooter>
 </div>
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

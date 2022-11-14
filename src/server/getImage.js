@@ -8,8 +8,7 @@ images.get('/:id', (req, res) => {
             res.sendStatus(404, JSON.stringify({ result: 0, text: err }));
         } else {
             res.statusCode = 200;
-            res.setHeader("Content-Type", "image/jpeg");
-            res.end(data)
+            res.send(data);
         }
     });
 });

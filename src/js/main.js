@@ -1,17 +1,20 @@
-import { cart } from "./CartComp";
-import { products } from "./ProducComp";
-import { error } from "./ErrorComp";
-import { filter_el } from "./FilterComp";
+import { flexgrow } from "./FlexGrow";
+import { myfooter } from "./Footer";
 
 export const app = {
   el: '#app',
   components: {
-        cart,
-        products,
-        error,
-        filter_el,
+    flexgrow,
+    myfooter,
     },
   data: {
+    state: {
+      homepage: true,
+      catalog: false,
+      product: false,
+      registration: false,
+      cartpage: false,
+    },
     defaultImg: 'https://via.placeholder.com/250x250',
     userSearch: '',
   },
@@ -53,7 +56,23 @@ export const app = {
     getImage(img) {
             if (img) {return img}
             return this.defaultImg
+    },
+    updateState(page) {
+      for (let prop in this.state) {
+        this.state[prop] = false
+      }
+      this.state[page] = true
+      document.documentElement.scrollTop = 0
+    },
+    closeDiv(div) {
+      const block = document.querySelector(div)
+      document.addEventListener('click', (e) => {
+        const withinBoundaries = e.composedPath().includes(block);
+        if (!withinBoundaries) {
+          this.$refs.fg.$refs.ng.$refs.cart.showCart = false;
         }
+      })
+    }
   },
   mounted() { }
 };

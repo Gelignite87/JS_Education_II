@@ -1,0 +1,26 @@
+$width75: 75vw
+$width90: 90vw
+
+@mixin txt($fw, $fs, $lh)
+    font-weight: $fw
+    font-size: $fs
+    line-height: $lh
+
+@mixin btn($fw, $fs, $lh, $pad, $mar, $col, $back, $b-size, $brd, $td, $ta)
+    font-weight: $fw
+    font-size: $fs
+    line-height: $lh
+    padding: $pad
+    margin: $mar
+    color: $col
+    background: $back
+    box-sizing: $b-size
+    border: $brd
+    text-decoration: $td
+    text-align: $ta
+
+@mixin flx($ds, $ff, $jc, $ai)
+    display: $ds
+    flex-flow: $ff
+    justify-content: $jc
+    align-items: $ai

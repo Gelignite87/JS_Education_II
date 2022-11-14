@@ -73,7 +73,7 @@ __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerat
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_polyfill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/polyfill */ "./node_modules/@babel/polyfill/lib/index.js");
 /* harmony import */ var _babel_polyfill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_polyfill__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _styles_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/style.css */ "./src/styles/style.css");
+/* harmony import */ var _styles_style_sass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/style.sass */ "./src/styles/style.sass");
 /* harmony import */ var _js_main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/main */ "./src/js/main.js");
 
 
@@ -83,10 +83,10 @@ const appNew = new Vue(_js_main__WEBPACK_IMPORTED_MODULE_2__.app);
 
 /***/ }),
 
-/***/ "./src/js/CartComp.js":
-/*!****************************!*\
-  !*** ./src/js/CartComp.js ***!
-  \****************************/
+/***/ "./src/js/CartInHomepage.js":
+/*!**********************************!*\
+  !*** ./src/js/CartInHomepage.js ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -97,20 +97,20 @@ __webpack_require__.r(__webpack_exports__);
 const cartItem = {
   props: ['cartItem', 'img'],
   template: `
-                <div class="cart-item">
-                <div class="product-bio">
-                    <div class="img_block img_block_height">
-                        <img class="img" :src=this.$root.getImage(cartItem.img) alt="Some image">
+                <div class="HPcart-item">
+                <div class="HPproduct-bio">
+                    <div class="HPimg_block HPimg_block_height">
+                        <img class="HPimg" :src=this.$root.getImage(cartItem.img) alt="Some image">
                     </div>
-                    <div class="product-desc">
-                        <p class="product-title">{{cartItem.product_name}}</p>
-                        <p class="product-quantity">Количество: {{cartItem.quantity}}</p>
-                        <p class="product-single-price">{{cartItem.price}}₽ за единицу</p>
+                    <div class="HPproduct-desc">
+                        <p class="HPproduct-title">{{cartItem.product_name}}</p>
+                        <p class="HPproduct-quantity">Количество: {{cartItem.quantity}}</p>
+                        <p class="HPproduct-single-price">{{cartItem.price}}₽ за единицу</p>
                     </div>
                 </div>
                 <div class="right-block">
-                    <p class="product-price">{{cartItem.quantity*cartItem.price}}₽</p>
-                    <button class="del-btn" @click="$emit('remove', cartItem)">&times;</button>
+                    <p class="HPproduct-price">{{cartItem.quantity*cartItem.price}}₽</p>
+                    <button class="HPdel-btn" @click="$emit('remove', cartItem)">&times;</button>
                 </div>
             </div>
     `
@@ -130,19 +130,19 @@ const cart = {
     addProduct(product) {
       let find = this.cartItems.find(el => el.id_product === product.id_product);
       if (find) {
-        this.$parent.putJson(`/api/cart/${find.id_product}?x=10&y=12&z=14`, {
+        this.$root.putJson(`/api/cart/${find.id_product}?x=10&y=12&z=14`, {
           quantity: 1
         }).then(data => {
           console.log(data);
           if (data.result === 1) find.quantity = data.quantity;
         }).catch(error => {
-          this.$parent.$refs.error.text = `Данные не удалены! Проверьте правильность адреса сервера! ${error}`;
+          this.$root.$refs.error.text = `Данные не удалены! Проверьте правильность адреса сервера! ${error}`;
         });
       } else {
         let prod = Object.assign({
           quantity: 1
         }, product);
-        this.$parent.postJson('/api/cart', prod).then(data => {
+        this.$root.postJson('/api/cart', prod).then(data => {
           if (data.result === 1) {
             this.cartItems.push(prod);
           }
@@ -150,10 +150,10 @@ const cart = {
       }
     },
     remove(item) {
-      this.$parent.getJson('/api/cart').then(data => {
+      this.$root.getJson('/api/cart').then(data => {
         if (data) {
           if (item.quantity > 1) {
-            this.$parent.putJson(`/api/cart/${item.id_product}?x=10&y=12&z=14`, {
+            this.$root.putJson(`/api/cart/${item.id_product}?x=10&y=12&z=14`, {
               quantity: -1
             }).then(data => {
               console.log(data);
@@ -161,13 +161,13 @@ const cart = {
             });
           } else {
             this.cartItems.splice(this.cartItems.indexOf(item), 1);
-            this.$parent.deleteJson(`/api/cart/${item.id_product}`, item);
+            this.$root.deleteJson(`/api/cart/${item.id_product}`, item);
           }
         }
       });
     },
     pushCartItems() {
-      this.$parent.getJson('/api/cart').then(data => {
+      this.$root.getJson('/api/cart').then(data => {
         for (let el of data.contents) {
           this.cartItems.push(el);
         }
@@ -178,156 +178,1017 @@ const cart = {
     this.pushCartItems();
   },
   template: `
-        <div>
-            <button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>
-            <div class="cart-block" v-show="showCart">
+        <div class="target-cart">
+        <a href="" @click.prevent>        
+                            <svg @click="showCart = !showCart" width="32" height="29" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M26.2009 29C25.5532 28.9738 24.9415 28.6948 24.4972 28.2227C24.0529 27.7506 23.8114 27.1232 23.8245 26.475C23.8376 25.8269 24.1043 25.2097 24.5673 24.7559C25.0303 24.3022 25.6527 24.048 26.301 24.048C26.9493 24.048 27.5717 24.3022 28.0347 24.7559C28.4977 25.2097 28.7644 25.8269 28.7775 26.475C28.7906 27.1232 28.549 27.7506 28.1047 28.2227C27.6604 28.6948 27.0488 28.9738 26.401 29H26.2009ZM6.75293 26.32C6.75293 25.79 6.91011 25.2718 7.20459 24.8311C7.49907 24.3904 7.91764 24.0469 8.40735 23.844C8.89705 23.6412 9.43594 23.5881 9.95581 23.6915C10.4757 23.7949 10.9532 24.0502 11.328 24.425C11.7028 24.7998 11.9581 25.2773 12.0615 25.7972C12.1649 26.317 12.1118 26.8559 11.9089 27.3456C11.7061 27.8353 11.3626 28.2539 10.9219 28.5483C10.4812 28.8428 9.96304 29 9.43298 29C9.08087 29.0003 8.73212 28.9311 8.40674 28.7966C8.08136 28.662 7.78569 28.4646 7.53662 28.2158C7.28755 27.9669 7.09001 27.6713 6.9552 27.3461C6.82039 27.0208 6.75098 26.6721 6.75098 26.32H6.75293ZM10.553 20.686C10.2935 20.6868 10.0409 20.6024 9.83411 20.4457C9.62727 20.2891 9.47758 20.0689 9.40796 19.819L4.57495 2.36401H1.18201C0.868521 2.36401 0.567859 2.23947 0.346191 2.01781C0.124523 1.79614 0 1.49549 0 1.18201C0 0.868519 0.124523 0.567873 0.346191 0.346205C0.567859 0.124537 0.868521 5.81268e-06 1.18201 5.81268e-06H5.46301C5.7225 -0.00080736 5.97504 0.0837201 6.18176 0.240568C6.38848 0.397416 6.53784 0.617884 6.60693 0.868006L11.4399 18.323H24.6179L29.001 8.27501H14.401C14.2428 8.27961 14.0854 8.25242 13.9379 8.19507C13.7904 8.13771 13.6559 8.05134 13.5424 7.94108C13.4288 7.83082 13.3386 7.69891 13.277 7.55315C13.2154 7.40739 13.1836 7.25075 13.1836 7.0925C13.1836 6.93426 13.2154 6.77762 13.277 6.63186C13.3386 6.4861 13.4288 6.35419 13.5424 6.24393C13.6559 6.13367 13.7904 6.0473 13.9379 5.98994C14.0854 5.93259 14.2428 5.90541 14.401 5.91001H30.814C31.0097 5.90996 31.2022 5.95866 31.3744 6.05172C31.5465 6.14478 31.6928 6.27926 31.7999 6.44301C31.9078 6.60729 31.9734 6.79569 31.9908 6.99145C32.0083 7.18721 31.9771 7.38424 31.9 7.565L26.495 19.977C26.4026 20.1876 26.251 20.3668 26.0585 20.4927C25.866 20.6186 25.641 20.6858 25.411 20.686H10.553Z" fill="#E8E8E8"/>
+</svg>
+</a>
+            <div class="HPcart-block" v-show="showCart">
                 <p v-if="!cartItems.length">Корзина пуста</p>
-                <cart-item class="cart-item" 
+                <cart-item class="HPcart-item" 
                 v-for="item of cartItems" 
                 :key="item.id_product"
                 :cart-item="item" 
                 :img="imgCart"
                 @remove="remove">
                 </cart-item>
+                <a class="CTbutton4" href="#">To Cart &nbsp;&nbsp;&nbsp;&#8594;</a>
             </div>
         </div>`
 };
 
 /***/ }),
 
-/***/ "./src/js/ErrorComp.js":
-/*!*****************************!*\
-  !*** ./src/js/ErrorComp.js ***!
-  \*****************************/
+/***/ "./src/js/Cartpage.js":
+/*!****************************!*\
+  !*** ./src/js/Cartpage.js ***!
+  \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "error": () => (/* binding */ error)
+/* harmony export */   "cartpage": () => (/* binding */ cartpage)
 /* harmony export */ });
-const error = {
+const cartpage = {
   data() {
-    return {
-      text: ''
-    };
-  },
-  methods: {
-    setError(error) {
-      this.text = error;
-    },
-    closeError() {
-      this.text = '';
-    }
-  },
-  computed: {
-    isVisible() {
-      return this.text !== '';
-    }
+    return {};
   },
   template: `
-    <div class="error-block" v-if="isVisible"> 
-        <p class="error-msg">
-            <button class="close-btn" @click="closeError()">&times;</button>
-            {{ text }}
-        </p>
+    <div v-show="this.$root.state.cartpage">
+    <main class="top">
+            <p class="topTxt alignment top__alignment">REGISTRATION</p>
+        </main>
+        <!-- Input -->
+        <section>
+            <div class="alignment wrapper_for_input">
+                <div class="input">
+                    <div class="wrapper_input">
+                        <div class="adress_title">Your Name</div>
+                        <input class="input2" type="text" placeholder="First Name">
+                        <input class="input2" type="text" placeholder="Last Name">
+                        <div>
+                            <input type="radio" name="gender" id="input_radio1" value="First" class="custom_input"
+                                data-p="90" data-c="40">
+                            <label for="input_radio1">Male</label>
+                            <input type="radio" name="gender" id="input_radio2" value="Second" class="custom_input"
+                                data-p="50" data-c="20">
+                            <label for="input_radio2">Female</label>
+                        </div>
+                        <div class="adress_title">Login details</div>
+                        <input class="input2" type="email" placeholder="Email">
+                        <input class="input2" type="number" min="0" placeholder="Password">
+                        <p class="p11">Please use 8 or more characters, with at least 1 number and a mixture of
+                            uppercase and
+                            lowercase letters</p>
+                        <a class="button4" href="#">JOIN NOW &nbsp;&nbsp;&nbsp;&#8594;</a>
+                    </div>
+                </div>
+                <!-- Input Part2 -->
+                <div class="wrapper_input1">
+                    <div class="p12">LOYALTY HAS ITS PERKS</div>
+                    <div class="p12 p12_margin">Get in on the loyalty program where you can earn points and unlock
+                        serious perks.
+                        Starting with these as soon as you
+                        join:</div>
+                    <ol>
+                        <li class="class1">15% off welcome offer</li>
+                        <li class="class2">Free shipping, returns and exchanges on all orders</li>
+                        <li class="class3">$10 off a purchase on your birthday</li>
+                        <li class="class4">Early access to products</li>
+                        <li class="class5">Exclusive offers & rewards</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </div>`
+};
+
+/***/ }),
+
+/***/ "./src/js/Catalog.js":
+/*!***************************!*\
+  !*** ./src/js/Catalog.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "catalog": () => (/* binding */ catalog)
+/* harmony export */ });
+const catalog = {
+  data() {
+    return {};
+  },
+  template: `
+    <div v-show="this.$root.state.catalog">
+        <main class="CAtop">
+                <div class="CAwrapper_top alignment">
+                    <p class="CAtop_name">NEW ARRIVALS</p>
+                    <div class="CAwrapper_top">
+                        <a class="CAa_top1" href="index.html">HOME</a>
+                        <p class="CAp4">&nbsp;&nbsp;/&nbsp;&nbsp;</p>
+                        <a class="CAa_top1" href="#">WOMEN</a>
+                        <p class="CAp4">&nbsp;&nbsp;/&nbsp;&nbsp;</p>
+                        <p class="CAa_top3">NEW ARRIVALS</p>
+                    </div>
+                </div>
+            </main>
+            <!-- Filter -->
+            <section>
+                <div class="CAfilter alignment">
+                    <details class="CAfilter_left">
+                        <summary class="CAsummary_mutation CAfilter_left_p">FILTER &nbsp;&nbsp;<i
+                                class="fa-solid fa-arrow-down-wide-short"></i></summary>
+                        <nav class="CAfilter_block_menu_transparent">
+                        </nav>
+                        <nav class="CAfilter_block_menu">
+                            <details>
+                                <summary class="CAa_top3 CAsummary_mutation_in CAfilter_left_p">CATEGORY</summary>
+                                <div>
+                                    <p class="CAsummary_mutation_in_p">Accessories</p>
+                                    <p class="CAsummary_mutation_in_p">Bags</p>
+                                    <p class="CAsummary_mutation_in_p">Denim</p>
+                                    <p class="CAsummary_mutation_in_p">Hoodies & Sweatshirts</p>
+                                    <p class="CAsummary_mutation_in_p">Jackets & Coats</p>
+                                    <p class="CAsummary_mutation_in_p">Polos</p>
+                                    <p class="CAsummary_mutation_in_p">Shirts</p>
+                                    <p class="CAsummary_mutation_in_p">Shoes</p>
+                                    <p class="CAsummary_mutation_in_p">Sweaters & Knits</p>
+                                    <p class="CAsummary_mutation_in_p">T-Shirts</p>
+                                    <p class="CAsummary_mutation_in_p">Tanks</p>
+                                </div>
+                            </details>
+                            <details>
+                                <summary class="CAa_top3 CAsummary_mutation_in CAfilter_left_p">BRAND</summary>
+                                <div>
+                                    <p class="CAsummary_mutation_in_p">Accessories</p>
+                                    <p class="CAsummary_mutation_in_p">Bags</p>
+                                    <p class="CAsummary_mutation_in_p">Denim</p>
+                                    <p class="CAsummary_mutation_in_p">Hoodies & Sweatshirts</p>
+                                    <p class="CAsummary_mutation_in_p">Jackets & Coats</p>
+                                    <p class="CAsummary_mutation_in_p">Polos</p>
+                                    <p class="CAsummary_mutation_in_p">Shirts</p>
+                                    <p class="CAsummary_mutation_in_p">Shoes</p>
+                                    <p class="CAsummary_mutation_in_p">Sweaters & Knits</p>
+                                    <p class="CAsummary_mutation_in_p">T-Shirts</p>
+                                    <p class="CAsummary_mutation_in_p">Tanks</p>
+                                </div>
+                            </details>
+                            <details>
+                                <summary class="CAa_top3 CAsummary_mutation_in CAfilter_left_p_last">DESIGNER</summary>
+                                <div>
+                                    <p class="CAsummary_mutation_in_p">Accessories</p>
+                                    <p class="CAsummary_mutation_in_p">Bags</p>
+                                    <p class="CAsummary_mutation_in_p">Denim</p>
+                                    <p class="CAsummary_mutation_in_p">Hoodies & Sweatshirts</p>
+                                    <p class="CAsummary_mutation_in_p">Jackets & Coats</p>
+                                    <p class="CAsummary_mutation_in_p">Polos</p>
+                                    <p class="CAsummary_mutation_in_p">Shirts</p>
+                                    <p class="CAsummary_mutation_in_p">Shoes</p>
+                                    <p class="CAsummary_mutation_in_p">Sweaters & Knits</p>
+                                    <p class="CAsummary_mutation_in_p">T-Shirts</p>
+                                    <p class="CAsummary_mutation_in_p_last">Tanks</p>
+                                </div>
+                            </details>
+                        </nav>
+                    </details>
+                    <div>
+                        <div class="CAfilter_right">
+                            <details class="CAfilter_right_relative">
+                                <summary>TRENDING NOW</summary>
+                                <div class="CAfilter_right_block_center">
+
+                                </div>
+                            </details>
+                            <details>
+                                <summary>SIZE</summary>
+                                <div class="CAfilter_right_block">
+                                    <div class="CAblock_input CAform-check">
+                                        <input class="CAform-check-input" type="checkbox" id="checkbox1" value="First">
+                                        <label class="CAlabel_input" for="checkbox1">XS</label>
+                                        <br>
+                                        <input class="CAform-check-input" type="checkbox" id="checkbox2" value="Second">
+                                        <label class="CAlabel_input" for="checkbox2">S</label>
+                                        <br>
+                                        <input class="CAform-check-input" type="checkbox" id="checkbox3" value="Third">
+                                        <label class="CAlabel_input" for="checkbox3">M</label>
+                                        <br>
+                                        <input class="CAform-check-input" type="checkbox" id="checkbox4" value="Four">
+                                        <label class="CAlabel_input" for="checkbox4">L</label>
+                                    </div>
+                                </div>
+                            </details>
+                            <details>
+                                <summary>PRICE</summary>
+                                <div class="CAfilter_right_block">
+
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Product -->
+            <section>
+                <div class="product alignment">
+                    <div class="block_product">
+                        <a href="#"><img class="img img_block_product" src="images/Product1.png" alt="Product1"></a>
+                        <div class="block_text_product">
+                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                tailoring,
+                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                            <div class="block_text_product3">$52.00</div>
+                        </div>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="#"><img class="img img_block_product" src="images/Product2.png" alt="Product2"></a>
+                        <div class="block_text_product">
+                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                tailoring,
+                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                            <div class="block_text_product3">$52.00</div>
+                        </div>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="#"><img class="img img_block_product" src="images/Product3.png" alt="Product3"></a>
+                        <div class="block_text_product">
+                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                tailoring,
+                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                            <div class="block_text_product3">$52.00</div>
+                        </div>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="#"><img class="img img_block_product" src="images/Product4.png" alt="Product4"></a>
+                        <div class="block_text_product">
+                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                tailoring,
+                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                            <div class="block_text_product3">$52.00</div>
+                        </div>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="#"><img class="img img_block_product" src="images/Product5.png" alt="Product5"></a>
+                        <div class="block_text_product">
+                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                tailoring,
+                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                            <div class="block_text_product3">$52.00</div>
+                        </div>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="#"><img class="img img_block_product" src="images/Product6.png" alt="Product6"></a>
+                        <div class="block_text_product">
+                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                tailoring,
+                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                            <div class="block_text_product3">$52.00</div>
+                        </div>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="#"><img class="img img_block_product" src="images/Product7.png" alt="Product7"></a>
+                        <div class="block_text_product">
+                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                tailoring,
+                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                            <div class="block_text_product3">$52.00</div>
+                        </div>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="#"><img class="img img_block_product" src="images/Product4.png" alt="Product4"></a>
+                        <div class="block_text_product">
+                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                tailoring,
+                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                            <div class="block_text_product3">$52.00</div>
+                        </div>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="#"><img class="img img_block_product" src="images/Product2.png" alt="Product2"></a>
+                        <div class="block_text_product">
+                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                tailoring,
+                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                            <div class="block_text_product3">$52.00</div>
+                        </div>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Pagination -->
+            <nav aria-label="Page navigation example">
+                <ul class="CApagination CAjustify-content-center">
+                    <li class="CApage-item  CAli"><a class="CApage-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&#60;</span></a></li>
+                    <li class="CApage-item CAli"><a class="CApage-link active" href="#">1</a></li>
+                    <li class="CApage-item CAli"><a class="CApage-link" href="#">2</a></li>
+                    <li class="CApage-item CAli"><a class="CApage-link" href="#">3</a></li>
+                    <li class="CApage-item CAli"><a class="CApage-link" href="#">4</a></li>
+                    <li class="CApage-item CAli"><a class="CApage-link" href="#">5</a></li>
+                    <li class="CApage-item CAli"><a class="CApage-link" href="#">6</a></li>
+                    <li class="CApage-item CAli"><a class="CApage-link" href="#">7</a></li>
+                    <li class="CApage-item CAli"><a class="CApage-link" href="#">8</a></li>
+                    <li class="CApage-item CAli"><a class="CApage-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&#62;</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>`
+};
+
+/***/ }),
+
+/***/ "./src/js/FlexGrow.js":
+/*!****************************!*\
+  !*** ./src/js/FlexGrow.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "flexgrow": () => (/* binding */ flexgrow)
+/* harmony export */ });
+/* harmony import */ var _NavComp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NavComp */ "./src/js/NavComp.js");
+/* harmony import */ var _Homepage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Homepage */ "./src/js/Homepage.js");
+/* harmony import */ var _Catalog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Catalog */ "./src/js/Catalog.js");
+/* harmony import */ var _ProductComp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProductComp */ "./src/js/ProductComp.js");
+/* harmony import */ var _Registration__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Registration */ "./src/js/Registration.js");
+/* harmony import */ var _Cartpage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Cartpage */ "./src/js/Cartpage.js");
+
+
+
+
+
+
+const flexgrow = {
+  components: {
+    navigation: _NavComp__WEBPACK_IMPORTED_MODULE_0__.navigation,
+    homepage: _Homepage__WEBPACK_IMPORTED_MODULE_1__.homepage,
+    catalog: _Catalog__WEBPACK_IMPORTED_MODULE_2__.catalog,
+    product: _ProductComp__WEBPACK_IMPORTED_MODULE_3__.product,
+    registration: _Registration__WEBPACK_IMPORTED_MODULE_4__.registration,
+    cartpage: _Cartpage__WEBPACK_IMPORTED_MODULE_5__.cartpage
+  },
+  data() {
+    return {};
+  },
+  template: `
+    <div class="flex_grow">
+        <navigation ref="ng"></navigation>
+        <homepage></homepage>
+        <product></product>
+        <catalog></catalog>
+        <registration></registration>
+        <cartpage></cartpage>
     </div>
     `
 };
 
 /***/ }),
 
-/***/ "./src/js/FilterComp.js":
-/*!******************************!*\
-  !*** ./src/js/FilterComp.js ***!
-  \******************************/
+/***/ "./src/js/Footer.js":
+/*!**************************!*\
+  !*** ./src/js/Footer.js ***!
+  \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "filter_el": () => (/* binding */ filter_el)
+/* harmony export */   "myfooter": () => (/* binding */ myfooter)
 /* harmony export */ });
-const filter_el = {
+const myfooter = {
+  data() {
+    return {};
+  },
+  template: `
+    <footer class="footer">
+            <div v-show="$root.state.homepage" class="footer1 alignment">
+                <div class="block_footer1">
+                    <div><svg width="46" height="32" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M30.2873 27.2429H14.8103C14.6031 28.5509 13.936 29.742 12.929 30.6021C11.922 31.4621 10.6411 31.9346 9.31682 31.9346C7.99252 31.9346 6.71166 31.4621 5.70464 30.6021C4.69762 29.742 4.03052 28.5509 3.82332 27.2429H1.88631C1.39149 27.2397 0.918139 27.0404 0.570025 26.6887C0.221911 26.337 0.0274507 25.8618 0.0293142 25.3669V1.87695C0.0271852 1.38195 0.221516 0.906335 0.569658 0.554443C0.917801 0.202551 1.39131 0.00317363 1.88631 0H27.4373C27.9322 0.00317353 28.4056 0.202522 28.7536 0.554443C29.1016 0.906364 29.2957 1.38204 29.2933 1.87695V3.78198H36.4143C36.4947 3.78164 36.5747 3.79208 36.6523 3.81299C38.9523 4.01299 40.1093 5.2129 41.3293 7.2749L44.8883 13.3689C44.9732 13.5136 45.018 13.6782 45.0183 13.8459V26.304C45.0194 26.5515 44.9221 26.7892 44.7479 26.9651C44.5737 27.141 44.3369 27.2406 44.0893 27.2419H41.2753C41.0681 28.5499 40.401 29.741 39.394 30.6011C38.387 31.4611 37.1061 31.9336 35.7818 31.9336C34.4575 31.9336 33.1767 31.4611 32.1696 30.6011C31.1626 29.741 30.4955 28.5499 30.2883 27.2419L30.2873 27.2429ZM32.0653 26.304C32.0732 27.0369 32.2977 27.7511 32.7107 28.3567C33.1236 28.9623 33.7065 29.4322 34.3859 29.7073C35.0653 29.9824 35.811 30.0503 36.5289 29.9026C37.2469 29.7548 37.9051 29.398 38.4207 28.877C38.9363 28.3559 39.2862 27.6941 39.4265 26.9746C39.5667 26.2551 39.491 25.5103 39.2088 24.8337C38.9267 24.1572 38.4507 23.5794 37.8408 23.1729C37.2309 22.7663 36.5143 22.5491 35.7813 22.5488C34.791 22.5552 33.8436 22.9543 33.1469 23.6582C32.4503 24.3621 32.0613 25.3136 32.0653 26.304ZM5.60134 26.304C5.60923 27.0369 5.83376 27.7511 6.24669 28.3567C6.65962 28.9623 7.2425 29.4322 7.92192 29.7073C8.60135 29.9824 9.34697 30.0503 10.0649 29.9026C10.7829 29.7548 11.4411 29.398 11.9567 28.877C12.4723 28.3559 12.8222 27.6941 12.9625 26.9746C13.1027 26.2551 13.027 25.5103 12.7448 24.8337C12.4627 24.1572 11.9867 23.5794 11.3768 23.1729C10.7669 22.7663 10.0503 22.5491 9.31731 22.5488C8.32679 22.5549 7.37915 22.9537 6.6823 23.6577C5.98545 24.3617 5.59634 25.3134 5.60033 26.304H5.60134ZM41.2733 25.366H43.1593V19.7478H40.4233C40.3007 19.7473 40.1794 19.7227 40.0664 19.6753C39.9533 19.6279 39.8507 19.5585 39.7644 19.4714C39.6781 19.3843 39.6099 19.281 39.5635 19.1675C39.5172 19.054 39.4937 18.9324 39.4943 18.8098V16.9629C39.494 16.2423 39.7696 15.5488 40.2643 15.0249H33.8853C33.8081 15.0248 33.7312 15.015 33.6563 14.9958C32.9516 14.933 32.2961 14.6081 31.8194 14.0852C31.3428 13.5623 31.0798 12.8794 31.0823 12.1719V7.47192C31.0817 7.34927 31.1052 7.22758 31.1515 7.11401C31.1978 7.00044 31.2661 6.89725 31.3523 6.81006C31.4386 6.72286 31.5412 6.6535 31.6543 6.60596C31.7674 6.55841 31.8887 6.53361 32.0113 6.53296H38.4943C38.15 6.21428 37.7426 5.97123 37.2986 5.81982C36.8545 5.66842 36.3836 5.61187 35.9163 5.65381H29.2933V25.3618H30.2873C30.4945 24.0538 31.1616 22.8627 32.1687 22.0027C33.1757 21.1426 34.4565 20.6702 35.7808 20.6702C37.1051 20.6702 38.386 21.1426 39.393 22.0027C40.4 22.8627 41.0671 24.0538 41.2743 25.3618L41.2733 25.366ZM14.8093 25.366H27.4363V1.87598H1.88631V25.366H3.82332C4.03052 24.058 4.69762 22.8666 5.70464 22.0066C6.71166 21.1465 7.99252 20.6741 9.31682 20.6741C10.6411 20.6741 11.922 21.1465 12.929 22.0066C13.936 22.8666 14.6031 24.058 14.8103 25.366H14.8093ZM41.3513 16.9658V17.875H43.1593V16.0278H42.2803C42.0335 16.0294 41.7973 16.1288 41.6234 16.304C41.4495 16.4792 41.352 16.716 41.3523 16.9629L41.3513 16.9658ZM32.9383 12.1738C32.9372 12.4263 33.0363 12.6691 33.2139 12.8486C33.3914 13.0282 33.6328 13.13 33.8853 13.1318C33.9492 13.1316 34.0129 13.1384 34.0753 13.1519H42.6003L39.8343 8.41602H32.9343L32.9383 12.1738ZM33.0313 26.3059C33.0284 25.5734 33.3162 24.8695 33.8316 24.3489C34.3469 23.8283 35.0478 23.5333 35.7803 23.5288C36.0291 23.5288 36.2677 23.6278 36.4436 23.8037C36.6195 23.9796 36.7183 24.218 36.7183 24.4668C36.7183 24.7156 36.6195 24.9542 36.4436 25.1301C36.2677 25.306 36.0291 25.4048 35.7803 25.4048C35.602 25.4032 35.4272 25.4548 35.2782 25.5527C35.1291 25.6507 35.0125 25.7905 34.9432 25.9548C34.8738 26.1191 34.8548 26.3005 34.8887 26.4756C34.9225 26.6507 35.0076 26.8118 35.1331 26.9385C35.2586 27.0651 35.419 27.1516 35.5938 27.187C35.7686 27.2224 35.9499 27.2051 36.1149 27.1372C36.2798 27.0693 36.4208 26.9538 36.5201 26.8057C36.6193 26.6575 36.6723 26.4833 36.6723 26.3049C36.6723 26.0587 36.7701 25.8226 36.9443 25.6484C37.1184 25.4743 37.3546 25.3765 37.6008 25.3765C37.8471 25.3765 38.0832 25.4743 38.2574 25.6484C38.4315 25.8226 38.5293 26.0587 38.5293 26.3049C38.5293 27.0343 38.2396 27.7338 37.7239 28.2495C37.2081 28.7652 36.5087 29.0549 35.7793 29.0549C35.05 29.0549 34.3505 28.7652 33.8348 28.2495C33.319 27.7338 33.0293 27.0343 33.0293 26.3049L33.0313 26.3059ZM6.56731 26.3059C6.56438 25.5734 6.8522 24.8695 7.36757 24.3489C7.88294 23.8283 8.58378 23.5333 9.31633 23.5288C9.5651 23.5288 9.80369 23.6278 9.9796 23.8037C10.1555 23.9796 10.2543 24.218 10.2543 24.4668C10.2543 24.7156 10.1555 24.9542 9.9796 25.1301C9.80369 25.306 9.5651 25.4048 9.31633 25.4048C9.138 25.4032 8.96319 25.4548 8.81413 25.5527C8.66508 25.6507 8.54849 25.7905 8.47914 25.9548C8.4098 26.1191 8.39082 26.3005 8.42464 26.4756C8.45846 26.6507 8.54354 26.8118 8.66908 26.9385C8.79463 27.0651 8.95498 27.1516 9.12978 27.187C9.30458 27.2224 9.48595 27.2051 9.65087 27.1372C9.81579 27.0693 9.95683 26.9538 10.0561 26.8057C10.1553 26.6575 10.2083 26.4833 10.2083 26.3049C10.2083 26.0587 10.3061 25.8226 10.4803 25.6484C10.6544 25.4743 10.8906 25.3765 11.1368 25.3765C11.3831 25.3765 11.6193 25.4743 11.7934 25.6484C11.9675 25.8226 12.0653 26.0587 12.0653 26.3049C12.0653 27.0343 11.7756 27.7338 11.2599 28.2495C10.7441 28.7652 10.0447 29.0549 9.31532 29.0549C8.58598 29.0549 7.8865 28.7652 7.37078 28.2495C6.85505 27.7338 6.56532 27.0343 6.56532 26.3049L6.56731 26.3059ZM4.70934 5.65991C4.46056 5.65991 4.22198 5.56116 4.04607 5.38525C3.87016 5.20934 3.77132 4.9707 3.77132 4.72192C3.77132 4.47315 3.87016 4.2345 4.04607 4.05859C4.22198 3.88268 4.46056 3.78394 4.70934 3.78394H24.6093C24.8581 3.78394 25.0967 3.88268 25.2726 4.05859C25.4485 4.2345 25.5473 4.47315 25.5473 4.72192C25.5473 4.9707 25.4485 5.20934 25.2726 5.38525C25.0967 5.56116 24.8581 5.65991 24.6093 5.65991H4.70934Z" fill="#F16D7F"/>
+</svg></div>
+                    <div style="margin: 20px 0 16px;" class="p7">Free Delivery</div>
+                    <div style="text-align: center;" class="p8">Worldwide delivery on all. Authorit tively morph
+                        next-generation
+                        innov tion with extensive
+                        models.</div>
+                </div>
+                <div class="block_footer1">
+                    <div><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.994 37.0239L16.523 39.9238L14.235 36.0039L9.995 37.5159L9.17297 33.0359L4.67999 32.991L5.41199 28.491L1.20398 26.8909L3.414 22.925L0 19.96L3.41199 16.9929L1.20203 13.0278L5.41101 11.428L4.67798 6.93286L9.172 6.88892L9.99402 2.40894L14.234 3.91992L16.522 0L19.993 2.8999L23.464 0L25.753 3.9209L29.993 2.40894L30.814 6.88989L35.308 6.93481L34.576 11.4299L38.784 13.03L36.574 16.9958L39.986 19.9609L36.574 22.928L38.783 26.894L34.574 28.4939L35.307 32.988L30.812 33.033L29.991 37.5139L25.753 36.0029L23.464 39.9229L19.994 37.0239ZM21.2 35.541L22.961 37.012L24.122 35.022L24.914 33.666L26.382 34.189L28.533 34.957L28.95 32.6838L29.235 31.1289L30.796 31.113L33.078 31.092L32.706 28.8098L32.452 27.25L33.911 26.696L36.045 25.8828L34.925 23.873L34.159 22.498L35.342 21.4709L37.076 19.9609L35.343 18.4609L34.16 17.4319L34.926 16.0559L36.047 14.0449L33.913 13.2339L32.454 12.6809L32.709 11.1208L33.081 8.83984L30.799 8.81689L29.239 8.80103L28.954 7.24683L28.538 4.97388L26.386 5.74097L24.918 6.26392L24.125 4.90698L22.963 2.91699L21.201 4.38794L19.996 5.39282L18.791 4.38794L17.03 2.91699L15.869 4.90601L15.077 6.26294L13.608 5.73999L11.458 4.97192L11.04 7.24585L10.755 8.80005L9.19501 8.81592L6.914 8.83789L7.28601 11.1199L7.53998 12.678L6.08099 13.2329L3.94598 14.0439L5.06702 16.0549L5.83301 17.4299L4.65002 18.459L2.91602 19.967L4.64899 21.4739L5.83197 22.5029L5.06598 23.8779L3.94501 25.8879L6.078 26.698L7.53802 27.2529L7.28302 28.812L6.91199 31.0959L9.19299 31.1189L10.753 31.135L11.038 32.6899L11.455 34.9619L13.607 34.1948L15.076 33.6719L15.868 35.0288L17.03 37.019L18.791 35.5479L19.996 34.543L21.2 35.541ZM21.318 23.02C21.318 20.093 22.883 18.4648 24.777 18.4648C26.783 18.4648 28.077 20.0279 28.077 22.7949C28.077 25.8539 26.492 27.3718 24.662 27.3718C22.883 27.3718 21.338 25.922 21.318 23.02ZM22.839 22.9319C22.816 24.7829 23.521 26.1899 24.711 26.1899C25.988 26.1899 26.561 24.8049 26.561 22.8899C26.561 21.1249 26.054 19.6528 24.711 19.6528C23.5 19.6488 22.839 21.1029 22.839 22.9309V22.9319ZM15.194 27.332L23.609 12.613H24.842L16.427 27.332H15.194ZM11.979 16.99C11.979 14.09 13.542 12.458 15.437 12.458C17.437 12.458 18.763 14.022 18.763 16.79C18.763 19.848 17.177 21.365 15.327 21.365C13.544 21.365 12 19.915 11.979 16.991V16.99ZM13.521 16.9238C13.477 18.7748 14.162 20.1809 15.371 20.1829C16.648 20.1829 17.221 18.7988 17.221 16.8828C17.221 15.1168 16.714 13.645 15.371 13.645C14.162 13.642 13.521 15.092 13.521 16.925V16.9238Z" fill="#F16D7F"/>
+</svg></div>
+                    <div style="margin: 20px 0 16px;" class="p7">Free Delivery</div>
+                    <div style="text-align: center;" class="p8">Worldwide delivery on all. Authorit tively morph
+                        next-generation
+                        innov tion with extensive
+                        models.</div>
+                </div>
+                <div class="block_footer1">
+                    <div><svg width="48" height="35" viewBox="0 0 48 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.3938 8.53564C41.1774 8.52335 40.0058 8.99349 39.1351 9.84302C38.2644 10.6925 37.7655 11.8522 37.7479 13.0686C37.751 13.7086 37.892 14.3405 38.1612 14.9211C38.4304 15.5018 38.8215 16.0176 39.3079 16.4336L33.4479 18.4888L25.1089 8.80566C26.0042 8.50693 26.784 7.93646 27.3396 7.17358C27.8953 6.41071 28.1992 5.49331 28.2089 4.54956C28.1837 3.33432 27.6832 2.17743 26.8149 1.3269C25.9465 0.476377 24.7794 0 23.5639 0C22.3484 0 21.1813 0.476377 20.3129 1.3269C19.4446 2.17743 18.9441 3.33432 18.9189 4.54956C18.9285 5.48395 19.2261 6.39274 19.771 7.15186C20.316 7.91097 21.0817 8.48368 21.9639 8.79175L13.6119 18.4917L7.75396 16.4368C8.24003 16.0206 8.63074 15.5045 8.89959 14.9238C9.16843 14.3432 9.30908 13.7116 9.31194 13.0718C9.33497 12.195 9.10937 11.3296 8.6613 10.5757C8.21324 9.82172 7.56095 9.2099 6.77983 8.81104C5.99872 8.41217 5.12072 8.2424 4.24724 8.32153C3.37376 8.40067 2.54051 8.72555 1.8438 9.2583C1.14709 9.79105 0.61538 10.5101 0.310108 11.3323C0.00483695 12.1545 -0.0615238 13.0462 0.118702 13.9045C0.298928 14.7629 0.718349 15.5526 1.32854 16.1826C1.93873 16.8126 2.7148 17.2571 3.56694 17.4646V29.7556C3.5743 29.8376 3.59101 29.9184 3.61687 29.9966C3.58394 30.1233 3.56721 30.2538 3.56694 30.3848C3.56694 34.7968 21.4859 34.9268 23.5289 34.9268C25.5719 34.9268 43.4909 34.7978 43.4909 30.3848C43.4902 30.2539 43.4733 30.1234 43.4408 29.9966C43.4685 29.9189 43.4853 29.8379 43.4909 29.7556V17.4646C44.5898 17.2244 45.5595 16.5828 46.2103 15.6653C46.861 14.7478 47.1458 13.6204 47.0091 12.5039C46.8724 11.3874 46.3239 10.3621 45.471 9.62866C44.6181 8.89526 43.5223 8.50653 42.3979 8.53857L42.3938 8.53564ZM21.1749 4.55176C21.1633 4.07755 21.2934 3.61062 21.5485 3.21069C21.8036 2.81076 22.172 2.49591 22.6069 2.3064C23.0417 2.11688 23.5232 2.06132 23.9898 2.14673C24.4564 2.23214 24.887 2.45463 25.2265 2.78589C25.566 3.11715 25.7991 3.542 25.8959 4.00635C25.9928 4.4707 25.9491 4.95345 25.7703 5.39282C25.5916 5.8322 25.2859 6.20831 24.8924 6.47314C24.4988 6.73798 24.0353 6.8795 23.561 6.87964C22.9362 6.88605 22.3343 6.64481 21.8871 6.2085C21.44 5.77218 21.1838 5.17647 21.1749 4.55176ZM13.5849 20.8276C13.8019 20.9026 14.0362 20.9113 14.2581 20.8525C14.48 20.7938 14.6794 20.6701 14.8309 20.4976L23.5309 10.3977L32.2309 20.4976C32.3821 20.6702 32.5813 20.7938 32.803 20.8528C33.0248 20.9117 33.2589 20.9033 33.4759 20.8286L41.2339 18.1038V28.0408C36.3489 25.9188 25.1249 25.8406 23.5339 25.8406C21.9429 25.8406 10.7149 25.9198 5.83391 28.0408V18.1038L13.5849 20.8276ZM23.5279 32.7166C14.8279 32.7166 9.27888 31.7057 6.97087 30.8547C6.6198 30.7373 6.28407 30.578 5.97087 30.3806C6.69287 29.8596 9.03194 29.1487 12.9369 28.6487C19.9723 27.844 27.0765 27.844 34.1119 28.6487C38.0119 29.1487 40.357 29.8596 41.077 30.3806C40.7663 30.5794 40.4321 30.7388 40.082 30.8547C37.78 31.7037 32.2359 32.7166 23.5279 32.7166ZM2.28093 13.0686C2.2698 12.5945 2.40025 12.1279 2.65557 11.7283C2.91089 11.3286 3.27952 11.0139 3.71441 10.8247C4.14929 10.6355 4.63063 10.5801 5.0971 10.6658C5.56356 10.7514 5.99399 10.9743 6.3333 11.3057C6.67261 11.637 6.90543 12.0618 7.00212 12.5261C7.09882 12.9904 7.05498 13.4731 6.87615 13.9124C6.69732 14.3516 6.39159 14.7277 5.9981 14.9924C5.6046 15.2572 5.14118 15.3986 4.66692 15.3987C4.04176 15.4054 3.43941 15.1638 2.99212 14.7271C2.54482 14.2903 2.28911 13.6937 2.28093 13.0686ZM42.3938 15.3987C41.9359 15.3875 41.4914 15.2414 41.116 14.9788C40.7406 14.7162 40.451 14.3487 40.2834 13.9224C40.1158 13.496 40.0776 13.0297 40.1738 12.5818C40.2699 12.1339 40.496 11.7241 40.8238 11.4041C41.1516 11.084 41.5664 10.8677 42.0165 10.7822C42.4666 10.6968 42.9319 10.7459 43.3542 10.9236C43.7765 11.1013 44.137 11.3997 44.3906 11.7812C44.6442 12.1628 44.7796 12.6105 44.78 13.0686C44.7713 13.6935 44.5153 14.2895 44.068 14.7261C43.6208 15.1626 43.0188 15.4041 42.3938 15.3977V15.3987Z" fill="#F16D7F"/>
+</svg></div>
+                    <div style="margin: 20px 0 16px;" class="p7">Free Delivery</div>
+                    <div style="text-align: center;" class="p8">Worldwide delivery on all. Authorit tively morph
+                        next-generation
+                        innov tion with extensive
+                        models.</div>
+                </div>
+            </div>
+            <div class="footer2"  v-bind:style="{backgroundImage: 'url(/images/Footer_fon.jpg)'}">
+                <div class="block_footer2">
+                    <div><img src="images/Footer2_1.png" alt="Footer2_1"></div>
+                    <div class="p5">“Vestibulum quis porttitor dui! Quisque viverra nunc mi, <i>a pulvinar
+                            purus condimentum</i>“</div>
+                </div>
+                <!-- Figure -->
+                <figure class="block_footer2">
+                    <div style="text-align: center;"><b class="p6">SUBSCRIBE</b><br>FOR OUR NEWLETTER AND PROMOTION
+                    </div>
+                    <div class="block_footer2_1">
+                        <input class="input1" type="email" name="#" id="#" placeholder="Enter Your Email">
+                        <a class="button3" href="registration.html" @click.prevent="$root.updateState('registration')">Subscribe</a>
+                    </div>
+                </figure>
+            </div>
+            <div class="footer3 alignment">
+                <div class="block_footer3_1">&copy; 2022 Brand All Rights Reserved.</div>
+                <nav class="block_footer3">
+                    <a class="button2" href="#"><svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.08836 8.28L8.50686 5.61602H5.89022V3.88729C5.89022 3.15847 6.25574 2.44806 7.42765 2.44806H8.61722V0.179975C8.61722 0.179975 7.53772 0 6.50561 0C4.35073 0 2.9422 1.27593 2.9422 3.5857V5.61602H0.546875V8.28H2.9422V14.72H5.89022V8.28H8.08836Z" fill="black"/>
+</svg></a>
+                    <a class="button2" href="#"><svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.13897 3.68159C6.02383 3.68159 4.31774 5.38491 4.31774 7.49663C4.31774 9.60835 6.02383 11.3117 8.13897 11.3117C10.2541 11.3117 11.9602 9.60835 11.9602 7.49663C11.9602 5.38491 10.2541 3.68159 8.13897 3.68159ZM8.13897 9.9769C6.77211 9.9769 5.65467 8.8646 5.65467 7.49663C5.65467 6.12866 6.76878 5.01636 8.13897 5.01636C9.50915 5.01636 10.6233 6.12866 10.6233 7.49663C10.6233 8.8646 9.50583 9.9769 8.13897 9.9769ZM13.0078 3.52554C13.0078 4.02026 12.6087 4.41538 12.1165 4.41538C11.621 4.41538 11.2252 4.01694 11.2252 3.52554C11.2252 3.03413 11.6243 2.63569 12.1165 2.63569C12.6087 2.63569 13.0078 3.03413 13.0078 3.52554ZM15.5386 4.42866C15.4821 3.23667 15.2094 2.18081 14.3347 1.31089C13.4634 0.440967 12.4058 0.168701 11.2119 0.108936C9.9814 0.039209 6.29321 0.039209 5.0627 0.108936C3.8721 0.165381 2.81453 0.437646 1.93987 1.30757C1.06522 2.17749 0.795836 3.23335 0.735973 4.42534C0.666134 5.65386 0.666134 9.33608 0.735973 10.5646C0.79251 11.7566 1.06522 12.8124 1.93987 13.6824C2.81453 14.5523 3.86878 14.8246 5.0627 14.8843C6.29321 14.9541 9.9814 14.9541 11.2119 14.8843C12.4058 14.8279 13.4634 14.5556 14.3347 13.6824C15.2061 12.8124 15.4788 11.7566 15.5386 10.5646C15.6085 9.33608 15.6085 5.65718 15.5386 4.42866ZM13.949 11.8828C13.6895 12.5335 13.1874 13.0349 12.5322 13.2972C11.5511 13.6857 9.22314 13.596 8.13897 13.596C7.05479 13.596 4.72348 13.6824 3.74573 13.2972C3.09389 13.0382 2.59171 12.5369 2.32898 11.8828C1.93987 10.9033 2.02967 8.57905 2.02967 7.49663C2.02967 6.41421 1.9432 4.08667 2.32898 3.1105C2.58838 2.45972 3.09056 1.95835 3.74573 1.69604C4.7268 1.30757 7.05479 1.39722 8.13897 1.39722C9.22314 1.39722 11.5545 1.31089 12.5322 1.69604C13.184 1.95503 13.6862 2.4564 13.949 3.1105C14.3381 4.08999 14.2483 6.41421 14.2483 7.49663C14.2483 8.57905 14.3381 10.9066 13.949 11.8828Z" fill="black"/>
+</svg></a>
+                    <a class="button2" href="#"><svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.74032 0.203125C3.55564 0.203125 0.408203 2.34063 0.408203 5.8C0.408203 8 1.63738 9.25 2.38233 9.25C2.68963 9.25 2.86655 8.3875 2.86655 8.14375C2.86655 7.85313 2.13091 7.23438 2.13091 6.025C2.13091 3.5125 4.03055 1.73125 6.4889 1.73125C8.60271 1.73125 10.1671 2.94062 10.1671 5.1625C10.1671 6.82187 9.50597 9.93437 7.36422 9.93437C6.59133 9.93437 5.93018 9.37187 5.93018 8.56563C5.93018 7.38438 6.74963 6.24062 6.74963 5.02187C6.74963 2.95312 3.835 3.32812 3.835 5.82812C3.835 6.35313 3.90018 6.93437 4.13298 7.4125C3.70463 9.26875 2.82931 12.0344 2.82931 13.9469C2.82931 14.5375 2.91311 15.1188 2.96899 15.7094C3.07452 15.8281 3.02175 15.8156 3.18316 15.7563C4.74757 13.6 4.69169 13.1781 5.3994 10.3562C5.78119 11.0875 6.76826 11.4812 7.55046 11.4812C10.8469 11.4812 12.3275 8.24688 12.3275 5.33125C12.3275 2.22813 9.66427 0.203125 6.74032 0.203125Z" fill="black"/>
+</svg></a>
+                    <a class="button2" href="#"><svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.417 3.74052C14.427 3.88264 14.427 4.0248 14.427 4.16692C14.427 8.50192 11.1498 13.4969 5.15986 13.4969C3.31448 13.4969 1.60022 12.9588 0.158203 12.0248C0.420396 12.0552 0.67247 12.0654 0.944752 12.0654C2.46741 12.0654 3.8691 11.5476 4.98843 10.6644C3.5565 10.6339 2.3565 9.68977 1.94305 8.39027C2.14475 8.4207 2.34642 8.44102 2.5582 8.44102C2.85063 8.44102 3.14308 8.40039 3.41533 8.32936C1.92291 8.02477 0.803551 6.70498 0.803551 5.11108V5.07048C1.23715 5.31414 1.74139 5.46642 2.2758 5.4867C1.39849 4.89786 0.823727 3.8928 0.823727 2.75573C0.823727 2.14661 0.985041 1.58823 1.26741 1.10092C2.87077 3.09077 5.28086 4.39023 7.98334 4.53239C7.93293 4.28873 7.90266 4.03495 7.90266 3.78114C7.90266 1.97402 9.35477 0.501953 11.1598 0.501953C12.0976 0.501953 12.9446 0.897891 13.5396 1.53748C14.2757 1.39536 14.9816 1.12123 15.6068 0.745609C15.3648 1.50705 14.8505 2.14664 14.1749 2.5527C14.8304 2.48167 15.4657 2.29889 16.0505 2.04511C15.6069 2.69483 15.0522 3.27348 14.417 3.74052Z" fill="black"/>
+</svg></a>
+                </nav>
+            </div>
+        </footer>
+    `
+};
+
+/***/ }),
+
+/***/ "./src/js/Homepage.js":
+/*!****************************!*\
+  !*** ./src/js/Homepage.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "homepage": () => (/* binding */ homepage)
+/* harmony export */ });
+const homepage = {
+  data() {
+    return {};
+  },
+  template: `
+        <div v-show="this.$root.state.homepage">
+            <main class="top">
+                <div class="topImg"><img class="img1 imgNone" src="images/Top1.png" alt="top1">
+                </div>
+                <div class="top1" href="index.html">
+                    <a href="index.html">
+                        <div class="top1_1"><svg width="12" height="93" viewBox="0 0 12 93" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 0.902344H0V92.9023H12V0.902344Z" fill="#F16D7F"/>
+</svg>
+                        </div>
+                    </a>
+                    <div class="top1_2">
+                        <a href="index.html">
+                            <p class="p1">THE BRAND</p>
+                            <p class="p2">OF LUXERIOUS <span style="color: red">FASHION</span></p>
+                        </a>
+                    </div>
+                </div>
+                <div class="extra_menu">extra menu</div>
+            </main>
+            <section class="offer alignment">
+                <a class="block_offer" href="product.html" @click.prevent="$root.updateState('product')">
+                    <img class="img1" src="images/Offer1.jpg" alt="Offer1">
+                    <p class="p9">30% OFF<br><span style="color: #F26376;">FOR WOMEN</span></p>
+                </a>
+                <div class="block_offer_w"></div>
+                <a class="block_offer" href="product.html" @click.prevent="$root.updateState('product')">
+                    <img class="img1" src="images/Offer2.jpg" alt="Offer2">
+                    <p class="p9">HOT DEAL<br><span style="color: #F26376;">FOR MEN</span></p>
+                </a>
+                <div class="block_offer_w"></div>
+                <a class="block_offer" href="product.html" @click.prevent="$root.updateState('product')">
+                    <img class="img1" src="images/Offer3.jpg" alt="Offer3">
+                    <p class="p9">NEW&nbsp;ARRIVALS<br><span style="color: #F26376;">FOR KIDS</span></p>
+                </a>
+            </section>
+            <section class="block_offer1 alignment">
+                <a href="product.html" @click.prevent="$root.updateState('product')">
+                    <img class="img4" src="images/Offer4.jpg" alt="Offer4">
+                    <p class="p10">LUXIROUS & TRENDY<br><span style="color: #F26376;">ACCESORIES</span></p>
+                </a>
+            </section>
+            <!-- Product -->
+            <section>
+                <p class="p3">Fetured Items</p>
+                <p style="margin: 6px auto 18px;" class="p4">Shop for items based on what we featured in this week
+                </p>
+                <div class="product alignment">
+                    <div class="block_product">
+                        <a href="product.html" @click.prevent="$root.updateState('product')"><img class="img img_block_product" src="images/Product1.png"
+                                alt="Product1">
+                            <div class="block_text_product">
+                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                                <div class="block_text_product2">Known for her sculptural takes on traditional
+                                    tailoring,
+                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                                <div class="block_text_product3">$52.00</div>
+                            </div>
+                        </a>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="product.html" @click.prevent="$root.updateState('product')"><img class="img img_block_product" src="images/Product2.png"
+                                alt="Product2">
+                            <div class="block_text_product">
+                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                                <div class="block_text_product2">Known for her sculptural takes on traditional
+                                    tailoring,
+                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                                <div class="block_text_product3">$52.00</div>
+                            </div>
+                        </a>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="product.html" @click.prevent="$root.updateState('product')"><img class="img img_block_product" src="images/Product3.png"
+                                alt="Product3">
+                            <div class="block_text_product">
+                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                                <div class="block_text_product2">Known for her sculptural takes on traditional
+                                    tailoring,
+                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                                <div class="block_text_product3">$52.00</div>
+                            </div>
+                        </a>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="product.html" @click.prevent="$root.updateState('product')"><img class="img img_block_product" src="images/Product4.png"
+                                alt="Product4">
+                            <div class="block_text_product">
+                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                                <div class="block_text_product2">Known for her sculptural takes on traditional
+                                    tailoring,
+                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                                <div class="block_text_product3">$52.00</div>
+                            </div>
+                        </a>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="product.html" @click.prevent="$root.updateState('product')"><img class="img img_block_product" src="images/Product5.png"
+                                alt="Product5">
+                            <div class="block_text_product">
+                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                                <div class="block_text_product2">Known for her sculptural takes on traditional
+                                    tailoring,
+                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                                <div class="block_text_product3">$52.00</div>
+                            </div>
+                        </a>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="product.html" @click.prevent="$root.updateState('product')"><img class="img img_block_product" src="images/Product6.png"
+                                alt="Product6">
+                            <div class="block_text_product">
+                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                                <div class="block_text_product2">Known for her sculptural takes on traditional
+                                    tailoring,
+                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                                <div class="block_text_product3">$52.00</div>
+                            </div>
+                        </a>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a class="button1" @click="$root.updateState('catalog')">Browse All Product</a>
+            </section>
+        </div>
+    `
+};
+
+/***/ }),
+
+/***/ "./src/js/NavComp.js":
+/*!***************************!*\
+  !*** ./src/js/NavComp.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "navigation": () => (/* binding */ navigation)
+/* harmony export */ });
+/* harmony import */ var _CartInHomepage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CartInHomepage */ "./src/js/CartInHomepage.js");
+
+const navigation = {
+  components: {
+    cart: _CartInHomepage__WEBPACK_IMPORTED_MODULE_0__.cart
+  },
   data() {
     return {
       userSearch: ''
     };
   },
   template: `
-            <form action="#" class="search-form" @submit.prevent="$parent.$refs.products.filter(userSearch)">
-                <input type="text" class="search-field" v-model="userSearch">
-                <button class="btn-search" type="submit">
-                    <i class="fas fa-search"></i>
-                </button>
-            </form>
-    `
+            <header class="fon_menu">
+                <div class="menu alignment">
+                    <nav class="menu_left">
+                        <nav class = qweqe>
+                            <a style="margin-right: 40px;" href="#" @click.prevent="$root.updateState('homepage')">
+                                <svg width="44" height="38" viewBox="0 0 44 38" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="44" height="38" fill="url(#pattern0)"/>
+<defs>
+<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_128_53" transform="scale(0.0227273 0.0263158)"/>
+</pattern>
+<image id="image0_128_53" width="44" height="38" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAmCAYAAAC/H3lnAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAALKADAAQAAAABAAAAJgAAAACVFt04AAAKGElEQVRYCa2Ya5BURxXHT987M/uYfbJsdiG7hMhGXlYkSWnioyooIVR8hVKjlUSNBKgYTVmFFassTXzhBz9o+UyMFYGSsoxiJdGUHywqpYRoICEgWOERCG9YWFiWfc/uzNzb/s6dOzN3ZmdhoTi7/7l9u093nz59+pzT12Q3vypRMo4j6cPHxbs4IP7QiJh4TMSYKMsyXl6MVlBeBf5YqBtNib3z/WLnd4mkM4Xqa1FAmlKyvi+Jm24UPzUm2Z5e8bp7xGaYlIWEpH1q8i+Rulwx64lMnya2rVXEo3yNqSBFdFybzYpJxCUxZ5YkFqAl1y1pjr6EZRs8WaxUxcW/+8MizQ0iWd6vMVUUOJjDWrHjaXGbmyTeNVvs5bZWzSaTFduOZuuTQVlKLOnaSD7BJCYMi7bdxjoEbxRvaFjUxivS2LjIjZ3Y7u1otmAKc+G9BXSCZlAF0uAiOAJ2gONgynRZgS2adpK14rY0iTc4yMAVBTZ6MO27kCsRT8rY+H0wPgAWgjbglh1cqmxGrJyhsB+sA38HKXBJuqzA9DaYg43Nmile70Xxh0eiB1BE7TYeT/kP3uNg6w8g7Lfoo4LCxyLYEVYjBj7D4gPCVFBD3HedWfSfRf0ysXYnbT8EL+WYKv9eSuAuuqwBJ8GPg+75CYOX8EfrWpo6xHV+R82KwG5Nbhfc0TExfez+IIvE1amNswSxMaatTohbXyfS1CA+Nu+77m0I/VfwK8b5AegLZyh5VBL4eji+Bh4CMwGzyV/AYdGJysm34s/ueBK314yBB5p0ei+IOXxS7LkLYhE6OIy6E/kFYz4G7QfeRwXHDcY6Z0p2RqvxqxNfF9/Og3cFU3WXT1dBAnkCpq9EGJOUH2eARxPz58jYG3siTWFRhWUxTt+AOHsPiT1xWvzAqyCUCsa/xEpcI8OxM7qIkZR4w6fYxzMSw8PYeXMk2956tzVmI0x6Ds5FJ6x0gv4Aw0CUifJ97ORtZXWFV4PG3COnxNmyTfxDx8Sq/1Xf7TK8ujtFOeXr1euEfj576qzY13ZK/K2D4mSyS1jsWrpVR7tWEvg/MPwtykS5BTwS1iFNhNCcc+yU2O27xB8YzmmygnyRHpMXGcvHPXp79kv8v/vEHcusxNQ+G+1gynOJsHE+zzdBbYHZmBFC9KKx7btvYHtfZrsKTYXyZJrUg2vtUTqoX9QF1wM9K+8GE0k9CmfDVfNYNH+fn4h/FPPpUUYnmEwnjwpQ9I3FwaxNmljsG7HOGaL5RgnltzdaSZ1xna1oaBUm8TGaloBPgnuDsjH38Pw8eH6CyWAmFnPyDh6V2KFjC5Btef4sOKnr22QUIbyaanE8BCkK/jSDqWMvEJnbZ5yW5o8Eh6VQW1ZQxcfcFPa7BkE+wXgaFN4C2Qinch0Bm8D9QLddd6BILBgHKP7+w+L29q1G43FDBHVQN37RlbG2FkkTgvU9FPoAvTcWR6Bk7XQyMHV5lYnFmkSs16muWs5cPwdDlRlLajX/fB6o9neVtKBpf2RUnP2Hb3JHRu+K4cuLJgFnagbyJGsCXxp2/C3PqC/UQ9oUtpU+VFhcm6mp1sO5OVi06nHqtBfWlezKyZIumIbfc6Eh3n1uaeLiUGli4KSzkiHqpDrackLnDsr6kgEmfTHi1NX+wqmufsHBvDT3MA11YjUnLprZpL3Dht2BKzOGTiERjKx6jvN9C1lM0wS3prHfwywyTBaaxy/pime/BHlot6aq253WuIGnmNqaXMLE4mMtBMCimU0cRA+wIn9wfbuJBW4pMOIi9ZDbgaE7EPzWvMCNMHwVdOUYTc48mJik5Tx1P8vVT/JrSGUa6rY5DfV7eGpZHIR1yBMSszt0MbmUUw91AShRBZ3G1OyGkL6GGOCdk0bgCU0Kb6P+ucFmvRmxUIRP8XwKaMKhp/o3mMfRTENSsrXVUnu650+EyhXUvweUUmi7TlXVPq9f3WwpIZK4SaL7yJj43EYC0ny5fbrYGzpyobu0Cwux1ry+O7wEoGL1GFwmbHo8EFiDw8Nhn2k8vwlWgw2Yx3M2YXakG+u73fH0OtfzfkI9S59AaSdZQ5IxSYhDk/7tHUKSpPtb7BxosPxkMkY222CCcK1tOYGD+2HWv041rO5kMYiSeoI14At0eGmsveXp6vP9z7r9g1+k7tYoY1A2JsMBO19JXM2B0w31kkajhtvL5cm2SyLRFbn0Bl2CYMXCVeAFgCRASE4nUCs1KzGPz2Ua6/7sev5W0z90M1uUN6V8h2o/5s618djWvN2pAVo3JpnWZp5cONRep0YfEt9bVDDgfJ/coRzWib8HXgZqBveCBlBO9dbIqrHpTeNVvX2+cfRAIIAOouR5ruc4S8c7ZzwbRMtcbfF36m4tgWZXyMhIPHIvDMYJ5nSdnryXeJXaL4GlQA/fxLsV5mQdU5VpaUo4CdaZF0KFxtfa/sG7HGuX0DfXpu15BJVT+llBWP+4c/6iCIdMLwQBkQgFQSnm9ucFzo/2BoXHwC3gGRBkSDxzpLcLDQbYZDSf0GTcnDnf7I6lf43W1cSuhpZwvtaySpGzeNK0ChwOowuvivf5w6nT5QLnJ3qbwqNgMfgpOAECIS03aP86dSYRwkZ9LqjOie55CLyJlsWR1qkUH4RpI5fZVudMr5jT6IkAlqfw5r6FgLSzWJtvLX1qAvQ4WAa+C3o4EGSybXysqilqGbOwWn8Af39xcCFO/wV41QV2gkvRQhrXgfX0mWkwA8Ntw+qFNS+w7h6Bw21seM2pr02ZgbcPX2rA8jb1Go9wf3vIeeX1Ljl2OncNynMREGId7eK9773iEXQwm37s+J80vwIOglGgLlMTd1XCB0BSo5q6P4f7oiUHLghLo0ZGU1ezLz6784MmWTNwpQLrEHoHm25OdD9mtu16ghsxs4XGpramvrK9TeyiuZJtbcl5uclcmvbTKxZfSZ09B8Q/krO8wng6l7K0ta7EHNYHY2vdFZMxveb4qe+jPe715slCfxUAbWXPnhP330MS59OVP7tTvLraIOcuHiJ6sDiip5iD3WLfOSY+N+7crSJcvA6qWk8mn2NHN1i+aeiBLA8AyjY1GiTWeN6PUEEXHe4v6YTNeVzf1R4Nt+n4dKygqVGs5tr82XG+VZB3+L1YDONY9ekstIQQ1lRX7QDfhoEoxO5BVy9w7lDge4IQrlFSQ3yRaNcpbCol/glM9zj2npszdFdoUr9ZKMrTE/W7VYm95NWrEfRYcVDYoy9XWVZfrUHn9xX7q5no4lSD2GsALbMLJbYa6WyqYpsReDmKJaEqpWshsI7YD76MABp0jmvFFVOwMHOOxa0Fmu6+U2mMqzeJSqNpWDfyD1T3MFv5aVjmVWYrq3XMWWz7RcxjPUn6mxNMJMJ+rQXWoXHs9jto+xmEvpn3O9HYHTy7cEv11CObSWEoJ0gZt1P+F4Hhf3zeOmjIsC5H/wdL2rGKfdbDqAAAAABJRU5ErkJggg=="/>
+</defs>
+</svg>
+                            </a>
+                        </nav>
+                        <div>
+                            <a href="#"><svg width="27" height="28" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.0596 17.6259C20.6713 15.8658 21.6282 13.6048 21.7698 11.2225C21.9113 8.84018 21.2288 6.48173 19.8369 4.54318C18.445 2.60463 16.4285 1.20404 14.126 0.576619C11.8234 -0.0508009 9.3751 0.13316 7.19217 1.09761C5.00923 2.06205 3.22463 3.74825 2.13804 5.87302C1.05145 7.9978 0.729054 10.4318 1.225 12.7661C1.72094 15.1005 3.00501 17.1932 4.86158 18.6927C6.71814 20.1922 9.03413 21.0072 11.4206 21.0009C13.673 21.004 15.8645 20.27 17.6606 18.9109L25.4086 26.7179C25.4941 26.807 25.5965 26.8781 25.7099 26.927C25.8232 26.9759 25.9452 27.0017 26.0686 27.0029C26.1923 27.0033 26.3148 26.9782 26.4283 26.9292C26.5419 26.8801 26.6441 26.8082 26.7286 26.7179C26.9025 26.537 26.9997 26.2958 26.9997 26.0449C26.9997 25.794 26.9025 25.5528 26.7286 25.3719L19.0596 17.6259ZM2.88662 10.5009C2.89946 8.81563 3.41094 7.17187 4.35659 5.77685C5.30224 4.38183 6.63972 3.29801 8.20044 2.662C9.76115 2.02599 11.4752 1.86627 13.1266 2.20298C14.7779 2.53969 16.2926 3.35775 17.4797 4.55404C18.6668 5.75033 19.4732 7.27129 19.7972 8.92519C20.1212 10.5791 19.9483 12.2919 19.3002 13.8476C18.6522 15.4034 17.5581 16.7325 16.1559 17.6674C14.7536 18.6023 13.1059 19.1011 11.4206 19.1009C9.14916 19.0901 6.97482 18.1784 5.37484 16.566C3.77486 14.9537 2.87998 12.7724 2.88662 10.5009Z" fill="#E8E8E8"/>
+</svg></a>
+                        </div>
+                    </nav>
+                    <nav class="menu_right">
+                        <nav class="menu_right1">
+                            <a href="#"><svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 23V20.31H32V23H0ZM0 12.76V10.07H32V12.76H0ZM0 2.69V0H32V2.69H0Z" fill="#E8E8E8"/>
+</svg></a>
+                            <div class="tranparent_menu"></div>
+                            <div class="wrapper_block_menu">
+                                <nav class="block_menu">
+                                    <a class="block_menu_button" href="#">x</a>
+                                    <a href="" class="a_menu_f">MENU</a>
+                                    <ul><a href="" class="a_menu_fw">MAN</a>
+                                        <li class="li_menu"><a href="#" class="a_menu">Accessories</a>
+                                        </li>
+                                        <li class="li_menu"><a href="#" class="a_menu">Bags</a>
+                                        </li>
+                                        <li class="li_menu"><a href="#" class="a_menu">Denim</a>
+                                        </li>
+                                        <li class="li_menu"><a href="#" class="a_menu">T-Shorts</a>
+                                        </li>
+                                    </ul>
+                                    <ul><a href="" class="a_menu_fw">WOMAN</a>
+                                        <li class="li_menu"><a href="#" class="a_menu">Accessories</a>
+                                        </li>
+                                        <li class="li_menu"><a href="#" class="a_menu">Jackets & Coats</a>
+                                        </li>
+                                        <li class="li_menu"><a href="#" class="a_menu">Polos</a>
+                                        </li>
+                                        <li class="li_menu"><a href="#" class="a_menu">T-Shorts</a>
+                                        </li>
+                                        <li class="li_menu"><a href="" class="a_menu">Shirts</a>
+                                        </li>
+                                    </ul>
+                                    <ul><a href="" class="a_menu_fw">KIDS</a>
+                                        <li class="li_menu"><a href="#" class="a_menu">Accessories</a>
+                                        </li>
+                                        <li class="li_menu"><a href="#" class="a_menu">Jackets & Coats</a>
+                                        </li>
+                                        <li class="li_menu"><a href="#" class="a_menu">Polos</a>
+                                        </li>
+                                        <li class="li_menu"><a href="#" class="a_menu">T-Shorts</a>
+                                        </li>
+                                        <li class="li_menu"><a href="" class="a_menu">Shirts</a>
+                                        </li>
+                                        <li class="li_menu"><a href="" class="a_menu">Bags</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </nav>
+                        <nav class="menu_right2">
+                            <a style="margin: 0 30px 0 30px;" href="#" @click.prevent="$root.updateState('registration')"><svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.5 19.937C19 19.937 22.656 15.464 22.656 9.968C22.656 4.472 19 0 14.5 0C13.3631 0.0217413 12.2463 0.303398 11.2351 0.823397C10.2239 1.34339 9.34507 2.08794 8.66602 3C7.12663 4.99573 6.30819 7.45381 6.34399 9.974C6.34399 15.465 10 19.937 14.5 19.937ZM14.5 1.813C18 1.813 20.844 5.472 20.844 9.969C20.844 14.466 17.998 18.125 14.5 18.125C11.002 18.125 8.15603 14.465 8.15503 9.969C8.15403 5.473 11 1.813 14.5 1.813ZM20.844 18.125C20.6036 18.125 20.373 18.2205 20.203 18.3905C20.033 18.5605 19.9375 18.7911 19.9375 19.0315C19.9375 19.2719 20.033 19.5025 20.203 19.6725C20.373 19.8425 20.6036 19.938 20.844 19.938C22.526 19.9399 24.1386 20.6088 25.3279 21.7982C26.5172 22.9875 27.1861 24.6 27.188 26.282C27.1875 26.5221 27.0918 26.7523 26.922 26.9221C26.7522 27.0918 26.5221 27.1875 26.282 27.188H2.71997C2.47985 27.1875 2.24975 27.0918 2.07996 26.9221C1.91016 26.7523 1.81449 26.5221 1.81396 26.282C1.81608 24.6001 2.48517 22.9877 3.67444 21.7985C4.86371 20.6092 6.47608 19.9401 8.15796 19.938C8.39824 19.938 8.62868 19.8425 8.79858 19.6726C8.96849 19.5027 9.06396 19.2723 9.06396 19.032C9.06396 18.7917 8.96849 18.5613 8.79858 18.3914C8.62868 18.2215 8.39824 18.126 8.15796 18.126C5.99541 18.1279 3.92201 18.9875 2.39258 20.5164C0.863144 22.0453 0.00264777 24.1185 0 26.281C0.000794067 27.0019 0.287502 27.693 0.797241 28.2027C1.30698 28.7125 1.99811 28.9992 2.71899 29H26.282C27.0027 28.9989 27.6936 28.7121 28.2031 28.2024C28.7126 27.6927 28.9992 27.0017 29 26.281C28.9974 24.1187 28.1372 22.0457 26.6083 20.5168C25.0793 18.9878 23.0063 18.1276 20.844 18.125Z" fill="#E8E8E8"/>
+</svg></a>
+                        </nav>
+                        <nav class="menu_right3">
+                            <cart ref="cart"></cart>
+                        </nav>
+                    </nav>
+                </div>
+            </header> `
 };
 
 /***/ }),
 
-/***/ "./src/js/ProducComp.js":
-/*!******************************!*\
-  !*** ./src/js/ProducComp.js ***!
-  \******************************/
+/***/ "./src/js/ProductComp.js":
+/*!*******************************!*\
+  !*** ./src/js/ProductComp.js ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "products": () => (/* binding */ products)
+/* harmony export */   "product": () => (/* binding */ product)
 /* harmony export */ });
 const product = {
-  props: ['product'],
   data() {
     return {};
   },
-  methods: {},
-  mounted() {
-    this.addProduct = this.$root.$refs.cart.addProduct;
-  },
   template: `
-    <div class="product-item">
-                <div v-bind:style="{ backgroundImage: 'url(https://via.placeholder.com/200x200)', backgroundSize: 'cover'}" class="img_block">
-                    <img class="img" :src=this.$root.getImage(product.img) alt="Some img">
+    <div v-show="this.$root.state.product">
+            <main class="PRtop">
+                <div class="PRwrapper_top PRalignment">
+                    <p class="PRtop_name">NEW ARRIVALS</p>
+                    <div class="PRwrapper_top">
+                        <a class="PRa_top1" href="index.html" @click.prevent="$root.updateState('homepage')">HOME</a>
+                        <p class="PRp4">&nbsp;&nbsp;/&nbsp;&nbsp;</p>
+                        <a class="PRa_top1" href="#">WOMEN</a>
+                        <p class="PRp4">&nbsp;&nbsp;/&nbsp;&nbsp;</p>
+                        <p class="PRa_top3">NEW ARRIVALS</p>
+                    </div>
                 </div>
-                <div class="desc">
-                    <h3>{{product.product_name}}</h3>
-                    <p>{{product.price}}₽</p>
-                    <button class="buy-btn" @click="addProduct(product)">Купить</button>
+            </main>
+            <!-- Product -->
+            <section>
+                <div class="wrapper_carousel">
+                    <a class="button_carousel" href="#"><i class="fa-solid fa-angle-left"></i></a>
+                    <div class="img_carousel"><img class="img" src="images/Product8.png" alt="Product8"></div>
+                    <a class="button_carousel" href="#"><i class="fa-solid fa-angle-right"></i></a>
                 </div>
-            </div>`
+                <form action="#" class="PRposter PRalignment">
+                    <p class="PRposter_p1">WOMEN COLLECTION</p>
+                    <div class="PRposter_line1"></div>
+                    <p class="PRp5">MOSCHINO CHEAP AND CHIC</p>
+                    <p class="PRposter_p2">Compellingly actualize fully researched processes before proactive outsourcing.
+                        Progressively
+                        syndicate collaborative
+                        architectures before cutting-edge services. Completely visualize parallel core competencies
+                        rather than exceptional
+                        portals.</p>
+                    <p class="PRposter_p3">$561</p>
+                    <div class="PRposter_line2"></div>
+                    <div class="PRposter_flex">
+                        <details>
+                            <summary>CHOOSE COLOR</summary>
+                            <select>
+                                <option value="white">White</option>
+                                <option value="black">Black</option>
+                                <option value="gray">Gray</option>
+                            </select>
+                        </details>
+                        <details>
+                            <summary>CHOOSE SIZE</summary>
+                            <select class="select_mutation">
+                                <option value="XXS">XXS</option>
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </details>
+                        <details>
+                            <summary>QUANTITY</summary>
+                            <input class="PRnumber_for_quantity" value="1" id="quantity" type="number" min="1" max="100">
+                        </details>
+                    </div>
+                    <button class="PRbutton5"><i class="fa-solid fa-cart-shopping"></i> &nbsp Add to
+                        Cart</button>
+                </form>
+            </section>
+            <!-- Products -->
+            <section>
+                <div class="PRproduct PRalignment">
+                    <div class="block_product">
+                        <a href="#"><img class="img img_block_product" src="images/Product1.png" alt="Product1"></a>
+                        <div class="block_text_product">
+                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                tailoring,
+                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                            <div class="block_text_product3">$52.00</div>
+                        </div>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="#"><img class="img img_block_product" src="images/Product2.png" alt="Product2"></a>
+                        <div class="block_text_product">
+                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                tailoring,
+                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                            <div class="block_text_product3">$52.00</div>
+                        </div>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block_product">
+                        <a href="#"><img class="img img_block_product" src="images/Product3.png" alt="Product3"></a>
+                        <div class="block_text_product">
+                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
+                            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                tailoring,
+                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+                            <div class="block_text_product3">$52.00</div>
+                        </div>
+                        <div class="wrapper_add_to_cart">
+                            <a class="add_to_cart" href="1#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p class="add_to_cart_text">Add to Cart</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>`
 };
-const products = {
-  components: {
-    product
-  },
+
+/***/ }),
+
+/***/ "./src/js/Registration.js":
+/*!********************************!*\
+  !*** ./src/js/Registration.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "registration": () => (/* binding */ registration)
+/* harmony export */ });
+const registration = {
   data() {
-    return {
-      catalogUrl: '/api/products',
-      products: [],
-      filtered: []
-    };
-  },
-  methods: {
-    filter(value) {
-      let regexp = new RegExp(value, 'i');
-      this.filtered = this.products.filter(el => regexp.test(el.product_name));
-    }
-  },
-  mounted() {
-    this.$parent.getJson(`${this.catalogUrl}`).then(data => {
-      for (let el of data) {
-        this.products.push(el);
-        this.filtered.push(el);
-      }
-    });
+    return {};
   },
   template: `
-        <div class="products">
-            <product ref="refref" v-for="item of filtered" :key="item.id_product" :product="item"></product>
-        </div>
-    `
+    <div v-show="this.$root.state.registration">
+    <main class="RGtop">
+            <p class="RGtopTxt alignment RGtop__alignment">REGISTRATION</p>
+        </main>
+        <!-- Input -->
+        <section>
+            <div class="alignment RGwrapper_for_input">
+                <div class="RGinput">
+                    <div class="RGwrapper_input">
+                        <div class="RGadress_title">Your Name</div>
+                        <input class="RGinput2" type="text" placeholder="First Name">
+                        <input class="RGinput2" type="text" placeholder="Last Name">
+                        <div>
+                            <input type="radio" name="gender" id="input_radio1" value="First" class="RGcustom_input"
+                                data-p="90" data-c="40">
+                            <label for="input_radio1">Male</label>
+                            <input type="radio" name="gender" id="input_radio2" value="Second" class="RGcustom_input"
+                                data-p="50" data-c="20">
+                            <label for="input_radio2">Female</label>
+                        </div>
+                        <div class="RGadress_title">Login details</div>
+                        <input class="RGinput2" type="email" placeholder="Email">
+                        <input class="RGinput2" type="number" min="0" placeholder="Password">
+                        <p class="RGp11">Please use 8 or more characters, with at least 1 number and a mixture of
+                            uppercase and
+                            lowercase letters</p>
+                        <a class="RGbutton4" href="#">JOIN NOW &nbsp;&nbsp;&nbsp;&#8594;</a>
+                    </div>
+                </div>
+                <!-- Input Part2 -->
+                <div class="RGwrapper_input1">
+                    <div class="RGp12">LOYALTY HAS ITS PERKS</div>
+                    <div class="RGp12 RGp12_margin">Get in on the loyalty program where you can earn points and unlock
+                        serious perks.
+                        Starting with these as soon as you
+                        join:</div>
+                    <ol>
+                        <li class="RGclass1">15% off welcome offer</li>
+                        <li class="RGclass2">Free shipping, returns and exchanges on all orders</li>
+                        <li class="RGclass3">$10 off a purchase on your birthday</li>
+                        <li class="RGclass4">Early access to products</li>
+                        <li class="RGclass5">Exclusive offers & rewards</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </div>`
 };
 
 /***/ }),
@@ -343,23 +1204,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "app": () => (/* binding */ app)
 /* harmony export */ });
-/* harmony import */ var _CartComp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CartComp */ "./src/js/CartComp.js");
-/* harmony import */ var _ProducComp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProducComp */ "./src/js/ProducComp.js");
-/* harmony import */ var _ErrorComp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ErrorComp */ "./src/js/ErrorComp.js");
-/* harmony import */ var _FilterComp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FilterComp */ "./src/js/FilterComp.js");
-
-
+/* harmony import */ var _FlexGrow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FlexGrow */ "./src/js/FlexGrow.js");
+/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Footer */ "./src/js/Footer.js");
 
 
 const app = {
   el: '#app',
   components: {
-    cart: _CartComp__WEBPACK_IMPORTED_MODULE_0__.cart,
-    products: _ProducComp__WEBPACK_IMPORTED_MODULE_1__.products,
-    error: _ErrorComp__WEBPACK_IMPORTED_MODULE_2__.error,
-    filter_el: _FilterComp__WEBPACK_IMPORTED_MODULE_3__.filter_el
+    flexgrow: _FlexGrow__WEBPACK_IMPORTED_MODULE_0__.flexgrow,
+    myfooter: _Footer__WEBPACK_IMPORTED_MODULE_1__.myfooter
   },
   data: {
+    state: {
+      homepage: true,
+      catalog: false,
+      product: false,
+      registration: false,
+      cartpage: false
+    },
     defaultImg: 'https://via.placeholder.com/250x250',
     userSearch: ''
   },
@@ -401,6 +1263,22 @@ const app = {
         return img;
       }
       return this.defaultImg;
+    },
+    updateState(page) {
+      for (let prop in this.state) {
+        this.state[prop] = false;
+      }
+      this.state[page] = true;
+      document.documentElement.scrollTop = 0;
+    },
+    closeDiv(div) {
+      const block = document.querySelector(div);
+      document.addEventListener('click', e => {
+        const withinBoundaries = e.composedPath().includes(block);
+        if (!withinBoundaries) {
+          this.$refs.fg.$refs.ng.$refs.cart.showCart = false;
+        }
+      });
     }
   },
   mounted() {}
@@ -9491,10 +10369,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, "/*! normalize.css v8.0.1 | MIT License
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./src/styles/style.css":
-/*!********************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./src/styles/style.css ***!
-  \********************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/style.sass":
+/*!************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/style.sass ***!
+  \************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9507,14 +10385,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_normalize_css_normalize_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! -!../../node_modules/css-loader/dist/cjs.js!../../node_modules/normalize.css/normalize.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/normalize.css/normalize.css");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_3__);
 // Imports
 
 
 
+
+var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3e%3cpath fill=%27purple%27 d=%27M50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5%27/%3e%3c/svg%3e */ "data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3e%3cpath fill=%27purple%27 d=%27M50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5%27/%3e%3c/svg%3e"), __webpack_require__.b);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_node_modules_normalize_css_normalize_css__WEBPACK_IMPORTED_MODULE_2__["default"]);
+var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_3___default()(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body{\n    font-family: 'SF Pro Display', sans-serif;\n}\nheader{\n    display: flex;\n    background-color: #2f2a2d;\n    justify-content: space-between;\n    color: #fafafa;\n    padding: 30px 80px;\n}\nbutton:focus{\n    outline: none;\n}\n.logo{\n    text-transform: uppercase;\n    font-weight: bold;\n}\n.btn-cart{\n    background-color: #fafafa;\n    padding: 10px 20px;\n    border: 1px solid transparent;\n    color: #2f2a2d;\n    border-radius: 5px;\n    transition: all ease-in-out .4s;\n    cursor: pointer;\n}\n.btn-cart:hover{\n    background-color: transparent;\n    border-color: #fafafa;\n    color: #fafafa;\n}\n.btn-cart, .logo{\n    align-self: center;\n}\n/*.products {*/\n/*display: flex;*/\n/*justify-content: space-between;*/\n/*flex-wrap: wrap;*/\n/*padding: 40px 80px;*/\n/*}*/\n.products{\n    column-gap: 30px;\n    display: grid;\n    grid-template-columns: repeat(auto-fit, 200px);\n    grid-template-rows: 1fr;\n    padding: 40px 80px;\n    justify-content: space-between;\n}\np {\n    margin: 0 0 5px 0;\n}\n.product-item{\n    display: flex;\n    flex-direction: column;\n    width: 200px;\n    border-radius: 5px;\n    overflow: hidden;\n    margin: 20px 0;\n}\n.img_block {\n    height: 200px;\n    display: flex;\n    align-items: center;\n    overflow: hidden;\n}\n.img_block_height {\n    height: 60px;\n    width: 80px;\n    margin-right: 10px;\n}\nimg {\n    width: 100%;\n    height: auto;\n}\n.desc {\n    border: 1px solid #c0c0c040;\n    padding: 15px\n}\n.cart{\n    position: relative;\n    display: flex;\n}\n.cart-block{\n    box-shadow: 0 0 5px rgba(0, 0, 0, 0.62);\n    border-radius: 5px;\n    box-sizing: border-box;\n    right: 0;\n    top: 130%;\n    position: absolute;\n    background-color: white;\n    padding: 20px;\n    color: black;\n    width: 300px;\n}\n\n.invisible{\n    display: none;\n}\n.cart-block:before{\n    content: '';\n    width: 0;\n    height: 0;\n    position: absolute;\n    top: -10px;\n    right: 35px;\n    border-left: 10px solid transparent;\n    border-right: 10px solid transparent;\n    border-bottom: 10px solid white;\n}\n\n.buy-btn, .del-btn{\n    margin-top: 5px;\n    background-color: #2f2a2d;\n    padding: 5px 15px;\n    border: 1px solid transparent;\n    color: #fafafa;\n    border-radius: 5px;\n    transition: all ease-in-out .4s;\n    cursor: pointer;\n}\n.buy-btn:hover, .del-btn:hover{\n    background-color: #fafafa;\n    color: #2f2a2d;\n    border: 1px solid #2f2a2d;\n}\n.cart-item {\n    display: flex;\n    justify-content: space-between;\n}\n.cart-item:not(:last-child){\n    margin-bottom: 20px;\n}\n.product-bio{\n    display: flex;\n}\n.cart-item img{\n    align-self: flex-start;\n    margin-right: 15px;\n}\n.product-single-price{\n    color: #474747;\n    font-size: 0.5em;\n}\n.product-price{\n    margin-left: 0px;\n}\n.product-desc{\n    max-width: 150px;\n}\n.product-quantity {\n    margin-top: 15px;\n    font-size: 0.75em;\n}\n.right-block{\n    text-align: right;\n    width: 55px;\n}\n.btn-search {\n    background-color: transparent;\n    border: none;\n    color: #fafafa;\n    font-size: 1.2em;\n    position: absolute;\n    bottom: 5px;\n    right: 0;\n}\n.search-form{\n    position: relative;\n    margin-right: 50px;\n    display: inline-block;\n}\n.search-field:focus{\n    outline: none;\n}\n.search-field {\n    box-sizing: border-box;\n    width: 200px;\n    color: #fafafa;\n    padding: 10px;\n    background-color: transparent;\n    border: none;\n    border-bottom: 2px solid #fafafa;\n}\n.error-block{\n    width: 600px;\n    margin: auto;\n    color: red;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  outline: none;\n}\n\na {\n  text-decoration: none;\n  color: black;\n}\n\nbody {\n  font-family: \"lato\", \"Times New Roman\", Times, serif;\n  overflow-x: hidden;\n}\n\n.alignment {\n  max-width: 75vw;\n  margin: 0 auto;\n}\n\n.wrapper {\n  min-height: 100vh;\n  display: flex;\n  flex-direction: column;\n}\n\n.background {\n  position: absolute;\n  width: 150vw;\n  height: 150vh;\n  background-color: #000000;\n  opacity: 0.5;\n  display: none;\n  z-index: 1;\n  right: -30vw;\n  top: -10vh;\n}\n\n.flex_grow {\n  flex-grow: 1;\n}\n\n.footer {\n  background: #222224;\n}\n\n.fon_menu {\n  background: #222222;\n}\n\n.menu {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  padding: 20px 0;\n}\n.menu_left {\n  display: flex;\n  align-items: center;\n}\n.menu_right {\n  display: flex;\n  align-items: center;\n}\n.menu_right1 {\n  position: relative;\n}\n.menu_right1::before {\n  content: \"\";\n  display: block;\n  height: 20px;\n  width: 20px;\n  background-color: white;\n  position: absolute;\n  top: 122%;\n  right: 5.5px;\n  transform: rotate(45deg);\n  border-top: 1px solid gray;\n  border-left: 1px solid gray;\n  z-index: -1;\n  transition: all 10ms ease-out;\n}\n\n.tranparent_menu {\n  height: 50px;\n  width: 32px;\n  background-color: transparent;\n  position: absolute;\n  top: 25%;\n  left: 0%;\n  z-index: 2;\n  display: none;\n}\n\n.wrapper_block_menu {\n  background-color: transparent;\n  display: block;\n  width: 232px;\n  height: 100vh;\n  left: 500px;\n  top: 160%;\n  position: absolute;\n  z-index: 1;\n  overflow: hidden;\n  border-radius: 0 5px 5px 5px;\n}\n\n.block_menu {\n  background-color: #FFFFFF;\n  display: flex;\n  width: 232px;\n  left: 0;\n  top: -660px;\n  padding: 10px;\n  position: absolute;\n  flex-direction: column;\n  border-radius: 0 5px 5px 5px;\n  border: 1px solid rgb(202, 198, 198);\n  transition: all 400ms ease-out;\n}\n.menu_right1:hover .block_menu {\n  display: flex;\n  top: 0;\n  border-top: 1px solid gray;\n  border-left: 1px solid gray;\n  border-top: 1px solid transparent;\n}\n\n.menu_right1:hover::before {\n  display: block;\n  z-index: 2;\n}\n\n.menu_right1:hover .tranparent_menu {\n  display: block;\n}\n\n.menu_right1:hover .background {\n  display: block;\n}\n\n.menu_right1:hover .wrapper_block_menu {\n  left: 0;\n}\n\n.a_menu_f {\n  display: block;\n  padding: 0 0 10px 30px;\n  font-weight: 900;\n  text-decoration: none;\n  color: #000000;\n}\n.a_menu_fw {\n  display: block;\n  padding: 10px 0 10px 30px;\n  font-weight: 900;\n  text-decoration: none;\n  color: #F26376;\n}\n\n.a_menu {\n  text-decoration: none;\n  color: #000000;\n  display: block;\n  padding: 3px 0 3px 55px;\n}\n.a_menu:hover {\n  color: #FF6A6A;\n}\n\n.a_top {\n  text-decoration: none;\n  color: #000000;\n  display: block;\n}\n\n.li_menu {\n  list-style-type: \"\";\n}\n\n.block_menu_button {\n  text-decoration: none;\n  margin: 0 0 0 auto;\n  width: 14px;\n  height: 20px;\n  padding: 1px;\n  font-size: 20px;\n  color: rgb(100, 94, 94);\n}\n\n.top {\n  display: flex;\n  flex-flow: row nowrap;\n  background: #F1E4E6;\n  justify-content: center;\n  position: relative;\n}\n.top1 {\n  display: flex;\n  flex-flow: row nowrap;\n  background: #F1E4E6;\n  align-items: center;\n  margin: 0 0 0 5vw;\n}\n.top1_1 {\n  margin: 7px 0 0 7px;\n  padding: 0 16px 0 0;\n  height: 78px;\n  min-width: 28px;\n}\n.top1_2 {\n  margin-right: 20vw;\n  min-width: 370px;\n}\n.topImg {\n  width: 37.5vw;\n}\n\n.extra_menu {\n  height: 80%;\n  width: 15%;\n  top: 0;\n  position: absolute;\n  right: 0;\n  background-color: white;\n  padding: 15px;\n  display: none;\n}\n\n.p1 {\n  font-weight: 900;\n  font-size: 48px;\n  line-height: 58px;\n  color: #222222;\n}\n\n.p2 {\n  font-size: 30px;\n  line-height: 30px;\n  color: #222222;\n}\n\n.p3 {\n  font-weight: 400;\n  font-size: 30px;\n  line-height: 36px;\n  color: #222222;\n  text-align: center;\n}\n\n.p4 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  color: #9F9F9F;\n  text-align: center;\n}\n\n.p5 {\n  font-weight: 400;\n  font-size: 20px;\n  line-height: 24px;\n  text-align: center;\n  color: #222224;\n}\n\n.p6 {\n  font-weight: 700;\n  font-size: 24px;\n  line-height: 167.2%;\n  text-align: center;\n  color: #222224;\n}\n\n.p7 {\n  font-weight: 400;\n  font-size: 19.96px;\n  line-height: 24px;\n  color: #FBFBFB;\n}\n\n.p8 {\n  max-width: 360px;\n  font-weight: 300;\n  font-size: 13.972px;\n  line-height: 17px;\n  text-align: center;\n  color: #FBFBFB;\n}\n\n.p9 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  text-align: center;\n  color: #FFFFFF;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateY(-50%) translateX(-50%);\n}\n\n.p10 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  text-align: center;\n  color: #FFFFFF;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateY(-50%) translateX(-50%);\n}\n\n.input1 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  display: flex;\n  align-items: center;\n  color: #222224;\n  opacity: 0.67;\n  background-color: #E1E1E1;\n  border-radius: 10px 0 0 10px;\n  max-width: 256px;\n  height: 49px;\n  padding: 0 22px;\n  border: 1px solid rgb(153, 147, 147);\n  transition: all 400ms ease-out, background-color 400ms ease-out;\n}\n.input1:hover {\n  opacity: 0.8;\n  background-color: #f0efef;\n}\n\n::placeholder {\n  transition: all 400ms ease-out;\n}\n::placeholder:hover::placeholder {\n  color: transparent;\n}\n\n.offer {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n}\n\n.block_offer {\n  display: block;\n  min-width: 30px;\n  flex-grow: 1;\n  position: relative;\n  margin: 30px auto 0;\n  transition: box-shadow 400ms ease-out, filter 400ms ease-out;\n}\n.block_offer:hover {\n  filter: brightness(130%);\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n.block_offer_w {\n  width: 30px;\n}\n.block_offer1 {\n  overflow: hidden;\n  position: relative;\n  margin: 30px auto 90px;\n  transition: box-shadow 400ms ease-out, filter 400ms ease-out;\n}\n.block_offer1:hover {\n  filter: brightness(130%);\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n\n.img {\n  width: 100%;\n}\n.img1 {\n  width: 100%;\n  height: 100%;\n}\n.img2 {\n  width: 100%;\n  height: 100%;\n}\n.img4 {\n  width: 100%;\n  height: 100%;\n  margin: 0 0 -5px 0;\n}\n\n.product {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: space-between;\n}\n\n.block_product {\n  width: 22.7272727273vw;\n  position: relative;\n  margin: 15px 0;\n  display: flex;\n  flex-flow: column nowrap;\n  background: #F8F8F8;\n}\n.block_product:hover {\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n\n.img_block_product {\n  filter: brightness(100%);\n  transition: filter 400ms ease-out;\n}\n.block_product:hover .img_block_product {\n  filter: brightness(30%);\n}\n\n.block_product:hover .wrapper_add_to_cart {\n  opacity: 1;\n}\n\n.wrapper_add_to_cart {\n  display: flex;\n  opacity: 0;\n  position: absolute;\n  top: 25%;\n  width: 100%;\n  justify-content: center;\n  pointer-events: none;\n  transition: opacity 400ms ease-out;\n}\n\n.add_to_cart {\n  display: flex;\n  align-items: center;\n  color: white;\n  border: 1px solid #FFFFFF;\n  padding: 10px;\n  text-decoration: none;\n  pointer-events: all;\n}\n.add_to_cart:hover {\n  box-shadow: 0px 0px 8px 0px rgb(255, 255, 255);\n}\n.add_to_cart_text {\n  margin: 0 0 0 8px;\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n}\n\n.block_product:nth-child(3n+2) {\n  position: relative;\n  z-index: 1;\n  margin: 15px auto;\n}\n\n.block_text_product {\n  display: flex;\n  flex-flow: column nowrap;\n  min-height: 160px;\n  justify-content: space-around;\n  padding: 18px;\n}\n.block_text_product1 {\n  font-weight: 400;\n  font-size: 13px;\n  line-height: 16px;\n  color: #000000;\n}\n.block_text_product2 {\n  margin: 15px 0;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n  color: #5D5D5D;\n}\n.block_text_product3 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F16D7F;\n}\n\n.button1 {\n  padding: 14px 38px;\n  border: 1px solid #FF6A6A;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F26376;\n  text-decoration: none;\n  display: block;\n  text-align: center;\n  max-width: 211px;\n  margin: 48px auto 95px;\n  transition: box-shadow 400ms ease-out, color 400ms ease-out;\n}\n.button1:hover {\n  box-shadow: inset 0px 0px 200px 0px #F26376;\n  color: #FFFFFF;\n}\n\n.button2 {\n  width: 32px;\n  height: 32px;\n  padding-top: 8px;\n  box-sizing: border-box;\n  text-align: center;\n  background: #FFFFFF;\n  text-decoration: none;\n  display: block;\n  transition: all 400ms ease-out;\n}\n.button2:hover {\n  background: #F26376;\n}\n\n.button3 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  display: flex;\n  align-items: center;\n  text-align: center;\n  text-decoration: none;\n  color: #FFFFFF;\n  background-color: #F16D7F;\n  border: 2px solid #F16D7F;\n  border-radius: 0 10px 10px 0;\n  max-width: 100px;\n  height: 49px;\n  padding: 0 15px 0 15px;\n  transition: background-color 400ms ease-out, color 400ms ease-out;\n}\n.button3:hover {\n  background-color: #FFFFFF;\n  color: #F16D7F;\n}\n\n.footer {\n  background: #222224;\n}\n.footer1 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n}\n\n.block_footer1 {\n  min-width: 30px;\n  flex-grow: 1;\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: space-between;\n  align-items: center;\n  margin: 100px 0;\n}\n\n.footer2 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-around;\n  height: 448px;\n  background-size: cover;\n  background-position: bottom;\n  background-repeat: no-repeat;\n}\n\n.block_footer2 {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: center;\n  align-items: center;\n  max-width: 360px;\n}\n.block_footer2_1 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: center;\n  align-items: center;\n  margin-top: 32px;\n}\n\n.footer3 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.block_footer3 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  width: 150px;\n}\n.block_footer3_1 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #FBFBFB;\n  margin: 30px 0;\n}\n\n@media (min-width: 376px) and (max-width: 768px) {\n  .alignment {\n    max-width: 90vw;\n    margin: 0 auto;\n  }\n  .alignment1 {\n    max-width: 92vw;\n    margin: 0 auto;\n  }\n  .product {\n    flex-flow: row wrap;\n  }\n  .footer1 {\n    flex-flow: column nowrap;\n    align-items: center;\n  }\n  .block_menu {\n    width: 232px;\n  }\n  .block_offer1 {\n    margin: 30px auto 90px;\n    height: 120px;\n  }\n  .wrapper_block_menu {\n    width: 232px;\n    border-radius: 5px 5px 5px 5px;\n  }\n  .menu_right1:hover .wrapper_block_menu {\n    left: -60px;\n  }\n  .block_footer1 {\n    margin: 20px 0;\n  }\n  .block_footer1:first-child {\n    margin: 60px 0 20px;\n  }\n  .block_footer1:last-child {\n    margin: 20px 0 60px;\n  }\n  .footer2 {\n    background-position: left;\n    flex-flow: column nowrap;\n    align-items: center;\n    justify-content: space-evenly;\n    height: 600px;\n  }\n  .block_product {\n    width: 42.4528301887vw;\n  }\n  .block_product:nth-child(3n+2) {\n    position: relative;\n    z-index: 1;\n    margin: 15px 0;\n  }\n  .block_product1 {\n    width: 42.4528301887vw;\n    transition: width 400ms ease-out, transform 400ms ease-out, padding 400ms ease-out;\n  }\n  .block_product1:active {\n    width: 57.6923076923vw;\n    padding: 0 40px;\n  }\n  .p1 {\n    font-weight: 900;\n    font-size: 43px;\n    line-height: 51px;\n    color: #222222;\n  }\n  .p2 {\n    font-size: 25px;\n    line-height: 25px;\n    color: #222222;\n  }\n  .top1 {\n    margin: 0;\n  }\n  .top1_1 {\n    height: 67px;\n  }\n  .top1_2 {\n    margin-right: 0;\n    min-width: 370px;\n  }\n}\n@media (max-width: 375px) {\n  .alignment {\n    max-width: 90vw;\n    margin: 0 auto;\n  }\n  .alignment1 {\n    max-width: 92vw;\n    margin: 0 auto;\n  }\n  .menu_right2 {\n    display: none;\n  }\n  .menu_right3 {\n    display: none;\n  }\n  .offer {\n    flex-flow: column nowrap;\n  }\n  .offer1 {\n    background-size: cover;\n    background-position: center;\n    height: 85px;\n  }\n  .product {\n    flex-flow: row wrap;\n  }\n  .block_menu {\n    width: 162px;\n    left: auto;\n  }\n  .wrapper_block_menu {\n    width: 162px;\n    right: -10px;\n    border-radius: 5px 5px 5px 5px;\n  }\n  .menu_right1:hover .wrapper_block_menu {\n    left: -120px;\n  }\n  .block_product {\n    width: 100%;\n    margin: 15px 0;\n    display: flex;\n    flex-flow: column nowrap;\n    background: #F8F8F8;\n  }\n  .block_product1 {\n    width: 100%;\n  }\n  .block_product1:active {\n    width: 100%;\n    padding: 0;\n  }\n  .block_product1:nth-child(3n+2) {\n    position: relative;\n    z-index: 1;\n    margin: 15px 0;\n  }\n  .footer1 {\n    flex-flow: column nowrap;\n    align-items: center;\n  }\n  .footer2 {\n    background-position: left;\n    flex-flow: column nowrap;\n    align-items: center;\n    justify-content: space-evenly;\n    height: 600px;\n  }\n  .footer3 {\n    flex-flow: column-reverse nowrap;\n  }\n  .block_footer1 {\n    margin: 20px 0;\n  }\n  .block_footer1:first-child {\n    margin: 60px 0 20px;\n  }\n  .block_footer1:last-child {\n    margin: 20px 0 60px;\n  }\n  .block_offer1 {\n    margin: 30px auto 90px;\n    min-height: 100px;\n  }\n  .block_offer_w {\n    display: none;\n  }\n  .imgNone {\n    display: none;\n  }\n  .p1 {\n    font-weight: 900;\n    font-size: 38px;\n    line-height: 46px;\n    color: #222222;\n  }\n  .p2 {\n    font-size: 20px;\n    line-height: 20px;\n    color: #222222;\n  }\n  .top {\n    justify-content: left;\n    padding: 150px 0 150px;\n  }\n  .top1 {\n    margin: 0;\n  }\n  .top1_1 {\n    margin: 6px 10px 0 4vw;\n    height: 57px;\n    padding: 0;\n  }\n  .top1_2 {\n    margin-right: 0;\n    min-width: 0px;\n  }\n  .topImg {\n    width: 0;\n  }\n  .block_footer3 {\n    margin: 30px 0;\n  }\n  .a_menu_f {\n    padding: 10px 0 10px 0;\n  }\n  .a_menu_fw {\n    padding: 10px 0 10px 0;\n  }\n  .a_menu {\n    padding: 3px 0 3px 15px;\n  }\n  .img1 {\n    margin: 0 0 -5px 0;\n  }\n  .img4 {\n    margin: 0 0 -5px 0;\n    width: auto;\n  }\n}\n.HPimg_block {\n  height: 200px;\n  display: flex;\n  align-items: center;\n  overflow: hidden;\n}\n.HPimg_block_height {\n  height: 60px;\n  width: 80px;\n  margin-right: 10px;\n}\n\n.HPimg {\n  width: 100%;\n  height: auto;\n}\n\n.HPcart {\n  position: relative;\n  display: flex;\n}\n.HPcart-block {\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.62);\n  border-radius: 5px;\n  box-sizing: border-box;\n  right: 9.5%;\n  top: 8%;\n  position: absolute;\n  background-color: white;\n  padding: 20px;\n  color: black;\n  width: 300px;\n  z-index: 1;\n}\n\n.HPcart-block:before {\n  content: \"\";\n  width: 0;\n  height: 0;\n  position: absolute;\n  top: -10px;\n  right: 35px;\n  border-left: 10px solid transparent;\n  border-right: 10px solid transparent;\n  border-bottom: 10px solid white;\n}\n\n.HPdel-btn {\n  margin-top: 5px;\n  margin-left: 10px;\n  background-color: #2f2a2d;\n  padding: 5px 15px;\n  border: 1px solid transparent;\n  color: #fafafa;\n  border-radius: 5px;\n  transition: all ease-in-out 0.4s;\n  cursor: pointer;\n}\n.HPdel-btn:hover {\n  background-color: #fafafa;\n  color: #2f2a2d;\n  border: 1px solid #2f2a2d;\n}\n\n.HPcart-item {\n  display: flex;\n  justify-content: space-between;\n}\n.HPcart-item:not(:last-child) {\n  margin-bottom: 20px;\n}\n\n.HPproduct-bio {\n  display: flex;\n}\n\n.HPcart-item img {\n  align-self: flex-start;\n  margin-right: 15px;\n}\n\n.HPproduct-single-price {\n  color: #474747;\n  font-size: 0.5em;\n}\n\n.HPproduct-price {\n  margin-left: 0px;\n}\n\n.HPproduct-desc {\n  max-width: 150px;\n}\n\n.HPproduct-quantity {\n  margin-top: 15px;\n  font-size: 0.75em;\n}\n\n.PRwrapper_top {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.PRtop_name {\n  text-transform: uppercase;\n  color: #F26376;\n  display: block;\n  margin: 60px 0;\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n}\n\n.PRa_top1 {\n  color: #636363;\n  display: block;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n}\n\n.PRa_top3 {\n  color: #F26376;\n  display: block;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n}\n\n.PRp4 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  color: #9F9F9F;\n  text-align: center;\n}\n\n.PRalignment {\n  max-width: 75vw;\n  margin: 0 auto;\n}\n\n.PRtop {\n  background: #F1E4E6;\n}\n\n.wrapper_carousel {\n  background-color: #F7F7F7;\n  min-height: 400px;\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n}\n\n.img_carousel {\n  width: 600px;\n}\n\n.button_carousel {\n  display: flex;\n  align-items: center;\n}\n\n.fa-angle-left,\n.fa-angle-right {\n  background-color: rgba(42, 42, 42, 0.15);\n  height: 47px;\n  width: 47px;\n  text-align: center;\n  padding-top: 8px;\n  font-size: 33px;\n}\n\n.PRposter {\n  display: flex;\n  flex-flow: column nowrap;\n  align-items: center;\n  border: 1px solid #EAEAEA;\n  background-color: white;\n  transform: translateY(-60px);\n}\n.PRposter_p1 {\n  margin: 64px 0 0 0;\n  color: #F26376;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n}\n.PRposter_line1 {\n  margin: 12px 0 12px 0;\n  height: 4px;\n  width: 60px;\n  background-color: #F26376;\n}\n.PRposter_p2 {\n  margin: 48px 0 32px 0;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n  text-align: center;\n  color: #5E5E5E;\n  width: 75%;\n}\n.PRposter_p3 {\n  font-weight: 300;\n  font-size: 24px;\n  line-height: 29px;\n  color: #EF5B70;\n}\n.PRposter_line2 {\n  margin: 65px 0 65px 0;\n  width: 75%;\n  height: 1px;\n  border: 1px solid #EAEAEA;\n}\n.PRposter_flex {\n  display: flex;\n  flex-flow: row nowrap;\n}\n\n.PRp5 {\n  font-weight: 400;\n  font-size: 20px;\n  line-height: 24px;\n  text-align: center;\n  color: #222224;\n}\n\nsummary {\n  display: block;\n}\n\nsummary::-webkit-details-marker {\n  display: none;\n}\n\nsummary::after {\n  content: \">\";\n  padding-left: 0.5em;\n  padding-right: 0.5em;\n  color: gray;\n}\n\ndetails[open] > summary::after {\n  content: \"˅\";\n}\n\n.PRnumber_for_quantity {\n  margin: 5px 0 0 10px;\n  width: 70px;\n  text-align: center;\n  height: 34px;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n  color: #5E5E5E;\n}\n\n.PRbutton5 {\n  padding: 14px 18px;\n  border: 1px solid #F26376;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F26376;\n  text-decoration: none;\n  display: block;\n  text-align: center;\n  width: 220px;\n  margin: 48px 0 48px 0;\n  transition: box-shadow 400ms ease-out, color 400ms ease-out;\n}\n.PRbutton5:hover {\n  box-shadow: inset 0px 0px 200px 0px #F26376;\n  color: white;\n}\n\n.PRproduct {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: space-between;\n  padding-bottom: 50px;\n}\n\n.RGinput {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: space-between;\n}\n\n.RGwrapper_for_input {\n  margin: 60px auto 0;\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n}\n\n.RGadress_title {\n  font-weight: 300;\n  font-size: 16px;\n  line-height: 19px;\n}\n\n.RGwrapper_input1 {\n  margin: 20px 0 0 120px;\n  flex-grow: 1;\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: flex-start;\n}\n\n.RGcustom_input + label {\n  display: inline-block;\n  transform: translateY(-1.5px);\n  font-weight: 300;\n  font-size: 11px;\n  line-height: 13px;\n  padding: 0 20px 0 10px;\n  margin: 30px 0;\n}\n\n.RGinput2 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  margin: 20px 0;\n  color: #222224;\n  opacity: 0.67;\n  background-color: white;\n  height: 49px;\n  width: 100%;\n  padding-left: 22px;\n  transition: all 400ms ease-out, background-color 400ms ease-out;\n}\n\n.RGp11 {\n  font-weight: 300;\n  font-size: 13px;\n  line-height: 16px;\n  color: #B1B1B1;\n  margin: 0 0 20px 0;\n}\n\n.RGbutton4 {\n  padding: 14px 18px;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  background-color: #F16D7F;\n  border: 2px solid #F16D7F;\n  color: #FFFFFF;\n  text-decoration: none;\n  display: block;\n  text-align: center;\n  width: 160px;\n  margin: 20px 0 50px 0;\n  transition: all 400ms ease-out;\n}\n.RGbutton4:hover {\n  background-color: #FFFFFF;\n  color: #F16D7F;\n  border: 2px solid #F16D7F;\n}\n\n.RGp12 {\n  font-weight: 300;\n  font-size: 24px;\n  line-height: 29px;\n}\n.RGp12_margin {\n  margin: 20px 0;\n}\n\n.RGmenuRight1 {\n  position: relative;\n}\n.RGmenuRight1::before {\n  content: \"\";\n  display: block;\n  height: 20px;\n  width: 20px;\n  background-color: white;\n  position: absolute;\n  top: 35px;\n  left: 7px;\n  z-index: -1;\n  transform: rotate(45deg);\n  border-top: 1px solid gray;\n  border-left: 1px solid gray;\n  transition: z-index 400ms ease-out;\n}\n.RGmenuRight1:hover .menuBlock {\n  top: 0;\n  border-top: 1px solid transparent;\n}\n.RGmenuRight1:hover::before {\n  z-index: 0;\n}\n.RGmenuRight1:hover .menuTranparent {\n  display: block;\n}\n.RGmenuRight1:hover .menuBlockWrapper {\n  top: 45px;\n  transition: top 10ms ease-out;\n}\n\n.RGmenuTranparent {\n  display: none;\n  height: 50px;\n  width: 70px;\n  background-color: transparent;\n  position: absolute;\n  top: 25%;\n  left: 0%;\n}\n\n.RGmenuBlockWrapper {\n  background-color: transparent;\n  display: block;\n  width: 280px;\n  height: 750px;\n  left: 0;\n  top: -750px;\n  position: absolute;\n  z-index: 1;\n  overflow: hidden;\n  border-radius: 5px;\n  transition: top 10ms 400ms ease-out;\n}\n\n.RGmenuBlock {\n  background-color: #FFFFFF;\n  display: flex;\n  width: 280px;\n  left: 0;\n  top: -750px;\n  padding: 0 10px 10px 10px;\n  position: absolute;\n  flex-direction: column;\n  border-radius: 5px;\n  border: 1px solid rgb(202, 198, 198);\n  transition: top 400ms ease-out;\n}\n.RGmenuBlockButtonClose {\n  text-decoration: none;\n  margin: 0 0 0 auto;\n  width: 20px;\n  text-align: center;\n  font-size: 20px;\n  color: rgb(100, 94, 94);\n}\n.RGmenuBlockButtonClose:hover {\n  color: #F16D7F;\n}\n.RGmenuBlockName {\n  display: block;\n  padding: 0 0 10px 30px;\n  font-weight: 900;\n  text-decoration: none;\n  color: #222224;\n}\n.RGmenuBlockName1 {\n  display: block;\n  padding: 10px 0 10px 30px;\n  font-weight: 900;\n  text-decoration: none;\n  color: #F16D7F;\n}\n.RGmenuBlockName2 {\n  text-decoration: none;\n  color: #222224;\n  display: block;\n  padding: 3px 0 3px 55px;\n}\n\n.RGtop {\n  background: #F1E4E6;\n}\n.RGtopTxt {\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n  text-transform: uppercase;\n  color: #F16D7F;\n}\n.RGtop__alignment {\n  padding: 60px 0;\n}\n\n.RGproduct__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: normal;\n  margin: 90px auto 0;\n}\n.RGproduct__flex_1 {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: space-between;\n  align-items: normal;\n}\n\n.RGproductBlock {\n  width: 46.875vw;\n  height: 300px;\n  position: relative;\n  margin: 15px 0;\n  background: #F8F8F8;\n  box-shadow: 10px 10px 15px #9F9F9F;\n}\n.RGproductBlock__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n\n.RGproductBlockText {\n  width: 100%;\n  min-height: 160px;\n  padding: 30px;\n}\n.RGproductBlockText__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n.RGproductBlockText__flex_row {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n.RGproductBlockText__img {\n  width: 257px;\n  height: 100%;\n  overflow: hidden;\n}\n.RGproductBlockText__txt {\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n  margin: 0 0 50px 0;\n  text-transform: uppercase;\n}\n.RGproductBlockText__txt_1 {\n  font-weight: 400;\n  font-size: 22px;\n  line-height: 26px;\n  padding: 3px 0;\n  color: #4A4A4A;\n}\n.RGproductBlockText__txt_2 {\n  font-weight: 400;\n  font-size: 22px;\n  line-height: 26px;\n  color: #F16D7F;\n}\n.RGproductBlockText__txt_3 {\n  display: inline;\n  padding: 2px 4px 2px 4px;\n  text-align: center;\n  border: 1px solid #EAEAEA;\n}\n.RGproductBlockTextButtonClose {\n  line-height: 22px;\n}\n.RGproductBlockTextButton {\n  width: 46.875vw;\n}\n.RGproductBlockTextButton__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: normal;\n}\n\n.RGimg {\n  width: 100%;\n}\n\n.RGbutton {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  padding: 14px 18px;\n  margin: 48px 0 95px 0;\n  color: #4A4A4A;\n  background: #FFFFFF;\n  box-sizing: border-box;\n  border: 1px solid #4A4A4A;\n  text-decoration: none;\n  text-align: center;\n  display: block;\n  width: 220px;\n  transition: box-shadow 400ms ease-out, color 400ms ease-out, background-color 400ms ease-out;\n}\n.RGbutton:hover {\n  box-shadow: inset 0px 0px 100px 30px #F16D7F;\n  color: #FFFFFF;\n}\n\n.RGadress__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: flex-start;\n  align-items: normal;\n  margin: 20px 0 0 120px;\n  flex-grow: 1;\n}\n.RGadress__txt {\n  font-weight: 300;\n  font-size: 16px;\n  line-height: 19px;\n}\n.RGadress__input {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  margin: 20px 0;\n  color: #222224;\n  opacity: 0.67;\n  background-color: #FFFFFF;\n  height: 49px;\n  padding: 0 20px;\n}\n.RGadress__input::placeholder {\n  transition: color 400ms ease-out;\n}\n.RGadress__input:hover::placeholder {\n  color: #FFFFFF;\n}\n.RGadress__button {\n  margin: 20px 0;\n  padding: 14px 18px;\n  width: 150px;\n}\n\n.RGgrandTotal {\n  padding: 35px 30px;\n  margin: 40px 0 0 0;\n  background-color: #F5F3F3;\n  width: 100%;\n  height: 210px;\n}\n.RGgrandTotal__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: start;\n  align-items: flex-end;\n}\n.RGgrandTotal__txt {\n  font-weight: 400;\n  font-size: 11px;\n  line-height: 13px;\n  padding: 0 0 5px 0;\n  color: #4A4A4A;\n}\n.RGgrandTotal__txt_1 {\n  font-weight: 300;\n  font-size: 16px;\n  line-height: 19px;\n}\n.RGgrandTotal__txt_2 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F16D7F;\n}\n.RGgrandTotalLine {\n  padding: 10px;\n  width: 100%;\n  border-bottom: 1px solid #9F9F9F;\n}\n.RGgrandTotal__button {\n  padding: 14px 18px;\n  margin: 20px 0 0 0;\n  box-shadow: inset 0px 0px 100px 30px #F16D7F;\n  border: 1px solid #F16D7F;\n  color: #FFFFFF;\n  width: 100%;\n}\n.RGgrandTotal__button:hover {\n  background-color: #FFFFFF;\n  color: #F16D7F;\n  border: 1px solid #F16D7F;\n  box-shadow: inset 0px 0px 100px 30px #FFFFFF;\n}\n\n.CAtop {\n  background: #F1E4E6;\n}\n\n.CAwrapper_top {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.CAtop_name {\n  text-transform: uppercase;\n  color: #F26376;\n  display: block;\n  margin: 60px 0;\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n}\n\n.CAa_top1 {\n  color: #636363;\n  display: block;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n}\n\n.CAa_top1:hover {\n  color: #F26376;\n}\n\n.CAa_top3 {\n  color: #F26376;\n  display: block;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n  margin-bottom: 0;\n}\n\n.CAwrapper_top {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.CAp4 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  color: #9F9F9F;\n  text-align: center;\n  margin-bottom: 0;\n}\n\n.CAfilter {\n  margin: 50px auto 50px;\n  display: flex;\n  align-items: center;\n}\n.CAfilter_left {\n  width: 26.0416666667vw;\n  position: relative;\n}\n.CAfilter_left_p {\n  margin: 0 30px 0 20px;\n  font-weight: 600;\n  font-size: 14px;\n  line-height: 17px;\n}\n.CAfilter_right {\n  display: flex;\n  position: relative;\n  align-items: center;\n  margin: 0;\n}\n.CAfilter_block_menu_transparent {\n  position: absolute;\n  top: -10px;\n  width: 22.7272727273vw;\n  padding: 20px 0;\n  pointer-events: none;\n  border-radius: 5px 5px 0 0;\n  border: 1px solid rgb(202, 198, 198);\n  border-bottom: 1px solid transparent;\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n.CAfilter_block_menu {\n  background-color: #FFFFFF;\n  display: flex;\n  top: 30px;\n  z-index: 1;\n  width: 22.7272727273vw;\n  position: absolute;\n  flex-direction: column;\n  border-radius: 0 0 5px 5px;\n  border: 1px solid rgb(202, 198, 198);\n  border-top: 1px solid transparent;\n  transition: all 400ms ease-out;\n  box-shadow: 0px 7px 8px 0px rgba(0, 0, 0, 0.15);\n}\n\n.CAfilter_left_p_last {\n  margin: 0 30px 0 20px;\n  font-weight: 600;\n  font-size: 14px;\n  line-height: 17px;\n}\n\ndetails[open] > .filter_left_p_last {\n  margin-bottom: 0;\n}\n\nsummary {\n  display: block;\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n}\nsummary::-webkit-details-marker {\n  display: none;\n}\nsummary::after {\n  content: \">\";\n  padding-left: 0.5em;\n  padding-right: 0.5em;\n  color: gray;\n  margin: 0 27px 0 0;\n}\n\ndetails[open] > summary::after {\n  content: \"˅\";\n}\n\n.CAsummary_mutation::after {\n  content: \"\";\n}\n\ndetails[open] > .summary_mutation {\n  color: #F16D7F;\n}\n\ndetails[open] > .summary_mutation::after {\n  content: \"\";\n}\n\n.CAsummary_mutation_in {\n  display: flex;\n  color: #6F6E6E;\n  padding: 10px 0px 10px 0;\n  border-bottom: 1px solid grey;\n}\n.CAsummary_mutation_in::after {\n  content: \" \";\n}\n.CAsummary_mutation_in::before {\n  content: \" \";\n  margin: 0 6px 0 0;\n  background: #F16D7F;\n  width: 6px;\n}\n.CAsummary_mutation_in_p {\n  padding: 0 0 0 35px;\n}\n.CAsummary_mutation_in_p:hover {\n  color: #F16D7F;\n}\n.CAsummary_mutation_in_p_last {\n  padding: 0 0 20px 35px;\n}\n\ndetails[open] > .summary_mutation_in {\n  color: #F16D7F;\n}\n\ndetails[open] > .summary_mutation_in::after {\n  content: \"\";\n}\n\n.CAfilter_right_block {\n  background-color: #FFFFFF;\n  display: flex;\n  top: 30px;\n  z-index: 2;\n  position: absolute;\n  flex-direction: column;\n  border-radius: 5px 5px 5px 5px;\n  border: 1px solid rgb(202, 198, 198);\n  border-top: 1px solid transparent;\n  transition: all 400ms ease-out;\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n.CAfilter_right_block_center {\n  left: 35px;\n}\n\n.CAblock_input {\n  margin: 10px;\n  width: 80px;\n}\n\n.CAlabel_input {\n  padding: 0 0 0 5px;\n}\n.CAlabel_input:hover {\n  color: #F16D7F;\n}\n\n.CAform-check-input {\n  box-shadow: 0 0 0 0 #F16D7F;\n}\n\n.CAform-check-input:checked {\n  background-color: #F16D7F;\n  border-color: grey;\n  box-shadow: 0 0 0 0 #F16D7F;\n}\n\n.CAform-check-input:checked[type=checkbox] {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n\n.CAform-check-input:focus {\n  box-shadow: 0 0 2px 2px #F16D7F;\n  border-color: grey;\n}\n\n.CAform-check-input:active {\n  box-shadow: 0 0 2px 2px #F16D7F;\n}\n\n.CApagination {\n  margin: 0 0 20px 0;\n}\n\n.CAjustify-content-center {\n  display: flex;\n  justify-content: center;\n}\n\n.CApage-link {\n  color: grey;\n  font-weight: 400;\n  font-size: 18px;\n  line-height: 22px;\n  margin: 40px -1px 90px;\n  transition: all 400ms ease-out;\n  border-left: 1px solid transparent;\n  border-right: 1px solid transparent;\n}\n.CApage-link:hover {\n  background: #F1E4E6;\n  border: 1px solid #F1E4E6;\n  color: #F26376;\n}\n\n.CApage-link.active {\n  background: #F26376;\n  border-top: 1px solid #bec2c5;\n  border-bottom: 1px solid #bec2c5;\n  border-left: 1px solid transparent;\n  border-right: 1px solid transparent;\n}\n.CApage-link.active:hover {\n  color: white;\n}\n\n.CAli {\n  list-style-type: none;\n  padding: 4px;\n}\n\n.CApage-item:first-child .CApage-link {\n  border-left: 1px solid #dee2e6;\n}\n\n.CApage-item:last-child .CApage-link {\n  border-right: 1px solid #dee2e6;\n}\n\n.CTbutton4 {\n  padding: 14px 18px;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  background-color: #FFFFFF;\n  border: 2px solid #F16D7F;\n  color: #F16D7F;\n  text-decoration: none;\n  display: block;\n  text-align: center;\n  width: 160px;\n  margin: 20px auto 0;\n  transition: all 400ms ease-out;\n}\n.CTbutton4:hover {\n  background-color: #F16D7F;\n  color: #FFFFFF;\n  border: 2px solid #F16D7F;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9629,6 +10512,45 @@ module.exports = function (cssWithMappingToString) {
   };
 
   return list;
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+module.exports = function (url, options) {
+  if (!options) {
+    options = {};
+  }
+
+  if (!url) {
+    return url;
+  }
+
+  url = String(url.__esModule ? url.default : url); // If url is already wrapped in quotes, remove them
+
+  if (/^['"].*['"]$/.test(url)) {
+    url = url.slice(1, -1);
+  }
+
+  if (options.hash) {
+    url += options.hash;
+  } // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+
+
+  if (/["'() \t\n]|(%20)/.test(url) || options.needQuotes) {
+    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
+  }
+
+  return url;
 };
 
 /***/ }),
@@ -10418,10 +11340,10 @@ try {
 
 /***/ }),
 
-/***/ "./src/styles/style.css":
-/*!******************************!*\
-  !*** ./src/styles/style.css ***!
-  \******************************/
+/***/ "./src/styles/style.sass":
+/*!*******************************!*\
+  !*** ./src/styles/style.sass ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10441,7 +11363,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!./style.css */ "./node_modules/css-loader/dist/cjs.js!./src/styles/style.css");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_style_sass__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./style.sass */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/style.sass");
 
       
       
@@ -10463,12 +11385,12 @@ options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWi
 options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
 options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_style_sass__WEBPACK_IMPORTED_MODULE_6__["default"], options);
 
 
 
 
-       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_style_sass__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_style_sass__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_style_sass__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),
@@ -10783,6 +11705,17 @@ function styleTagTransform(css, styleElement) {
 
 module.exports = styleTagTransform;
 
+/***/ }),
+
+/***/ "data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3e%3cpath fill=%27purple%27 d=%27M50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5%27/%3e%3c/svg%3e":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3e%3cpath fill=%27purple%27 d=%27M50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5%27/%3e%3c/svg%3e ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3e%3cpath fill=%27purple%27 d=%27M50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5%27/%3e%3c/svg%3e";
+
 /***/ })
 
 /******/ 	});
@@ -10810,6 +11743,9 @@ module.exports = styleTagTransform;
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
@@ -10850,6 +11786,32 @@ module.exports = styleTagTransform;
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		__webpack_require__.b = document.baseURI || self.location.href;
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"main": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		// no on chunks loaded
+/******/ 		
+/******/ 		// no jsonp function
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */

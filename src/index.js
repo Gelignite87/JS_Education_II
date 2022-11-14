@@ -1,5 +1,5 @@
 import '@babel/polyfill'
-import './styles/style.css'
+import './styles/style.sass'
 // import './styles/sass.sass'
 import { app } from "./js/main";
 

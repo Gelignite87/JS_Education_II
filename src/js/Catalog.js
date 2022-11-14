@@ -115,7 +115,7 @@ export const catalog = {
             <section>
                 <div class="product alignment">
                     <div class="block_product">
-                        <a href="#"><img class="img img_block_product" src="images/Product1.png" alt="Product1"></a>
+                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product1.png" alt="Product1"></a>
                         <div class="block_text_product">
                             <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
                             <div class="block_text_product2">Known for her sculptural takes on traditional
@@ -124,14 +124,14 @@ export const catalog = {
                             <div class="block_text_product3">$52.00</div>
                         </div>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="#"><img class="img img_block_product" src="images/Product2.png" alt="Product2"></a>
+                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product2.png" alt="Product2"></a>
                         <div class="block_text_product">
                             <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
                             <div class="block_text_product2">Known for her sculptural takes on traditional
@@ -140,14 +140,14 @@ export const catalog = {
                             <div class="block_text_product3">$52.00</div>
                         </div>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="#"><img class="img img_block_product" src="images/Product3.png" alt="Product3"></a>
+                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product3.png" alt="Product3"></a>
                         <div class="block_text_product">
                             <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
                             <div class="block_text_product2">Known for her sculptural takes on traditional
@@ -156,14 +156,14 @@ export const catalog = {
                             <div class="block_text_product3">$52.00</div>
                         </div>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="#"><img class="img img_block_product" src="images/Product4.png" alt="Product4"></a>
+                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product4.png" alt="Product4"></a>
                         <div class="block_text_product">
                             <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
                             <div class="block_text_product2">Known for her sculptural takes on traditional
@@ -172,14 +172,14 @@ export const catalog = {
                             <div class="block_text_product3">$52.00</div>
                         </div>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="#"><img class="img img_block_product" src="images/Product5.png" alt="Product5"></a>
+                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product5.png" alt="Product5"></a>
                         <div class="block_text_product">
                             <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
                             <div class="block_text_product2">Known for her sculptural takes on traditional
@@ -188,14 +188,14 @@ export const catalog = {
                             <div class="block_text_product3">$52.00</div>
                         </div>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="#"><img class="img img_block_product" src="images/Product6.png" alt="Product6"></a>
+                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product6.png" alt="Product6"></a>
                         <div class="block_text_product">
                             <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
                             <div class="block_text_product2">Known for her sculptural takes on traditional
@@ -204,14 +204,14 @@ export const catalog = {
                             <div class="block_text_product3">$52.00</div>
                         </div>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="#"><img class="img img_block_product" src="images/Product7.png" alt="Product7"></a>
+                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product7.png" alt="Product7"></a>
                         <div class="block_text_product">
                             <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
                             <div class="block_text_product2">Known for her sculptural takes on traditional
@@ -220,14 +220,14 @@ export const catalog = {
                             <div class="block_text_product3">$52.00</div>
                         </div>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="#"><img class="img img_block_product" src="images/Product4.png" alt="Product4"></a>
+                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product4.png" alt="Product4"></a>
                         <div class="block_text_product">
                             <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
                             <div class="block_text_product2">Known for her sculptural takes on traditional
@@ -236,14 +236,14 @@ export const catalog = {
                             <div class="block_text_product3">$52.00</div>
                         </div>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="#"><img class="img img_block_product" src="images/Product2.png" alt="Product2"></a>
+                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product2.png" alt="Product2"></a>
                         <div class="block_text_product">
                             <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
                             <div class="block_text_product2">Known for her sculptural takes on traditional
@@ -252,7 +252,7 @@ export const catalog = {
                             <div class="block_text_product3">$52.00</div>
                         </div>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>

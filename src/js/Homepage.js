@@ -15,7 +15,7 @@ export const homepage = {
                         </div>
                     </a>
                     <div class="top1_2">
-                        <a href="index.html">
+                        <a href="index.html" @click.prevent="$root.updateState('homepage')">
                             <p class="p1">THE BRAND</p>
                             <p class="p2">OF LUXERIOUS <span style="color: red">FASHION</span></p>
                         </a>
@@ -24,23 +24,23 @@ export const homepage = {
                 <div class="extra_menu">extra menu</div>
             </main>
             <section class="offer alignment">
-                <a class="block_offer" href="product.html" @click.prevent="$root.updateState('product')">
+                <a class="block_offer" href="product.html" @click.prevent="$root.updateState('targetproduct')">
                     <img class="img1" src="images/Offer1.jpg" alt="Offer1">
                     <p class="p9">30% OFF<br><span style="color: #F26376;">FOR WOMEN</span></p>
                 </a>
                 <div class="block_offer_w"></div>
-                <a class="block_offer" href="product.html" @click.prevent="$root.updateState('product')">
+                <a class="block_offer" href="product.html" @click.prevent="$root.updateState('targetproduct')">
                     <img class="img1" src="images/Offer2.jpg" alt="Offer2">
                     <p class="p9">HOT DEAL<br><span style="color: #F26376;">FOR MEN</span></p>
                 </a>
                 <div class="block_offer_w"></div>
-                <a class="block_offer" href="product.html" @click.prevent="$root.updateState('product')">
+                <a class="block_offer" href="product.html" @click.prevent="$root.updateState('targetproduct')">
                     <img class="img1" src="images/Offer3.jpg" alt="Offer3">
                     <p class="p9">NEW&nbsp;ARRIVALS<br><span style="color: #F26376;">FOR KIDS</span></p>
                 </a>
             </section>
             <section class="block_offer1 alignment">
-                <a href="product.html" @click.prevent="$root.updateState('product')">
+                <a href="product.html" @click.prevent="$root.updateState('targetproduct')">
                     <img class="img4" src="images/Offer4.jpg" alt="Offer4">
                     <p class="p10">LUXIROUS & TRENDY<br><span style="color: #F26376;">ACCESORIES</span></p>
                 </a>
@@ -52,7 +52,7 @@ export const homepage = {
                 </p>
                 <div class="product alignment">
                     <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('product')"><img class="img img_block_product" src="images/Product1.png"
+                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product1.png"
                                 alt="Product1">
                             <div class="block_text_product">
                                 <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
@@ -63,14 +63,14 @@ export const homepage = {
                             </div>
                         </a>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('product')"><img class="img img_block_product" src="images/Product2.png"
+                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product2.png"
                                 alt="Product2">
                             <div class="block_text_product">
                                 <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
@@ -81,14 +81,14 @@ export const homepage = {
                             </div>
                         </a>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('product')"><img class="img img_block_product" src="images/Product3.png"
+                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product3.png"
                                 alt="Product3">
                             <div class="block_text_product">
                                 <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
@@ -99,14 +99,14 @@ export const homepage = {
                             </div>
                         </a>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('product')"><img class="img img_block_product" src="images/Product4.png"
+                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product4.png"
                                 alt="Product4">
                             <div class="block_text_product">
                                 <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
@@ -117,14 +117,14 @@ export const homepage = {
                             </div>
                         </a>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#">
                                 <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
+                                <p class="add_to_cart_text" @click.prevent="$root.updateState('catalog')">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('product')"><img class="img img_block_product" src="images/Product5.png"
+                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product5.png"
                                 alt="Product5">
                             <div class="block_text_product">
                                 <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
@@ -135,14 +135,14 @@ export const homepage = {
                             </div>
                         </a>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('product')"><img class="img img_block_product" src="images/Product6.png"
+                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product6.png"
                                 alt="Product6">
                             <div class="block_text_product">
                                 <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
@@ -153,7 +153,7 @@ export const homepage = {
                             </div>
                         </a>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>

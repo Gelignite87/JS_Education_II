@@ -1,9 +1,9 @@
-export const product = {
+export const targetproduct = {
     data(){
         return {}
     },
     template: `
-    <div v-show="this.$root.state.product">
+    <div v-show="this.$root.state.targetproduct">
             <main class="PRtop">
                 <div class="PRwrapper_top PRalignment">
                     <p class="PRtop_name">NEW ARRIVALS</p>
@@ -61,7 +61,7 @@ export const product = {
                             <input class="PRnumber_for_quantity" value="1" id="quantity" type="number" min="1" max="100">
                         </details>
                     </div>
-                    <button class="PRbutton5"><i class="fa-solid fa-cart-shopping"></i> &nbsp Add to
+                    <button class="PRbutton5" @click.prevent="$root.updateState('cartpage')"><i class="fa-solid fa-cart-shopping"></i> &nbsp Add to
                         Cart</button>
                 </form>
             </section>
@@ -69,7 +69,7 @@ export const product = {
             <section>
                 <div class="PRproduct PRalignment">
                     <div class="block_product">
-                        <a href="#"><img class="img img_block_product" src="images/Product1.png" alt="Product1"></a>
+                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product1.png" alt="Product1"></a>
                         <div class="block_text_product">
                             <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
                             <div class="block_text_product2">Known for her sculptural takes on traditional
@@ -78,14 +78,14 @@ export const product = {
                             <div class="block_text_product3">$52.00</div>
                         </div>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="#"><img class="img img_block_product" src="images/Product2.png" alt="Product2"></a>
+                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product2.png" alt="Product2"></a>
                         <div class="block_text_product">
                             <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
                             <div class="block_text_product2">Known for her sculptural takes on traditional
@@ -94,14 +94,14 @@ export const product = {
                             <div class="block_text_product3">$52.00</div>
                         </div>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>
                         </div>
                     </div>
                     <div class="block_product">
-                        <a href="#"><img class="img img_block_product" src="images/Product3.png" alt="Product3"></a>
+                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product3.png" alt="Product3"></a>
                         <div class="block_text_product">
                             <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
                             <div class="block_text_product2">Known for her sculptural takes on traditional
@@ -110,7 +110,7 @@ export const product = {
                             <div class="block_text_product3">$52.00</div>
                         </div>
                         <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="1#">
+                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p class="add_to_cart_text">Add to Cart</p>
                             </a>

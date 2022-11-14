@@ -1,22 +1,21 @@
-import { flexgrow } from "./FlexGrow";
-import { myfooter } from "./Footer";
+import { filling } from "./Filling";
+import { myfooter } from "./MyFooter";
 
 export const app = {
   el: '#app',
   components: {
-    flexgrow,
+    filling,
     myfooter,
     },
   data: {
     state: {
       homepage: true,
+      cartInNavigation: false,
       catalog: false,
-      product: false,
+      targetproduct: false,
       registration: false,
       cartpage: false,
     },
-    defaultImg: 'https://via.placeholder.com/250x250',
-    userSearch: '',
   },
   methods: {
     getJson(url) {
@@ -53,10 +52,6 @@ export const app = {
         body: JSON.stringify(data)
       }).then(result => result.json())
     },
-    getImage(img) {
-            if (img) {return img}
-            return this.defaultImg
-    },
     updateState(page) {
       for (let prop in this.state) {
         this.state[prop] = false
@@ -64,16 +59,8 @@ export const app = {
       this.state[page] = true
       document.documentElement.scrollTop = 0
     },
-    closeDiv(div) {
-      const block = document.querySelector(div)
-      document.addEventListener('click', (e) => {
-        const withinBoundaries = e.composedPath().includes(block);
-        if (!withinBoundaries) {
-          this.$refs.fg.$refs.ng.$refs.cart.showCart = false;
-        }
-      })
-    }
-  },
-  mounted() { }
+      },
+  computed: {},
+  mounted() {}
 };
 

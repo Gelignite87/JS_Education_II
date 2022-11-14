@@ -1,16 +1,16 @@
-import { navigation } from "./NavComp";
+import { navigation } from "./Navigation";
 import { homepage } from "./Homepage";
 import { catalog } from "./Catalog";
-import { product } from "./ProductComp";
+import { targetproduct } from "./TargetProduct";
 import { registration } from "./Registration";
 import { cartpage } from "./Cartpage";
 
-export const flexgrow = {
+export const filling = {
     components: {
         navigation,
         homepage,
         catalog,
-        product,
+        targetproduct,
         registration,
         cartpage
     },
@@ -18,10 +18,10 @@ export const flexgrow = {
         return {}
     },
     template: `
-    <div class="flex_grow">
+    <div>
         <navigation ref="ng"></navigation>
         <homepage></homepage>
-        <product></product>
+        <targetproduct></targetproduct>
         <catalog></catalog>
         <registration></registration>
         <cartpage></cartpage>

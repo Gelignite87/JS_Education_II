@@ -218,7 +218,7 @@ $cBlack: #222224
             @include flx(flex, column nowrap, space-between, normal)
 
 .RGproductBlock
-    width: $width/1.6
+    width: calc($width/1.6)
     height: 300px
     position: relative
     margin: 15px 0
@@ -259,7 +259,7 @@ $cBlack: #222224
     &ButtonClose
         line-height: 22px
     &Button
-        width: $width/1.6
+        width: calc($width/1.6)
         &__flex
             @include flx(flex, row nowrap, space-between, normal)
 //---productBlockText------------------------------------------

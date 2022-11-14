@@ -1,7 +1,7 @@
-import { cart } from "./CartInHomepage";
+import { cartInNavigation } from "./CartInNovigation";
 
 export const navigation = {
-    components: { cart },
+    components: { cartInNavigation },
     data(){
         return { userSearch: '' }
     },
@@ -83,7 +83,7 @@ export const navigation = {
 </svg></a>
                         </nav>
                         <nav class="menu_right3">
-                            <cart ref="cart"></cart>
+                            <cartInNavigation ref="cartInNavigation"></cartInNavigation>
                         </nav>
                     </nav>
                 </div>

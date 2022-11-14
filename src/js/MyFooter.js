@@ -2,6 +2,12 @@ export const myfooter = {
     data(){
         return {}
     },
+    computed: {
+        run() {
+            const date = new Date()
+            return ['Date: ', date.getDate(), '.', date.getMonth(), '.', date.getFullYear()].join("")
+        }
+    },
     template: `
     <footer class="footer">
             <div v-show="$root.state.homepage" class="footer1 alignment">
@@ -53,7 +59,7 @@ export const myfooter = {
                 </figure>
             </div>
             <div class="footer3 alignment">
-                <div class="block_footer3_1">&copy; 2022 Brand All Rights Reserved.</div>
+                <div class="block_footer3_1">&copy; 2022 Brand All Rights Reserved.&nbsp&nbsp&nbsp{{run}}</div>
                 <nav class="block_footer3">
                     <a class="button2" href="#"><svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8.08836 8.28L8.50686 5.61602H5.89022V3.88729C5.89022 3.15847 6.25574 2.44806 7.42765 2.44806H8.61722V0.179975C8.61722 0.179975 7.53772 0 6.50561 0C4.35073 0 2.9422 1.27593 2.9422 3.5857V5.61602H0.546875V8.28H2.9422V14.72H5.89022V8.28H8.08836Z" fill="black"/>

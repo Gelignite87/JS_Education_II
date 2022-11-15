@@ -1,37 +1,50 @@
 [
   {
-    "id_product": 124,
-    "product_name": "Keyboard",
+    "id_product": 1,
+    "product_name": "Sweaters",
     "price": 1600,
-    "img": "/images/Keyboard.png"
+    "img": "/images/Product1.png"
   },
   {
-    "id_product": 457,
-    "product_name": "Gamepad",
+    "id_product": 2,
+    "product_name": "Knits",
     "price": 3000,
-    "img": "/images/Gamepad.png"
+    "img": "/images/Product2.png"
   },
   {
-    "id_product": 123,
-    "product_name": "Notebook",
-    "price": 45000,
-    "img": "/images/Notebook.png"
+    "id_product": 3,
+    "product_name": "Shirts",
+    "price": 1200,
+    "img": "/images/Product3.png"
   },
   {
-    "id_product": 456,
-    "product_name": "Mouse",
+    "id_product": 4,
+    "product_name": "Hoodies",
     "price": 900,
-    "img": "/images/Mouse.png"
+    "img": "/images/Product4.png"
   }  ,
   {
-    "id_product": 21,
-    "product_name": "Microphone",
+    "id_product": 5,
+    "product_name": "Sweatshirts",
     "price": 800,
-    "img": "/images/Microphone.png"
+    "img": "/images/Product5.png"
   }  ,
   {
-    "id_product": 22,
-    "product_name": "Audio speakers",
-    "price": 4600
+    "id_product": 6,
+    "product_name": "Jackets",
+    "price": 1400,
+    "img": "/images/Product6.png"
+  }  ,
+  {
+    "id_product": 7,
+    "product_name": "Coats",
+    "price": 4250,
+    "img": "/images/Product7.png"
+  }  ,
+  {
+    "id_product": 8,
+    "product_name": "Polos",
+    "price": 1900,
+    "img": "/images/Product8.png"
   }
 ]

@@ -55,7 +55,7 @@ export const cartpage = {
                         </div>
                         <div class="CTproductBlockTextButton CTproductBlockTextButton__flex">
                             <a class="CTbutton" href="#">CLEAR SHOPPING CART</a>
-                            <a class="CTbutton" href="#">CONTINUE SHOPPING</a>
+                            <a class="CTbutton" href="#" @click="$root.updateState('catalog')">CONTINUE SHOPPING</a>
                         </div>
                     </div>
                     <!-- Adress -->

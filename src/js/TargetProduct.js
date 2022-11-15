@@ -1,4 +1,7 @@
+import { threeproducts } from "./ThreeProduct";
+
 export const targetproduct = {
+    components: { threeproducts },
     data(){
         return {}
     },
@@ -67,56 +70,7 @@ export const targetproduct = {
             </section>
             <!-- Products -->
             <section>
-                <div class="PRproduct PRalignment">
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product1.png" alt="Product1"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product2.png" alt="Product2"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product3.png" alt="Product3"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <threeproducts></threeproducts>
             </section>
         </div>`
 };

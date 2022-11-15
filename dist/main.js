@@ -3974,7 +3974,7 @@ const cartpage = {
                         </div>
                         <div class="CTproductBlockTextButton CTproductBlockTextButton__flex">
                             <a class="CTbutton" href="#">CLEAR SHOPPING CART</a>
-                            <a class="CTbutton" href="#">CONTINUE SHOPPING</a>
+                            <a class="CTbutton" href="#" @click="$root.updateState('catalog')">CONTINUE SHOPPING</a>
                         </div>
                     </div>
                     <!-- Adress -->
@@ -4010,7 +4010,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "catalog": () => (/* binding */ catalog)
 /* harmony export */ });
+/* harmony import */ var _Product__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Product */ "./src/js/Product.js");
+
 const catalog = {
+  components: {
+    products: _Product__WEBPACK_IMPORTED_MODULE_0__.products
+  },
   data() {
     return {};
   },
@@ -4099,16 +4104,16 @@ const catalog = {
                                 <summary>SIZE</summary>
                                 <div class="CAfilter_right_block">
                                     <div class="CAblock_input CAform-check">
-                                        <input class="CAform-check-input" type="checkbox" id="checkbox1" value="First">
+                                        <input class="form-check-input" type="checkbox" id="checkbox1" value="First">
                                         <label class="CAlabel_input" for="checkbox1">XS</label>
                                         <br>
-                                        <input class="CAform-check-input" type="checkbox" id="checkbox2" value="Second">
+                                        <input class="form-check-input" type="checkbox" id="checkbox2" value="Second">
                                         <label class="CAlabel_input" for="checkbox2">S</label>
                                         <br>
-                                        <input class="CAform-check-input" type="checkbox" id="checkbox3" value="Third">
+                                        <input class="form-check-input" type="checkbox" id="checkbox3" value="Third">
                                         <label class="CAlabel_input" for="checkbox3">M</label>
                                         <br>
-                                        <input class="CAform-check-input" type="checkbox" id="checkbox4" value="Four">
+                                        <input class="form-check-input" type="checkbox" id="checkbox4" value="Four">
                                         <label class="CAlabel_input" for="checkbox4">L</label>
                                     </div>
                                 </div>
@@ -4125,152 +4130,7 @@ const catalog = {
             </section>
             <!-- Product -->
             <section>
-                <div class="product alignment">
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product1.png" alt="Product1"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product2.png" alt="Product2"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product3.png" alt="Product3"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product4.png" alt="Product4"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product5.png" alt="Product5"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product6.png" alt="Product6"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product7.png" alt="Product7"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product4.png" alt="Product4"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product2.png" alt="Product2"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <products ref="products"></products>
             </section>
             <!-- Pagination -->
             <nav aria-label="Page navigation example">
@@ -4295,6 +4155,48 @@ const catalog = {
 
 /***/ }),
 
+/***/ "./src/js/Error.js":
+/*!*************************!*\
+  !*** ./src/js/Error.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "error": () => (/* binding */ error)
+/* harmony export */ });
+const error = {
+  data() {
+    return {
+      text: ''
+    };
+  },
+  methods: {
+    setError(error) {
+      this.text = error;
+    },
+    closeError() {
+      this.text = '';
+    }
+  },
+  computed: {
+    isVisible() {
+      return this.text !== '';
+    }
+  },
+  template: `
+    <div class="error-block" v-if="isVisible"> 
+        <p class="error-msg">
+            <button class="close-btn" @click="closeError()">&times;</button>
+            {{ text }}
+        </p>
+    </div>
+    `
+};
+
+/***/ }),
+
 /***/ "./src/js/Filling.js":
 /*!***************************!*\
   !*** ./src/js/Filling.js ***!
@@ -4307,11 +4209,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "filling": () => (/* binding */ filling)
 /* harmony export */ });
 /* harmony import */ var _Navigation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Navigation */ "./src/js/Navigation.js");
-/* harmony import */ var _Homepage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Homepage */ "./src/js/Homepage.js");
-/* harmony import */ var _Catalog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Catalog */ "./src/js/Catalog.js");
-/* harmony import */ var _TargetProduct__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TargetProduct */ "./src/js/TargetProduct.js");
-/* harmony import */ var _Registration__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Registration */ "./src/js/Registration.js");
-/* harmony import */ var _Cartpage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Cartpage */ "./src/js/Cartpage.js");
+/* harmony import */ var _Error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Error */ "./src/js/Error.js");
+/* harmony import */ var _Homepage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Homepage */ "./src/js/Homepage.js");
+/* harmony import */ var _Catalog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Catalog */ "./src/js/Catalog.js");
+/* harmony import */ var _TargetProduct__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TargetProduct */ "./src/js/TargetProduct.js");
+/* harmony import */ var _Registration__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Registration */ "./src/js/Registration.js");
+/* harmony import */ var _Cartpage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Cartpage */ "./src/js/Cartpage.js");
+
 
 
 
@@ -4321,24 +4225,56 @@ __webpack_require__.r(__webpack_exports__);
 const filling = {
   components: {
     navigation: _Navigation__WEBPACK_IMPORTED_MODULE_0__.navigation,
-    homepage: _Homepage__WEBPACK_IMPORTED_MODULE_1__.homepage,
-    catalog: _Catalog__WEBPACK_IMPORTED_MODULE_2__.catalog,
-    targetproduct: _TargetProduct__WEBPACK_IMPORTED_MODULE_3__.targetproduct,
-    registration: _Registration__WEBPACK_IMPORTED_MODULE_4__.registration,
-    cartpage: _Cartpage__WEBPACK_IMPORTED_MODULE_5__.cartpage
+    error: _Error__WEBPACK_IMPORTED_MODULE_1__.error,
+    homepage: _Homepage__WEBPACK_IMPORTED_MODULE_2__.homepage,
+    catalog: _Catalog__WEBPACK_IMPORTED_MODULE_3__.catalog,
+    targetproduct: _TargetProduct__WEBPACK_IMPORTED_MODULE_4__.targetproduct,
+    registration: _Registration__WEBPACK_IMPORTED_MODULE_5__.registration,
+    cartpage: _Cartpage__WEBPACK_IMPORTED_MODULE_6__.cartpage
   },
   data() {
     return {};
   },
   template: `
     <div>
-        <navigation ref="ng"></navigation>
-        <homepage></homepage>
+        <navigation ref="navigation"></navigation>
+        <error></error>
+        <homepage ref="homepage"></homepage>
         <targetproduct></targetproduct>
-        <catalog></catalog>
+        <catalog ref="catalog"></catalog>
         <registration></registration>
         <cartpage></cartpage>
     </div>
+    `
+};
+
+/***/ }),
+
+/***/ "./src/js/Filter.js":
+/*!**************************!*\
+  !*** ./src/js/Filter.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "filter_el": () => (/* binding */ filter_el)
+/* harmony export */ });
+const filter_el = {
+  data() {
+    return {
+      userSearch: ''
+    };
+  },
+  template: `
+            <form action="#" class="search-form" @submit.prevent="$root.$refs.filling.$refs.homepage.$refs.products.filter(userSearch) ; $root.$refs.filling.$refs.catalog.$refs.products.filter(userSearch)">
+                <input type="text" class="nav_input search-field" v-model="userSearch">
+                <button class="style_button_none" type="submit">
+                <svg width="27" height="28" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.0596 17.6259C20.6713 15.8658 21.6282 13.6048 21.7698 11.2225C21.9113 8.84018 21.2288 6.48173 19.8369 4.54318C18.445 2.60463 16.4285 1.20404 14.126 0.576619C11.8234 -0.0508009 9.3751 0.13316 7.19217 1.09761C5.00923 2.06205 3.22463 3.74825 2.13804 5.87302C1.05145 7.9978 0.729054 10.4318 1.225 12.7661C1.72094 15.1005 3.00501 17.1932 4.86158 18.6927C6.71814 20.1922 9.03413 21.0072 11.4206 21.0009C13.673 21.004 15.8645 20.27 17.6606 18.9109L25.4086 26.7179C25.4941 26.807 25.5965 26.8781 25.7099 26.927C25.8232 26.9759 25.9452 27.0017 26.0686 27.0029C26.1923 27.0033 26.3148 26.9782 26.4283 26.9292C26.5419 26.8801 26.6441 26.8082 26.7286 26.7179C26.9025 26.537 26.9997 26.2958 26.9997 26.0449C26.9997 25.794 26.9025 25.5528 26.7286 25.3719L19.0596 17.6259ZM2.88662 10.5009C2.89946 8.81563 3.41094 7.17187 4.35659 5.77685C5.30224 4.38183 6.63972 3.29801 8.20044 2.662C9.76115 2.02599 11.4752 1.86627 13.1266 2.20298C14.7779 2.53969 16.2926 3.35775 17.4797 4.55404C18.6668 5.75033 19.4732 7.27129 19.7972 8.92519C20.1212 10.5791 19.9483 12.2919 19.3002 13.8476C18.6522 15.4034 17.5581 16.7325 16.1559 17.6674C14.7536 18.6023 13.1059 19.1011 11.4206 19.1009C9.14916 19.0901 6.97482 18.1784 5.37484 16.566C3.77486 14.9537 2.87998 12.7724 2.88662 10.5009Z" fill="#E8E8E8"/></svg>
+                </button>
+            </form>
     `
 };
 
@@ -4355,7 +4291,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "homepage": () => (/* binding */ homepage)
 /* harmony export */ });
+/* harmony import */ var _Product__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Product */ "./src/js/Product.js");
+
 const homepage = {
+  components: {
+    products: _Product__WEBPACK_IMPORTED_MODULE_0__.products
+  },
   data() {
     return {};
   },
@@ -4407,116 +4348,7 @@ const homepage = {
                 <p class="p3">Fetured Items</p>
                 <p style="margin: 6px auto 18px;" class="p4">Shop for items based on what we featured in this week
                 </p>
-                <div class="product alignment">
-                    <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product1.png"
-                                alt="Product1">
-                            <div class="block_text_product">
-                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                                <div class="block_text_product2">Known for her sculptural takes on traditional
-                                    tailoring,
-                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                                <div class="block_text_product3">$52.00</div>
-                            </div>
-                        </a>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product2.png"
-                                alt="Product2">
-                            <div class="block_text_product">
-                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                                <div class="block_text_product2">Known for her sculptural takes on traditional
-                                    tailoring,
-                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                                <div class="block_text_product3">$52.00</div>
-                            </div>
-                        </a>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product3.png"
-                                alt="Product3">
-                            <div class="block_text_product">
-                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                                <div class="block_text_product2">Known for her sculptural takes on traditional
-                                    tailoring,
-                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                                <div class="block_text_product3">$52.00</div>
-                            </div>
-                        </a>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product4.png"
-                                alt="Product4">
-                            <div class="block_text_product">
-                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                                <div class="block_text_product2">Known for her sculptural takes on traditional
-                                    tailoring,
-                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                                <div class="block_text_product3">$52.00</div>
-                            </div>
-                        </a>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text" @click.prevent="$root.updateState('catalog')">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product5.png"
-                                alt="Product5">
-                            <div class="block_text_product">
-                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                                <div class="block_text_product2">Known for her sculptural takes on traditional
-                                    tailoring,
-                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                                <div class="block_text_product3">$52.00</div>
-                            </div>
-                        </a>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product6.png"
-                                alt="Product6">
-                            <div class="block_text_product">
-                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                                <div class="block_text_product2">Known for her sculptural takes on traditional
-                                    tailoring,
-                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                                <div class="block_text_product3">$52.00</div>
-                            </div>
-                        </a>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <products ref="products"></products>
                 <a class="button1" @click="$root.updateState('catalog')">Browse All Product</a>
             </section>
         </div>
@@ -4631,15 +4463,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "navigation": () => (/* binding */ navigation)
 /* harmony export */ });
 /* harmony import */ var _CartInNovigation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CartInNovigation */ "./src/js/CartInNovigation.js");
+/* harmony import */ var _Filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Filter */ "./src/js/Filter.js");
+
 
 const navigation = {
   components: {
+    filter_el: _Filter__WEBPACK_IMPORTED_MODULE_1__.filter_el,
     cartInNavigation: _CartInNovigation__WEBPACK_IMPORTED_MODULE_0__.cartInNavigation
   },
   data() {
-    return {
-      userSearch: ''
-    };
+    return {};
   },
   template: `
             <header class="fon_menu">
@@ -4658,11 +4491,7 @@ const navigation = {
 </svg>
                             </a>
                         </nav>
-                        <div>
-                            <a href="#"><svg width="27" height="28" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M19.0596 17.6259C20.6713 15.8658 21.6282 13.6048 21.7698 11.2225C21.9113 8.84018 21.2288 6.48173 19.8369 4.54318C18.445 2.60463 16.4285 1.20404 14.126 0.576619C11.8234 -0.0508009 9.3751 0.13316 7.19217 1.09761C5.00923 2.06205 3.22463 3.74825 2.13804 5.87302C1.05145 7.9978 0.729054 10.4318 1.225 12.7661C1.72094 15.1005 3.00501 17.1932 4.86158 18.6927C6.71814 20.1922 9.03413 21.0072 11.4206 21.0009C13.673 21.004 15.8645 20.27 17.6606 18.9109L25.4086 26.7179C25.4941 26.807 25.5965 26.8781 25.7099 26.927C25.8232 26.9759 25.9452 27.0017 26.0686 27.0029C26.1923 27.0033 26.3148 26.9782 26.4283 26.9292C26.5419 26.8801 26.6441 26.8082 26.7286 26.7179C26.9025 26.537 26.9997 26.2958 26.9997 26.0449C26.9997 25.794 26.9025 25.5528 26.7286 25.3719L19.0596 17.6259ZM2.88662 10.5009C2.89946 8.81563 3.41094 7.17187 4.35659 5.77685C5.30224 4.38183 6.63972 3.29801 8.20044 2.662C9.76115 2.02599 11.4752 1.86627 13.1266 2.20298C14.7779 2.53969 16.2926 3.35775 17.4797 4.55404C18.6668 5.75033 19.4732 7.27129 19.7972 8.92519C20.1212 10.5791 19.9483 12.2919 19.3002 13.8476C18.6522 15.4034 17.5581 16.7325 16.1559 17.6674C14.7536 18.6023 13.1059 19.1011 11.4206 19.1009C9.14916 19.0901 6.97482 18.1784 5.37484 16.566C3.77486 14.9537 2.87998 12.7724 2.88662 10.5009Z" fill="#E8E8E8"/>
-</svg></a>
-                        </div>
+                        <filter_el></filter_el>
                     </nav>
                     <nav class="menu_right">
                         <nav class="menu_right1">
@@ -4673,41 +4502,41 @@ const navigation = {
                             <div class="wrapper_block_menu">
                                 <nav class="block_menu">
                                     <a class="block_menu_button" href="#">x</a>
-                                    <a href="" class="a_menu_f">MENU</a>
-                                    <ul><a href="" class="a_menu_fw">MAN</a>
-                                        <li class="li_menu"><a href="#" class="a_menu">Accessories</a>
+                                    <a href="" class="a_menu_f" @click.prevent="$root.updateState('catalog')">MENU</a>
+                                    <ul><a href="" class="a_menu_fw" @click.prevent="$root.updateState('catalog')">MAN</a>
+                                        <li class="li_menu"><a href="#" class="a_menu" @click.prevent="$root.updateState('catalog')">Accessories</a>
                                         </li>
-                                        <li class="li_menu"><a href="#" class="a_menu">Bags</a>
+                                        <li class="li_menu"><a href="#" class="a_menu" @click.prevent="$root.updateState('catalog')">Bags</a>
                                         </li>
-                                        <li class="li_menu"><a href="#" class="a_menu">Denim</a>
+                                        <li class="li_menu"><a href="#" class="a_menu" @click.prevent="$root.updateState('catalog')">Denim</a>
                                         </li>
-                                        <li class="li_menu"><a href="#" class="a_menu">T-Shorts</a>
-                                        </li>
-                                    </ul>
-                                    <ul><a href="" class="a_menu_fw">WOMAN</a>
-                                        <li class="li_menu"><a href="#" class="a_menu">Accessories</a>
-                                        </li>
-                                        <li class="li_menu"><a href="#" class="a_menu">Jackets & Coats</a>
-                                        </li>
-                                        <li class="li_menu"><a href="#" class="a_menu">Polos</a>
-                                        </li>
-                                        <li class="li_menu"><a href="#" class="a_menu">T-Shorts</a>
-                                        </li>
-                                        <li class="li_menu"><a href="" class="a_menu">Shirts</a>
+                                        <li class="li_menu"><a href="#" class="a_menu" @click.prevent="$root.updateState('catalog')">T-Shorts</a>
                                         </li>
                                     </ul>
-                                    <ul><a href="" class="a_menu_fw">KIDS</a>
-                                        <li class="li_menu"><a href="#" class="a_menu">Accessories</a>
+                                    <ul><a href="" class="a_menu_fw" @click.prevent="$root.updateState('catalog')">WOMAN</a>
+                                        <li class="li_menu"><a href="#" class="a_menu" @click.prevent="$root.updateState('catalog')">Accessories</a>
                                         </li>
-                                        <li class="li_menu"><a href="#" class="a_menu">Jackets & Coats</a>
+                                        <li class="li_menu"><a href="#" class="a_menu" @click.prevent="$root.updateState('catalog')">Jackets & Coats</a>
                                         </li>
-                                        <li class="li_menu"><a href="#" class="a_menu">Polos</a>
+                                        <li class="li_menu"><a href="#" class="a_menu" @click.prevent="$root.updateState('catalog')">Polos</a>
                                         </li>
-                                        <li class="li_menu"><a href="#" class="a_menu">T-Shorts</a>
+                                        <li class="li_menu"><a href="#" class="a_menu" @click.prevent="$root.updateState('catalog')">T-Shorts</a>
                                         </li>
-                                        <li class="li_menu"><a href="" class="a_menu">Shirts</a>
+                                        <li class="li_menu"><a href="" class="a_menu" @click.prevent="$root.updateState('catalog')">Shirts</a>
                                         </li>
-                                        <li class="li_menu"><a href="" class="a_menu">Bags</a>
+                                    </ul>
+                                    <ul><a href="" class="a_menu_fw" @click.prevent="$root.updateState('catalog')">KIDS</a>
+                                        <li class="li_menu"><a href="#" class="a_menu" @click.prevent="$root.updateState('catalog')">Accessories</a>
+                                        </li>
+                                        <li class="li_menu"><a href="#" class="a_menu" @click.prevent="$root.updateState('catalog')">Jackets & Coats</a>
+                                        </li>
+                                        <li class="li_menu"><a href="#" class="a_menu" @click.prevent="$root.updateState('catalog')">Polos</a>
+                                        </li>
+                                        <li class="li_menu"><a href="#" class="a_menu" @click.prevent="$root.updateState('catalog')">T-Shorts</a>
+                                        </li>
+                                        <li class="li_menu"><a href="" class="a_menu" @click.prevent="$root.updateState('catalog')">Shirts</a>
+                                        </li>
+                                        <li class="li_menu"><a href="" class="a_menu" @click.prevent="$root.updateState('catalog')">Bags</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -4724,6 +4553,82 @@ const navigation = {
                     </nav>
                 </div>
             </header> `
+};
+
+/***/ }),
+
+/***/ "./src/js/Product.js":
+/*!***************************!*\
+  !*** ./src/js/Product.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "products": () => (/* binding */ products)
+/* harmony export */ });
+const product = {
+  props: ['product'],
+  data() {
+    return {};
+  },
+  methods: {},
+  mounted() {
+    this.addProduct = this.$root.$refs.filling.$refs.navigation.$refs.cartInNavigation.addProduct;
+  },
+  template: `<div class="block_product">
+    <a class="a-flex" href="product.html" @click.prevent="$root.updateState('targetproduct')">
+        <div v-bind:style="{ backgroundImage: 'url(https://via.placeholder.com/200x200)', backgroundSize: 'cover'}" class="img_block">
+            <img class="img img_block_product" :src=product.img alt="Product1">
+        </div>                       
+        <div class="block_text_product">
+            <div style="margin: 10px 0 0 0;" class="block_text_product1">{{product.product_name}}</div>
+            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                    tailoring,
+                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+            <div class="block_text_product3">{{product.price}}₽</div>
+        </div>
+    </a>
+    <div class="wrapper_add_to_cart">
+        <a class="add_to_cart" href="#" @click.prevent="addProduct(product)">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <p class="add_to_cart_text">Add to Cart</p>
+        </a>
+    </div>
+</div>`
+};
+const products = {
+  components: {
+    product
+  },
+  data() {
+    return {
+      catalogUrl: '/api/products',
+      products: [],
+      filtered: []
+    };
+  },
+  methods: {
+    filter(value) {
+      let regexp = new RegExp(value, 'i');
+      this.filtered = this.products.filter(el => regexp.test(el.product_name));
+    }
+  },
+  mounted() {
+    this.$root.getJson(`${this.catalogUrl}`).then(data => {
+      for (let el of data) {
+        this.products.push(el);
+        this.filtered.push(el);
+      }
+    });
+  },
+  template: `
+        <div class="product alignment">
+            <div class="greed12"></div>
+            <product ref="product" v-for="item of filtered" :key="item.id_product" :product="item"></product>
+        </div>
+    `
 };
 
 /***/ }),
@@ -4806,7 +4711,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "targetproduct": () => (/* binding */ targetproduct)
 /* harmony export */ });
+/* harmony import */ var _ThreeProduct__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ThreeProduct */ "./src/js/ThreeProduct.js");
+
 const targetproduct = {
+  components: {
+    threeproducts: _ThreeProduct__WEBPACK_IMPORTED_MODULE_0__.threeproducts
+  },
   data() {
     return {};
   },
@@ -4875,58 +4785,104 @@ const targetproduct = {
             </section>
             <!-- Products -->
             <section>
-                <div class="PRproduct PRalignment">
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product1.png" alt="Product1"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product2.png" alt="Product2"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="#" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product3.png" alt="Product3"></a>
-                        <div class="block_text_product">
-                            <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                            <div class="block_text_product2">Known for her sculptural takes on traditional
-                                tailoring,
-                                Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                            <div class="block_text_product3">$52.00</div>
-                        </div>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <threeproducts></threeproducts>
             </section>
         </div>`
+};
+
+/***/ }),
+
+/***/ "./src/js/ThreeProduct.js":
+/*!********************************!*\
+  !*** ./src/js/ThreeProduct.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "threeproducts": () => (/* binding */ threeproducts)
+/* harmony export */ });
+const threeproduct = {
+  props: ['product'],
+  data() {
+    return {};
+  },
+  methods: {},
+  mounted() {
+    this.addProduct = this.$root.$refs.filling.$refs.navigation.$refs.cartInNavigation.addProduct;
+  },
+  template: `<div class="block_product">
+    <a class="a-flex" href="product.html" @click.prevent="$root.updateState('targetproduct')">
+        <div v-bind:style="{ backgroundImage: 'url(https://via.placeholder.com/200x200)', backgroundSize: 'cover'}" class="img_block">
+            <img class="img img_block_product" :src=product.img alt="Product1">
+        </div>                       
+        <div class="block_text_product">
+            <div style="margin: 10px 0 0 0;" class="block_text_product1">{{product.product_name}}</div>
+            <div class="block_text_product2">Known for her sculptural takes on traditional
+                                    tailoring,
+                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
+            <div class="block_text_product3">{{product.price}}₽</div>
+        </div>
+    </a>
+    <div class="wrapper_add_to_cart">
+        <a class="add_to_cart" href="#" @click.prevent="addProduct(product)">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <p class="add_to_cart_text">Add to Cart</p>
+        </a>
+    </div>
+</div>`
+};
+const threeproducts = {
+  components: {
+    threeproduct
+  },
+  data() {
+    return {
+      filtered: [],
+      onefiltered: [],
+      threefiltered: []
+    };
+  },
+  methods: {
+    getRand() {
+      let rand = Math.floor(Math.abs(1 + Math.random() * 8));
+      let rand1 = Math.floor(Math.abs(1 + Math.random() * 8));
+      let rand2 = Math.floor(Math.abs(1 + Math.random() * 8));
+      if (rand == rand1 || rand1 == rand2 || rand == rand2) {
+        this.getRand();
+        return this.getRand();
+      }
+      return [rand, rand1, rand2];
+    }
+  },
+  mounted() {
+    this.$root.getJson('/api/products').then(data => {
+      for (let el of data) {
+        this.filtered.push(el);
+      }
+      console.log(this.getRand());
+      let r = this.getRand();
+      this.onefiltered = this.filtered.filter(el => el.id_product === r[0]);
+      for (let el of this.onefiltered) {
+        this.threefiltered.push(el);
+      }
+      this.onefiltered = this.filtered.filter(el => el.id_product === r[1]);
+      for (let el of this.onefiltered) {
+        this.threefiltered.push(el);
+      }
+      this.onefiltered = this.filtered.filter(el => el.id_product === r[2]);
+      for (let el of this.onefiltered) {
+        this.threefiltered.push(el);
+      }
+    });
+  },
+  template: `
+        <div class="product alignment">
+            <div class="greed12"></div>
+            <threeproduct v-for="item of threefiltered" :key="item.id_product" :product="item"></threeproduct>
+        </div>
+    `
 };
 
 /***/ }),
@@ -14120,7 +14076,7 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_node_modules_normalize_css_normalize_css__WEBPACK_IMPORTED_MODULE_2__["default"]);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_3___default()(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  outline: none;\n}\n\na {\n  text-decoration: none;\n  color: black;\n}\na:hover {\n  color: #cca1a7;\n}\n\nbody {\n  font-family: \"lato\", \"Times New Roman\", Times, serif;\n  overflow-x: hidden;\n}\n\n.alignment {\n  max-width: 75vw;\n  margin: 0 auto;\n}\n\n.site_wrapper {\n  min-height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n\n.background {\n  position: absolute;\n  width: 150vw;\n  height: 150vh;\n  background-color: #000000;\n  opacity: 0.5;\n  display: none;\n  z-index: 1;\n  right: -30vw;\n  top: -10vh;\n}\n\n.footer {\n  background: #222224;\n}\n\n.fon_menu {\n  background: #222222;\n}\n\n.menu {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  padding: 20px 0;\n}\n.menu_left {\n  display: flex;\n  align-items: center;\n}\n.menu_right {\n  display: flex;\n  align-items: center;\n}\n.menu_right1 {\n  position: relative;\n}\n.menu_right1::before {\n  content: \"\";\n  display: block;\n  height: 20px;\n  width: 20px;\n  background-color: white;\n  position: absolute;\n  top: 122%;\n  right: 5.5px;\n  transform: rotate(45deg);\n  border-top: 1px solid gray;\n  border-left: 1px solid gray;\n  z-index: -1;\n  transition: all 10ms ease-out;\n}\n\n.tranparent_menu {\n  height: 50px;\n  width: 32px;\n  background-color: transparent;\n  position: absolute;\n  top: 25%;\n  left: 0%;\n  z-index: 2;\n  display: none;\n}\n\n.wrapper_block_menu {\n  background-color: transparent;\n  display: block;\n  width: 232px;\n  height: 100vh;\n  left: 500px;\n  top: 160%;\n  position: absolute;\n  z-index: 1;\n  overflow: hidden;\n  border-radius: 0 5px 5px 5px;\n}\n\n.block_menu {\n  background-color: #FFFFFF;\n  display: flex;\n  width: 232px;\n  left: 0;\n  top: -660px;\n  padding: 10px;\n  position: absolute;\n  flex-direction: column;\n  border-radius: 0 5px 5px 5px;\n  border: 1px solid rgb(202, 198, 198);\n  transition: all 400ms ease-out;\n}\n.menu_right1:hover .block_menu {\n  display: flex;\n  top: 0;\n  border-top: 1px solid gray;\n  border-left: 1px solid gray;\n  border-top: 1px solid transparent;\n}\n\n.menu_right1:hover::before {\n  display: block;\n  z-index: 2;\n}\n\n.menu_right1:hover .tranparent_menu {\n  display: block;\n}\n\n.menu_right1:hover .background {\n  display: block;\n}\n\n.menu_right1:hover .wrapper_block_menu {\n  left: 0;\n}\n\n.a_menu_f {\n  display: block;\n  padding: 0 0 10px 30px;\n  font-weight: 900;\n  text-decoration: none;\n  color: #000000;\n}\n.a_menu_fw {\n  display: block;\n  padding: 10px 0 10px 30px;\n  font-weight: 900;\n  text-decoration: none;\n  color: #F26376;\n}\n\n.a_menu {\n  text-decoration: none;\n  color: #000000;\n  display: block;\n  padding: 3px 0 3px 55px;\n}\n.a_menu:hover {\n  color: #FF6A6A;\n}\n\n.a_top {\n  text-decoration: none;\n  color: #000000;\n  display: block;\n}\n\n.li_menu {\n  list-style-type: \"\";\n}\n\n.block_menu_button {\n  text-decoration: none;\n  margin: 0 0 0 auto;\n  width: 14px;\n  height: 20px;\n  padding: 1px;\n  font-size: 20px;\n  color: rgb(100, 94, 94);\n}\n\n.top {\n  display: flex;\n  flex-flow: row nowrap;\n  background: #F1E4E6;\n  justify-content: center;\n  position: relative;\n}\n.top1 {\n  display: flex;\n  flex-flow: row nowrap;\n  background: #F1E4E6;\n  align-items: center;\n  margin: 0 0 0 5vw;\n}\n.top1_1 {\n  margin: 7px 0 0 7px;\n  padding: 0 16px 0 0;\n  height: 107px;\n  min-width: 28px;\n}\n.top1_2 {\n  margin-right: 20vw;\n  min-width: 370px;\n}\n.topImg {\n  width: 37.5vw;\n}\n\n.extra_menu {\n  height: 80%;\n  width: 15%;\n  top: 0;\n  position: absolute;\n  right: 0;\n  background-color: white;\n  padding: 15px;\n  display: none;\n}\n\n.p1 {\n  font-weight: 900;\n  font-size: 48px;\n  line-height: 58px;\n  color: #222222;\n}\n\n.p2 {\n  font-size: 30px;\n  line-height: 30px;\n  color: #222222;\n}\n\n.p3 {\n  font-weight: 400;\n  font-size: 30px;\n  line-height: 36px;\n  color: #222222;\n  text-align: center;\n}\n\n.p4 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  color: #9F9F9F;\n  text-align: center;\n}\n\n.p5 {\n  font-weight: 400;\n  font-size: 20px;\n  line-height: 24px;\n  text-align: center;\n  color: #222224;\n}\n\n.p6 {\n  font-weight: 700;\n  font-size: 24px;\n  line-height: 167.2%;\n  text-align: center;\n  color: #222224;\n}\n\n.p7 {\n  font-weight: 400;\n  font-size: 19.96px;\n  line-height: 24px;\n  color: #FBFBFB;\n}\n\n.p8 {\n  max-width: 360px;\n  font-weight: 300;\n  font-size: 13.972px;\n  line-height: 17px;\n  text-align: center;\n  color: #FBFBFB;\n}\n\n.p9 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  text-align: center;\n  color: #FFFFFF;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateY(-50%) translateX(-50%);\n}\n\n.p10 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  text-align: center;\n  color: #FFFFFF;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateY(-50%) translateX(-50%);\n}\n\n.input1 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  display: flex;\n  align-items: center;\n  color: #222224;\n  opacity: 0.67;\n  background-color: #E1E1E1;\n  border-radius: 10px 0 0 10px;\n  max-width: 256px;\n  height: 49px;\n  padding: 0 22px;\n  border: 1px solid rgb(153, 147, 147);\n  transition: all 400ms ease-out, background-color 400ms ease-out;\n}\n.input1:hover {\n  opacity: 0.8;\n  background-color: #f0efef;\n}\n\n::placeholder {\n  transition: all 400ms ease-out;\n}\n::placeholder:hover::placeholder {\n  color: transparent;\n}\n\n.offer {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n}\n\n.block_offer {\n  display: block;\n  min-width: 30px;\n  flex-grow: 1;\n  position: relative;\n  margin: 30px auto 0;\n  transition: box-shadow 400ms ease-out, filter 400ms ease-out;\n}\n.block_offer:hover {\n  filter: brightness(130%);\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n.block_offer_w {\n  width: 30px;\n}\n.block_offer1 {\n  overflow: hidden;\n  position: relative;\n  margin: 30px auto 90px;\n  transition: box-shadow 400ms ease-out, filter 400ms ease-out;\n}\n.block_offer1:hover {\n  filter: brightness(130%);\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n\n.img {\n  width: 100%;\n}\n.img1 {\n  width: 100%;\n  height: 100%;\n}\n.img2 {\n  width: 100%;\n  height: 100%;\n}\n.img4 {\n  width: 100%;\n  height: 100%;\n  margin: 0 0 -5px 0;\n}\n\n.product {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: space-between;\n}\n\n.block_product {\n  width: 22.7272727273vw;\n  position: relative;\n  margin: 15px 0;\n  display: flex;\n  flex-flow: column nowrap;\n  background: #F8F8F8;\n}\n.block_product:hover {\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n\n.img_block_product {\n  filter: brightness(100%);\n  transition: filter 400ms ease-out;\n}\n.block_product:hover .img_block_product {\n  filter: brightness(30%);\n}\n\n.block_product:hover .wrapper_add_to_cart {\n  opacity: 1;\n}\n\n.wrapper_add_to_cart {\n  display: flex;\n  opacity: 0;\n  position: absolute;\n  top: 25%;\n  width: 100%;\n  justify-content: center;\n  pointer-events: none;\n  transition: opacity 400ms ease-out;\n}\n\n.add_to_cart {\n  display: flex;\n  align-items: center;\n  color: white;\n  border: 1px solid #FFFFFF;\n  padding: 10px;\n  text-decoration: none;\n  pointer-events: all;\n}\n.add_to_cart:hover {\n  box-shadow: 0px 0px 8px 0px rgb(255, 255, 255);\n}\n.add_to_cart_text {\n  margin: 0 0 0 8px;\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n}\n\n.block_product:nth-child(3n+2) {\n  position: relative;\n  z-index: 1;\n  margin: 15px auto;\n}\n\n.block_text_product {\n  display: flex;\n  flex-flow: column nowrap;\n  min-height: 160px;\n  justify-content: space-around;\n  padding: 18px;\n}\n.block_text_product1 {\n  font-weight: 400;\n  font-size: 13px;\n  line-height: 16px;\n  color: #000000;\n}\n.block_text_product2 {\n  margin: 15px 0;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n  color: #5D5D5D;\n}\n.block_text_product3 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F16D7F;\n}\n\n.button1 {\n  padding: 14px 38px;\n  border: 1px solid #FF6A6A;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F26376;\n  text-decoration: none;\n  display: block;\n  text-align: center;\n  max-width: 211px;\n  margin: 48px auto 95px;\n  transition: box-shadow 400ms ease-out, color 400ms ease-out;\n}\n.button1:hover {\n  box-shadow: inset 0px 0px 200px 0px #F26376;\n  color: #FFFFFF;\n}\n\n.button2 {\n  width: 32px;\n  height: 32px;\n  padding-top: 2px;\n  box-sizing: border-box;\n  text-align: center;\n  background: #FFFFFF;\n  text-decoration: none;\n  display: block;\n  transition: all 400ms ease-out;\n}\n.button2:hover {\n  background: #F26376;\n}\n\n.button3 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  display: flex;\n  align-items: center;\n  text-align: center;\n  text-decoration: none;\n  color: #FFFFFF;\n  background-color: #F16D7F;\n  border: 2px solid #F16D7F;\n  border-radius: 0 10px 10px 0;\n  max-width: 100px;\n  height: 49px;\n  padding: 0 15px 0 15px;\n  transition: background-color 400ms ease-out, color 400ms ease-out;\n}\n.button3:hover {\n  background-color: #FFFFFF;\n  color: #F16D7F;\n}\n\n.footer {\n  background: #222224;\n}\n.footer1 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n}\n\n.block_footer1 {\n  min-width: 30px;\n  flex-grow: 1;\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: space-between;\n  align-items: center;\n  margin: 100px 0;\n}\n\n.footer2 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-around;\n  height: 448px;\n  background-size: cover;\n  background-position: bottom;\n  background-repeat: no-repeat;\n}\n\n.block_footer2 {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: center;\n  align-items: center;\n  max-width: 360px;\n}\n.block_footer2_1 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: center;\n  align-items: center;\n  margin-top: 32px;\n}\n\n.footer3 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.block_footer3 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  width: 150px;\n}\n.block_footer3_1 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #FBFBFB;\n  margin: 30px 0;\n}\n\n.HPimg_block {\n  height: 200px;\n  display: flex;\n  align-items: center;\n  overflow: hidden;\n}\n.HPimg_block_height {\n  height: 60px;\n  width: 80px;\n  margin-right: 10px;\n}\n\n.HPimg {\n  width: 100%;\n  height: auto;\n}\n\n.HPcart {\n  position: relative;\n  display: flex;\n}\n.HPcart-block {\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.62);\n  border-radius: 5px;\n  box-sizing: border-box;\n  right: 9.5%;\n  top: 8%;\n  position: absolute;\n  background-color: white;\n  padding: 20px;\n  color: black;\n  width: 300px;\n  z-index: 1;\n}\n.HPcart-block:before {\n  content: \"\";\n  width: 0;\n  height: 0;\n  position: absolute;\n  top: -10px;\n  right: 2.7777777778vw;\n  border-left: 10px solid transparent;\n  border-right: 10px solid transparent;\n  border-bottom: 10px solid white;\n}\n\n.HPdel-btn {\n  margin-top: 5px;\n  margin-left: 10px;\n  background-color: #2f2a2d;\n  padding: 5px 15px;\n  border: 1px solid transparent;\n  color: #fafafa;\n  border-radius: 5px;\n  transition: all ease-in-out 0.4s;\n  cursor: pointer;\n}\n.HPdel-btn:hover {\n  background-color: #fafafa;\n  color: #2f2a2d;\n  border: 1px solid #2f2a2d;\n}\n\n.HPcart-item {\n  display: flex;\n  justify-content: space-between;\n}\n.HPcart-item:not(:last-child) {\n  margin-bottom: 20px;\n}\n\n.HPproduct-bio {\n  display: flex;\n}\n\n.HPcart-item img {\n  align-self: flex-start;\n  margin-right: 15px;\n}\n\n.HPproduct-single-price {\n  color: #474747;\n  font-size: 0.5em;\n}\n\n.HPproduct-price {\n  margin-left: 0px;\n}\n\n.HPproduct-desc {\n  max-width: 150px;\n}\n\n.HPproduct-quantity {\n  margin-top: 15px;\n  font-size: 0.75em;\n}\n\n.PRwrapper_top {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.PRtop_name {\n  text-transform: uppercase;\n  color: #F26376;\n  display: block;\n  margin: 60px 0;\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n}\n\n.PRa_top1 {\n  color: #636363;\n  display: block;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n}\n.PRa_top1:hover {\n  color: #F26376;\n}\n\n.PRa_top3 {\n  color: #F26376;\n  display: block;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n  margin-bottom: 0px;\n}\n\n.PRp4 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  color: #9F9F9F;\n  text-align: center;\n  margin-bottom: 0px;\n}\n\n.PRalignment {\n  max-width: 75vw;\n  margin: 0 auto;\n}\n\n.PRtop {\n  background: #F1E4E6;\n}\n\n.wrapper_carousel {\n  background-color: #F7F7F7;\n  min-height: 400px;\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n}\n\n.img_carousel {\n  width: 600px;\n}\n\n.button_carousel {\n  display: flex;\n  align-items: center;\n}\n\n.fa-angle-left,\n.fa-angle-right {\n  background-color: rgba(42, 42, 42, 0.15);\n  height: 47px;\n  width: 47px;\n  text-align: center;\n  padding-top: 8px;\n  font-size: 33px;\n}\n.fa-angle-left:hover,\n.fa-angle-right:hover {\n  color: #F26376;\n}\n\n.PRposter {\n  display: flex;\n  flex-flow: column nowrap;\n  align-items: center;\n  border: 1px solid #EAEAEA;\n  background-color: white;\n  transform: translateY(-60px);\n}\n.PRposter_p1 {\n  margin: 64px 0 0 0;\n  color: #F26376;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n}\n.PRposter_line1 {\n  margin: 12px 0 12px 0;\n  height: 4px;\n  width: 60px;\n  background-color: #F26376;\n}\n.PRposter_p2 {\n  margin: 48px 0 32px 0;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n  text-align: center;\n  color: #5E5E5E;\n  width: 75%;\n}\n.PRposter_p3 {\n  font-weight: 300;\n  font-size: 24px;\n  line-height: 29px;\n  color: #EF5B70;\n}\n.PRposter_line2 {\n  margin: 65px 0 65px 0;\n  width: 75%;\n  height: 1px;\n  border: 1px solid #EAEAEA;\n}\n.PRposter_flex {\n  display: flex;\n  flex-flow: row nowrap;\n}\n\n.PRp5 {\n  font-weight: 400;\n  font-size: 20px;\n  line-height: 24px;\n  text-align: center;\n  color: #222224;\n}\n\nsummary {\n  display: block;\n}\n\nsummary::-webkit-details-marker {\n  display: none;\n}\n\nsummary::after {\n  content: \">\";\n  padding-left: 0.5em;\n  padding-right: 0.5em;\n  color: gray;\n}\n\ndetails[open] > summary::after {\n  content: \"˅\";\n}\n\n.PRnumber_for_quantity {\n  width: 70px;\n  text-align: center;\n}\n\n.PRbutton5 {\n  padding: 14px 18px;\n  border: 1px solid #F26376;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F26376;\n  text-decoration: none;\n  display: block;\n  text-align: center;\n  width: 220px;\n  margin: 48px 0 48px 0;\n  transition: box-shadow 400ms ease-out, color 400ms ease-out;\n}\n.PRbutton5:hover {\n  box-shadow: inset 0px 0px 200px 0px #F26376;\n  color: white;\n}\n\n.PRproduct {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: space-between;\n  padding-bottom: 50px;\n}\n\n.RGinput {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: space-between;\n}\n\n.RGwrapper_for_input {\n  margin: 60px auto 0;\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n}\n\n.RGadress_title {\n  font-weight: 300;\n  font-size: 16px;\n  line-height: 19px;\n}\n\n.RGwrapper_input1 {\n  margin: 20px 0 0 120px;\n  flex-grow: 1;\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: flex-start;\n}\n\n.RGcustom_input + label {\n  display: inline-block;\n  transform: translateY(-1.5px);\n  font-weight: 300;\n  font-size: 11px;\n  line-height: 13px;\n  padding: 0 20px 0 10px;\n  margin: 30px 0;\n}\n\n.RGinput2 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  margin: 20px 0;\n  color: #222224;\n  opacity: 0.67;\n  background-color: white;\n  height: 49px;\n  width: 100%;\n  padding-left: 22px;\n  transition: all 400ms ease-out, background-color 400ms ease-out;\n}\n\n.RGp11 {\n  font-weight: 300;\n  font-size: 13px;\n  line-height: 16px;\n  color: #B1B1B1;\n  margin: 0 0 20px 0;\n}\n\n.RGbutton4 {\n  padding: 14px 18px;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  background-color: #F16D7F;\n  border: 2px solid #F16D7F;\n  color: #FFFFFF;\n  text-decoration: none;\n  display: block;\n  text-align: center;\n  width: 160px;\n  margin: 20px 0 50px 0;\n  transition: all 400ms ease-out;\n}\n.RGbutton4:hover {\n  background-color: #FFFFFF;\n  color: #F16D7F;\n  border: 2px solid #F16D7F;\n}\n\n.RGp12 {\n  font-weight: 300;\n  font-size: 24px;\n  line-height: 29px;\n}\n.RGp12_margin {\n  margin: 20px 0;\n}\n\n.RGmenuRight1 {\n  position: relative;\n}\n.RGmenuRight1::before {\n  content: \"\";\n  display: block;\n  height: 20px;\n  width: 20px;\n  background-color: white;\n  position: absolute;\n  top: 35px;\n  left: 7px;\n  z-index: -1;\n  transform: rotate(45deg);\n  border-top: 1px solid gray;\n  border-left: 1px solid gray;\n  transition: z-index 400ms ease-out;\n}\n.RGmenuRight1:hover .menuBlock {\n  top: 0;\n  border-top: 1px solid transparent;\n}\n.RGmenuRight1:hover::before {\n  z-index: 0;\n}\n.RGmenuRight1:hover .menuTranparent {\n  display: block;\n}\n.RGmenuRight1:hover .menuBlockWrapper {\n  top: 45px;\n  transition: top 10ms ease-out;\n}\n\n.RGmenuTranparent {\n  display: none;\n  height: 50px;\n  width: 70px;\n  background-color: transparent;\n  position: absolute;\n  top: 25%;\n  left: 0%;\n}\n\n.RGmenuBlockWrapper {\n  background-color: transparent;\n  display: block;\n  width: 280px;\n  height: 750px;\n  left: 0;\n  top: -750px;\n  position: absolute;\n  z-index: 1;\n  overflow: hidden;\n  border-radius: 5px;\n  transition: top 10ms 400ms ease-out;\n}\n\n.RGmenuBlock {\n  background-color: #FFFFFF;\n  display: flex;\n  width: 280px;\n  left: 0;\n  top: -750px;\n  padding: 0 10px 10px 10px;\n  position: absolute;\n  flex-direction: column;\n  border-radius: 5px;\n  border: 1px solid rgb(202, 198, 198);\n  transition: top 400ms ease-out;\n}\n.RGmenuBlockButtonClose {\n  text-decoration: none;\n  margin: 0 0 0 auto;\n  width: 20px;\n  text-align: center;\n  font-size: 20px;\n  color: rgb(100, 94, 94);\n}\n.RGmenuBlockButtonClose:hover {\n  color: #F16D7F;\n}\n.RGmenuBlockName {\n  display: block;\n  padding: 0 0 10px 30px;\n  font-weight: 900;\n  text-decoration: none;\n  color: #222224;\n}\n.RGmenuBlockName1 {\n  display: block;\n  padding: 10px 0 10px 30px;\n  font-weight: 900;\n  text-decoration: none;\n  color: #F16D7F;\n}\n.RGmenuBlockName2 {\n  text-decoration: none;\n  color: #222224;\n  display: block;\n  padding: 3px 0 3px 55px;\n}\n\n.RGtop {\n  background: #F1E4E6;\n}\n.RGtopTxt {\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n  text-transform: uppercase;\n  color: #F16D7F;\n}\n.RGtop__alignment {\n  padding: 60px 0;\n}\n\n.RGproduct__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: normal;\n  margin: 90px auto 0;\n}\n.RGproduct__flex_1 {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: space-between;\n  align-items: normal;\n}\n\n.RGproductBlock {\n  width: 46.875vw;\n  height: 300px;\n  position: relative;\n  margin: 15px 0;\n  background: #F8F8F8;\n  box-shadow: 10px 10px 15px #9F9F9F;\n}\n.RGproductBlock__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n\n.RGproductBlockText {\n  width: 100%;\n  min-height: 160px;\n  padding: 30px;\n}\n.RGproductBlockText__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n.RGproductBlockText__flex_row {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n.RGproductBlockText__img {\n  width: 257px;\n  height: 100%;\n  overflow: hidden;\n}\n.RGproductBlockText__txt {\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n  margin: 0 0 50px 0;\n  text-transform: uppercase;\n}\n.RGproductBlockText__txt_1 {\n  font-weight: 400;\n  font-size: 22px;\n  line-height: 26px;\n  padding: 3px 0;\n  color: #4A4A4A;\n}\n.RGproductBlockText__txt_2 {\n  font-weight: 400;\n  font-size: 22px;\n  line-height: 26px;\n  color: #F16D7F;\n}\n.RGproductBlockText__txt_3 {\n  display: inline;\n  padding: 2px 4px 2px 4px;\n  text-align: center;\n  border: 1px solid #EAEAEA;\n}\n.RGproductBlockTextButtonClose {\n  line-height: 22px;\n}\n.RGproductBlockTextButton {\n  width: 46.875vw;\n}\n.RGproductBlockTextButton__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: normal;\n}\n\n.RGimg {\n  width: 100%;\n}\n\n.RGbutton {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  padding: 14px 18px;\n  margin: 48px 0 95px 0;\n  color: #4A4A4A;\n  background: #FFFFFF;\n  box-sizing: border-box;\n  border: 1px solid #4A4A4A;\n  text-decoration: none;\n  text-align: center;\n  display: block;\n  width: 220px;\n  transition: box-shadow 400ms ease-out, color 400ms ease-out, background-color 400ms ease-out;\n}\n.RGbutton:hover {\n  box-shadow: inset 0px 0px 100px 30px #F16D7F;\n  color: #FFFFFF;\n}\n\n.RGadress__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: flex-start;\n  align-items: normal;\n  margin: 20px 0 0 120px;\n  flex-grow: 1;\n}\n.RGadress__txt {\n  font-weight: 300;\n  font-size: 16px;\n  line-height: 19px;\n}\n.RGadress__input {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  margin: 20px 0;\n  color: #222224;\n  opacity: 0.67;\n  background-color: #FFFFFF;\n  height: 49px;\n  padding: 0 20px;\n}\n.RGadress__input::placeholder {\n  transition: color 400ms ease-out;\n}\n.RGadress__input:hover::placeholder {\n  color: #FFFFFF;\n}\n.RGadress__button {\n  margin: 20px 0;\n  padding: 14px 18px;\n  width: 150px;\n}\n\n.RGgrandTotal {\n  padding: 35px 30px;\n  margin: 40px 0 0 0;\n  background-color: #F5F3F3;\n  width: 100%;\n  height: 210px;\n}\n.RGgrandTotal__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: start;\n  align-items: flex-end;\n}\n.RGgrandTotal__txt {\n  font-weight: 400;\n  font-size: 11px;\n  line-height: 13px;\n  padding: 0 0 5px 0;\n  color: #4A4A4A;\n}\n.RGgrandTotal__txt_1 {\n  font-weight: 300;\n  font-size: 16px;\n  line-height: 19px;\n}\n.RGgrandTotal__txt_2 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F16D7F;\n}\n.RGgrandTotalLine {\n  padding: 10px;\n  width: 100%;\n  border-bottom: 1px solid #9F9F9F;\n}\n.RGgrandTotal__button {\n  padding: 14px 18px;\n  margin: 20px 0 0 0;\n  box-shadow: inset 0px 0px 100px 30px #F16D7F;\n  border: 1px solid #F16D7F;\n  color: #FFFFFF;\n  width: 100%;\n}\n.RGgrandTotal__button:hover {\n  background-color: #FFFFFF;\n  color: #F16D7F;\n  border: 1px solid #F16D7F;\n  box-shadow: inset 0px 0px 100px 30px #FFFFFF;\n}\n\n.CAtop {\n  background: #F1E4E6;\n}\n\n.CAwrapper_top {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.CAtop_name {\n  text-transform: uppercase;\n  color: #F26376;\n  display: block;\n  margin: 60px 0;\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n}\n\n.CAa_top1 {\n  color: #636363;\n  display: block;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n}\n\n.CAa_top1:hover {\n  color: #F26376;\n}\n\n.CAa_top3 {\n  color: #F26376;\n  display: block;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n  margin-bottom: 0;\n}\n\n.CAwrapper_top {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.CAp4 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  color: #9F9F9F;\n  text-align: center;\n  margin-bottom: 0;\n}\n\n.CAfilter {\n  margin: 50px auto 50px;\n  display: flex;\n  align-items: center;\n}\n.CAfilter_left {\n  width: 26.0416666667vw;\n  position: relative;\n}\n.CAfilter_left_p {\n  margin: 0 30px 0 20px;\n  font-weight: 600;\n  font-size: 14px;\n  line-height: 17px;\n}\n.CAfilter_right {\n  display: flex;\n  position: relative;\n  align-items: center;\n  margin: 0;\n}\n.CAfilter_block_menu_transparent {\n  position: absolute;\n  top: -10px;\n  width: 22.7272727273vw;\n  padding: 20px 0;\n  pointer-events: none;\n  border-radius: 5px 5px 0 0;\n  border: 1px solid rgb(202, 198, 198);\n  border-bottom: 1px solid transparent;\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n.CAfilter_block_menu {\n  background-color: #FFFFFF;\n  display: flex;\n  top: 30px;\n  z-index: 1;\n  width: 22.7272727273vw;\n  position: absolute;\n  flex-direction: column;\n  border-radius: 0 0 5px 5px;\n  border: 1px solid rgb(202, 198, 198);\n  border-top: 1px solid transparent;\n  transition: all 400ms ease-out;\n  box-shadow: 0px 7px 8px 0px rgba(0, 0, 0, 0.15);\n}\n\n.CAfilter_left_p_last {\n  margin: 0 30px 0 20px;\n  font-weight: 600;\n  font-size: 14px;\n  line-height: 17px;\n  margin-bottom: 20px;\n}\n\ndetails[open] > .CAfilter_left_p_last {\n  margin-bottom: 0;\n}\n\nsummary {\n  display: block;\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n}\nsummary::-webkit-details-marker {\n  display: none;\n}\nsummary::after {\n  content: \">\";\n  padding-left: 0.5em;\n  padding-right: 0.5em;\n  color: gray;\n  margin: 0 27px 0 0;\n}\n\ndetails[open] > summary::after {\n  content: \"˅\";\n}\n\n.CAsummary_mutation::after {\n  content: \"\";\n}\n\ndetails[open] > .CAsummary_mutation {\n  color: #F16D7F;\n}\n\ndetails[open] > .CAsummary_mutation::after {\n  content: \"\";\n}\n\n.CAsummary_mutation_in {\n  display: flex;\n  color: #6F6E6E;\n  padding: 10px 0px 10px 0;\n  border-bottom: 1px solid grey;\n}\n.CAsummary_mutation_in::after {\n  content: \" \";\n}\n.CAsummary_mutation_in::before {\n  content: \" \";\n  margin: 0 6px 0 0;\n  background: #F16D7F;\n  width: 6px;\n}\n.CAsummary_mutation_in_p {\n  padding: 0 0 0 35px;\n  margin-bottom: 0;\n}\n.CAsummary_mutation_in_p:hover {\n  color: #F16D7F;\n}\n.CAsummary_mutation_in_p_last {\n  padding: 0 0 20px 35px;\n}\n\ndetails[open] > .CAsummary_mutation_in {\n  color: #F16D7F;\n}\n\ndetails[open] > .CAsummary_mutation_in::after {\n  content: \"\";\n}\n\n.CAfilter_right_block {\n  background-color: #FFFFFF;\n  display: flex;\n  top: 30px;\n  z-index: 2;\n  position: absolute;\n  flex-direction: column;\n  border-radius: 5px 5px 5px 5px;\n  border: 1px solid rgb(202, 198, 198);\n  border-top: 1px solid transparent;\n  transition: all 400ms ease-out;\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n.CAfilter_right_block_center {\n  left: 35px;\n}\n\n.CAblock_input {\n  margin: 10px;\n  width: 80px;\n}\n\n.CAlabel_input {\n  padding: 0 0 0 5px;\n}\n.CAlabel_input:hover {\n  color: #F16D7F;\n}\n\n.CAform-check-input {\n  box-shadow: 0 0 0 0 #F16D7F;\n}\n\n.CAform-check-input:checked {\n  background-color: #F16D7F;\n  border-color: grey;\n  box-shadow: 0 0 0 0 #F16D7F;\n}\n\n.CAform-check-input:checked[type=checkbox] {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n\n.CAform-check-input:focus {\n  box-shadow: 0 0 2px 2px #F16D7F;\n  border-color: grey;\n}\n\n.CAform-check-input:active {\n  box-shadow: 0 0 2px 2px #F16D7F;\n}\n\n.CApagination {\n  margin: 0 0 20px 0;\n}\n\n.CAjustify-content-center {\n  display: flex;\n  justify-content: center;\n}\n\n.CApage-link {\n  color: grey;\n  font-weight: 400;\n  font-size: 18px;\n  line-height: 22px;\n  margin: 40px -1px 90px;\n  transition: all 400ms ease-out;\n  border-left: 1px solid transparent;\n  border-right: 1px solid transparent;\n}\n.CApage-link:hover {\n  background: #F1E4E6;\n  border: 1px solid #F1E4E6;\n  color: #F26376;\n}\n\n.CApage-link.active {\n  background: #F26376;\n  border-top: 1px solid #bec2c5;\n  border-bottom: 1px solid #bec2c5;\n  border-left: 1px solid transparent;\n  border-right: 1px solid transparent;\n}\n.CApage-link.active:hover {\n  color: white;\n}\n\n.CAli {\n  list-style-type: none;\n  padding: 4px;\n}\n\n.CApage-item:first-child .CApage-link {\n  border-left: 1px solid #dee2e6;\n}\n\n.CApage-item:last-child .CApage-link {\n  border-right: 1px solid #dee2e6;\n}\n\n.CTbutton4 {\n  padding: 14px 18px;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  background-color: #FFFFFF;\n  border: 2px solid #F16D7F;\n  color: #F16D7F;\n  text-decoration: none;\n  display: block;\n  text-align: center;\n  width: 160px;\n  margin: 20px auto 0;\n  transition: all 400ms ease-out;\n}\n.CTbutton4:hover {\n  background-color: #F16D7F;\n  color: #FFFFFF;\n  border: 2px solid #F16D7F;\n}\n\n.CTproduct__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: normal;\n  margin: 90px auto 0;\n}\n.CTproduct__flex_1 {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: space-between;\n  align-items: normal;\n}\n\n.CTproductBlock {\n  width: 46.875vw;\n  height: 300px;\n  position: relative;\n  margin: 15px 0;\n  background: #F8F8F8;\n  box-shadow: 10px 10px 15px #9F9F9F;\n}\n.CTproductBlock__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n\n.CTproductBlockText {\n  width: 100%;\n  min-height: 160px;\n  padding: 30px;\n}\n.CTproductBlockText__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n.CTproductBlockText__flex_row {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n.CTproductBlockText__img {\n  width: 257px;\n  height: 100%;\n  overflow: hidden;\n}\n.CTproductBlockText__txt {\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n  margin: 0 0 50px 0;\n  text-transform: uppercase;\n}\n.CTproductBlockText__txt_1 {\n  font-weight: 400;\n  font-size: 22px;\n  line-height: 26px;\n  padding: 3px 0;\n  color: #4A4A4A;\n}\n.CTproductBlockText__txt_2 {\n  font-weight: 400;\n  font-size: 22px;\n  line-height: 26px;\n  color: #F16D7F;\n}\n.CTproductBlockText__txt_3 {\n  display: inline;\n  padding: 2px 4px 2px 4px;\n  text-align: center;\n  border: 1px solid #EAEAEA;\n}\n.CTproductBlockTextButtonClose {\n  text-decoration: none;\n  margin: 0 0 0 auto;\n  width: 20px;\n  text-align: center;\n  font-size: 20px;\n  color: rgb(100, 94, 94);\n  line-height: 22px;\n}\n.CTproductBlockTextButtonClose:hover {\n  color: #F16D7F;\n}\n.CTproductBlockTextButton {\n  width: 46.875vw;\n}\n.CTproductBlockTextButton__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: normal;\n}\n\n.CTbutton {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  padding: 14px 18px;\n  margin: 48px 0 95px 0;\n  color: #4A4A4A;\n  background: #FFFFFF;\n  box-sizing: border-box;\n  border: 1px solid #4A4A4A;\n  text-decoration: none;\n  text-align: center;\n  display: block;\n  width: 220px;\n  transition: box-shadow 400ms ease-out, color 400ms ease-out, background-color 400ms ease-out;\n}\n.CTbutton:hover {\n  box-shadow: inset 0px 0px 100px 30px #F16D7F;\n  color: #FFFFFF;\n}\n\n.CTadress__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: flex-start;\n  align-items: normal;\n  margin: 20px 0 0 120px;\n  flex-grow: 1;\n}\n.CTadress__txt {\n  font-weight: 300;\n  font-size: 16px;\n  line-height: 19px;\n}\n.CTadress__input {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  margin: 20px 0;\n  color: #222224;\n  opacity: 0.67;\n  background-color: #FFFFFF;\n  height: 49px;\n  padding: 0 20px;\n}\n.CTadress__input::placeholder {\n  transition: color 400ms ease-out;\n}\n.CTadress__input:hover::placeholder {\n  color: #FFFFFF;\n}\n.CTadress__button {\n  margin: 20px 0;\n  padding: 14px 18px;\n  width: 150px;\n}\n\n.CTgrandTotal {\n  padding: 35px 30px;\n  margin: 40px 0 0 0;\n  background-color: #F5F3F3;\n  width: 100%;\n  height: 210px;\n}\n.CTgrandTotal__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: start;\n  align-items: flex-end;\n}\n.CTgrandTotal__txt {\n  font-weight: 400;\n  font-size: 11px;\n  line-height: 13px;\n  padding: 0 0 5px 0;\n  color: #4A4A4A;\n}\n.CTgrandTotal__txt_1 {\n  font-weight: 300;\n  font-size: 16px;\n  line-height: 19px;\n}\n.CTgrandTotal__txt_2 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F16D7F;\n}\n.CTgrandTotalLine {\n  padding: 10px;\n  width: 100%;\n  border-bottom: 1px solid #9F9F9F;\n}\n.CTgrandTotal__button {\n  padding: 14px 18px;\n  margin: 20px 0 0 0;\n  box-shadow: inset 0px 0px 100px 30px #F16D7F;\n  border: 1px solid #F16D7F;\n  color: #FFFFFF;\n  width: 100%;\n}\n.CTgrandTotal__button:hover {\n  background-color: #FFFFFF;\n  color: #F16D7F;\n  border: 1px solid #F16D7F;\n  box-shadow: inset 0px 0px 100px 30px #FFFFFF;\n}\n\n@media (min-width: 376px) and (max-width: 768px) {\n  .alignment {\n    max-width: 90vw;\n    margin: 0 auto;\n  }\n  .alignment1 {\n    max-width: 92vw;\n    margin: 0 auto;\n  }\n  .product {\n    flex-flow: row wrap;\n  }\n  .footer1 {\n    flex-flow: column nowrap;\n    align-items: center;\n  }\n  .block_menu {\n    width: 232px;\n  }\n  .block_offer1 {\n    margin: 30px auto 90px;\n    height: 120px;\n  }\n  .wrapper_block_menu {\n    width: 232px;\n    border-radius: 5px 5px 5px 5px;\n  }\n  .menu_right1:hover .wrapper_block_menu {\n    left: -60px;\n  }\n  .block_footer1 {\n    margin: 20px 0;\n  }\n  .block_footer1:first-child {\n    margin: 60px 0 20px;\n  }\n  .block_footer1:last-child {\n    margin: 20px 0 60px;\n  }\n  .footer2 {\n    background-position: left;\n    flex-flow: column nowrap;\n    align-items: center;\n    justify-content: space-evenly;\n    height: 600px;\n  }\n  .HPcart-block {\n    right: 3%;\n  }\n  .HPcart-block:before {\n    right: 4%;\n  }\n  .block_product {\n    width: 42.4528301887vw;\n  }\n  .block_product:nth-child(3n+2) {\n    position: relative;\n    z-index: 1;\n    margin: 15px 0;\n  }\n  .block_product1 {\n    width: 42.4528301887vw;\n    transition: width 400ms ease-out, transform 400ms ease-out, padding 400ms ease-out;\n  }\n  .block_product1:active {\n    width: 57.6923076923vw;\n    padding: 0 40px;\n  }\n  .p1 {\n    font-weight: 900;\n    font-size: 43px;\n    line-height: 51px;\n    color: #222222;\n  }\n  .p2 {\n    font-size: 25px;\n    line-height: 25px;\n    color: #222222;\n  }\n  .top1 {\n    margin: 0;\n  }\n  .top1_1 {\n    height: 111px;\n  }\n  .top1_2 {\n    margin-right: 0;\n    min-width: 370px;\n  }\n}\n@media (max-width: 375px) {\n  .alignment {\n    max-width: 90vw;\n    margin: 0 auto;\n  }\n  .alignment1 {\n    max-width: 92vw;\n    margin: 0 auto;\n  }\n  .menu_right2 {\n    display: none;\n  }\n  .menu_right3 {\n    display: none;\n  }\n  .offer {\n    flex-flow: column nowrap;\n  }\n  .offer1 {\n    background-size: cover;\n    background-position: center;\n    height: 85px;\n  }\n  .product {\n    flex-flow: row wrap;\n  }\n  .block_menu {\n    width: 162px;\n    left: auto;\n  }\n  .wrapper_block_menu {\n    width: 162px;\n    right: -10px;\n    border-radius: 5px 5px 5px 5px;\n  }\n  .menu_right1:hover .wrapper_block_menu {\n    left: -120px;\n  }\n  .block_product {\n    width: 100%;\n    margin: 15px 0;\n    display: flex;\n    flex-flow: column nowrap;\n    background: #F8F8F8;\n  }\n  .block_product1 {\n    width: 100%;\n  }\n  .block_product1:active {\n    width: 100%;\n    padding: 0;\n  }\n  .block_product1:nth-child(3n+2) {\n    position: relative;\n    z-index: 1;\n    margin: 15px 0;\n  }\n  .footer1 {\n    flex-flow: column nowrap;\n    align-items: center;\n  }\n  .footer2 {\n    background-position: left;\n    flex-flow: column nowrap;\n    align-items: center;\n    justify-content: space-evenly;\n    height: 600px;\n  }\n  .footer3 {\n    flex-flow: column-reverse nowrap;\n  }\n  .block_footer1 {\n    margin: 20px 0;\n  }\n  .block_footer1:first-child {\n    margin: 60px 0 20px;\n  }\n  .block_footer1:last-child {\n    margin: 20px 0 60px;\n  }\n  .block_offer1 {\n    margin: 30px auto 90px;\n    min-height: 100px;\n  }\n  .block_offer_w {\n    display: none;\n  }\n  .imgNone {\n    display: none;\n  }\n  .p1 {\n    font-weight: 900;\n    font-size: 38px;\n    line-height: 46px;\n    color: #222222;\n  }\n  .p2 {\n    font-size: 20px;\n    line-height: 20px;\n    color: #222222;\n  }\n  .top {\n    justify-content: left;\n    padding: 150px 0 150px;\n  }\n  .top1 {\n    margin: 0;\n  }\n  .top1_1 {\n    margin: 0px 10px 0 4vw;\n    height: 100px;\n    padding: 0;\n  }\n  .top1_2 {\n    margin-right: 0;\n    min-width: 0px;\n  }\n  .topImg {\n    width: 0;\n  }\n  .block_footer3 {\n    margin: 30px 0;\n  }\n  .a_menu_f {\n    padding: 10px 0 10px 0;\n  }\n  .a_menu_fw {\n    padding: 10px 0 10px 0;\n  }\n  .a_menu {\n    padding: 3px 0 3px 15px;\n  }\n  .img1 {\n    margin: 0 0 -5px 0;\n  }\n  .img4 {\n    margin: 0 0 -5px 0;\n    width: auto;\n  }\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  outline: none;\n}\n\na {\n  text-decoration: none;\n  color: black;\n}\na:hover {\n  color: #cca1a7;\n}\n\nbody {\n  font-family: \"lato\", \"Times New Roman\", Times, serif;\n  overflow-x: hidden;\n}\n\n.alignment {\n  max-width: 75vw;\n  margin: 0 auto;\n}\n\n.site_wrapper {\n  min-height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n\n.background {\n  position: absolute;\n  width: 150vw;\n  height: 150vh;\n  background-color: #000000;\n  opacity: 0.5;\n  display: none;\n  z-index: 1;\n  right: -30vw;\n  top: -10vh;\n}\n\n.footer {\n  background: #222224;\n}\n\n.fon_menu {\n  background: #222222;\n}\n\n.menu {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  padding: 20px 0;\n}\n.menu_left {\n  display: flex;\n  align-items: center;\n}\n.menu_right {\n  display: flex;\n  align-items: center;\n}\n.menu_right1 {\n  position: relative;\n}\n.menu_right1::before {\n  content: \"\";\n  display: block;\n  height: 20px;\n  width: 20px;\n  background-color: white;\n  position: absolute;\n  top: 122%;\n  right: 5.5px;\n  transform: rotate(45deg);\n  border-top: 1px solid gray;\n  border-left: 1px solid gray;\n  z-index: -1;\n  transition: all 10ms ease-out;\n}\n\n.tranparent_menu {\n  height: 50px;\n  width: 50px;\n  background-color: transparent;\n  position: absolute;\n  top: 25%;\n  left: 0%;\n  z-index: 2;\n  display: none;\n}\n\n.wrapper_block_menu {\n  background-color: transparent;\n  display: block;\n  width: 232px;\n  height: 100vh;\n  left: 500px;\n  top: 160%;\n  position: absolute;\n  z-index: 1;\n  overflow: hidden;\n  border-radius: 0 5px 5px 5px;\n}\n\n.block_menu {\n  background-color: #FFFFFF;\n  display: flex;\n  width: 232px;\n  left: 0;\n  top: -660px;\n  padding: 10px;\n  position: absolute;\n  flex-direction: column;\n  border-radius: 0 5px 5px 5px;\n  border: 1px solid rgb(202, 198, 198);\n  transition: all 400ms ease-out;\n}\n.menu_right1:hover .block_menu {\n  display: flex;\n  top: 0;\n  border-top: 1px solid gray;\n  border-left: 1px solid gray;\n  border-top: 1px solid transparent;\n}\n\n.menu_right1:hover::before {\n  display: block;\n  z-index: 2;\n}\n\n.menu_right1:hover .tranparent_menu {\n  display: block;\n}\n\n.menu_right1:hover .background {\n  display: block;\n}\n\n.menu_right1:hover .wrapper_block_menu {\n  left: 0;\n}\n\n.a_menu_f {\n  display: block;\n  padding: 0 0 10px 30px;\n  font-weight: 900;\n  text-decoration: none;\n  color: #000000;\n}\n.a_menu_fw {\n  display: block;\n  padding: 10px 0 10px 30px;\n  font-weight: 900;\n  text-decoration: none;\n  color: #F26376;\n}\n\n.nav_input {\n  margin: 9px 0 0 0;\n}\n\n.style_button_none {\n  background-color: transparent;\n  border: 1px solid transparent;\n}\n\n.a_menu {\n  text-decoration: none;\n  color: #000000;\n  display: block;\n  padding: 3px 0 3px 55px;\n}\n.a_menu:hover {\n  color: #FF6A6A;\n}\n\n.a_top {\n  text-decoration: none;\n  color: #000000;\n  display: block;\n}\n\n.li_menu {\n  list-style-type: \"\";\n}\n\n.block_menu_button {\n  text-decoration: none;\n  margin: 0 0 0 auto;\n  width: 14px;\n  height: 20px;\n  padding: 1px;\n  font-size: 20px;\n  color: rgb(100, 94, 94);\n}\n\n.top {\n  display: flex;\n  flex-flow: row nowrap;\n  background: #F1E4E6;\n  justify-content: center;\n  position: relative;\n}\n.top1 {\n  display: flex;\n  flex-flow: row nowrap;\n  background: #F1E4E6;\n  align-items: center;\n  margin: 0 0 0 5vw;\n}\n.top1_1 {\n  margin: 7px 0 0 7px;\n  padding: 0 16px 0 0;\n  height: 107px;\n  min-width: 28px;\n}\n.top1_2 {\n  margin-right: 20vw;\n  min-width: 370px;\n}\n.topImg {\n  width: 37.5vw;\n}\n\n.extra_menu {\n  height: 80%;\n  width: 15%;\n  top: 0;\n  position: absolute;\n  right: 0;\n  background-color: white;\n  padding: 15px;\n  display: none;\n}\n\n.p1 {\n  font-weight: 900;\n  font-size: 48px;\n  line-height: 58px;\n  color: #222222;\n}\n\n.p2 {\n  font-size: 30px;\n  line-height: 30px;\n  color: #222222;\n}\n\n.p3 {\n  font-weight: 400;\n  font-size: 30px;\n  line-height: 36px;\n  color: #222222;\n  text-align: center;\n}\n\n.p4 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  color: #9F9F9F;\n  text-align: center;\n}\n\n.p5 {\n  font-weight: 400;\n  font-size: 20px;\n  line-height: 24px;\n  text-align: center;\n  color: #222224;\n}\n\n.p6 {\n  font-weight: 700;\n  font-size: 24px;\n  line-height: 167.2%;\n  text-align: center;\n  color: #222224;\n}\n\n.p7 {\n  font-weight: 400;\n  font-size: 19.96px;\n  line-height: 24px;\n  color: #FBFBFB;\n}\n\n.p8 {\n  max-width: 360px;\n  font-weight: 300;\n  font-size: 13.972px;\n  line-height: 17px;\n  text-align: center;\n  color: #FBFBFB;\n}\n\n.p9 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  text-align: center;\n  color: #FFFFFF;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateY(-50%) translateX(-50%);\n}\n\n.p10 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  text-align: center;\n  color: #FFFFFF;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translateY(-50%) translateX(-50%);\n}\n\n.input1 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  display: flex;\n  align-items: center;\n  color: #222224;\n  opacity: 0.67;\n  background-color: #E1E1E1;\n  border-radius: 10px 0 0 10px;\n  max-width: 256px;\n  height: 49px;\n  padding: 0 22px;\n  border: 1px solid rgb(153, 147, 147);\n  transition: all 400ms ease-out, background-color 400ms ease-out;\n}\n.input1:hover {\n  opacity: 0.8;\n  background-color: #f0efef;\n}\n\n::placeholder {\n  transition: all 400ms ease-out;\n}\n::placeholder:hover::placeholder {\n  color: transparent;\n}\n\n.offer {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n}\n\n.block_offer {\n  display: block;\n  min-width: 30px;\n  flex-grow: 1;\n  position: relative;\n  margin: 30px auto 0;\n  transition: box-shadow 400ms ease-out, filter 400ms ease-out;\n}\n.block_offer:hover {\n  filter: brightness(130%);\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n.block_offer_w {\n  width: 30px;\n}\n.block_offer1 {\n  overflow: hidden;\n  position: relative;\n  margin: 30px auto 90px;\n  transition: box-shadow 400ms ease-out, filter 400ms ease-out;\n}\n.block_offer1:hover {\n  filter: brightness(130%);\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n\n.img {\n  width: 100%;\n}\n.img1 {\n  width: 100%;\n  height: 100%;\n}\n.img2 {\n  width: 100%;\n  height: 100%;\n}\n.img4 {\n  width: 100%;\n  height: 100%;\n  margin: 0 0 -5px 0;\n}\n\n.product {\n  display: grid;\n  grid-column-gap: 3%;\n}\n\n.greed12 {\n  grid-column: span 12;\n}\n\n.block_product {\n  grid-column: span 4;\n  width: 23.5109717868vw;\n  position: relative;\n  margin: 15px 0;\n  background: #F8F8F8;\n}\n.block_product:hover {\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n\n.img_block_product {\n  filter: brightness(100%);\n  transition: filter 400ms ease-out;\n}\n.block_product:hover .img_block_product {\n  filter: brightness(30%);\n}\n\n.block_product:hover .wrapper_add_to_cart {\n  opacity: 1;\n}\n\n.wrapper_add_to_cart {\n  display: flex;\n  opacity: 0;\n  position: absolute;\n  top: 25%;\n  width: 100%;\n  justify-content: center;\n  pointer-events: none;\n  transition: opacity 400ms ease-out;\n}\n\n.add_to_cart {\n  display: flex;\n  align-items: center;\n  color: white;\n  border: 1px solid #FFFFFF;\n  padding: 10px;\n  text-decoration: none;\n  pointer-events: all;\n}\n.add_to_cart:hover {\n  box-shadow: 0px 0px 8px 0px rgb(255, 255, 255);\n}\n.add_to_cart_text {\n  margin: 0 0 0 8px;\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n}\n\n.block_text_product {\n  display: flex;\n  flex-flow: column nowrap;\n  min-height: 160px;\n  justify-content: space-around;\n  padding: 18px;\n}\n.block_text_product1 {\n  font-weight: 400;\n  font-size: 20px;\n  line-height: 16px;\n  color: #000000;\n}\n.block_text_product2 {\n  margin: 15px 0;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n  color: #5D5D5D;\n}\n.block_text_product3 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F16D7F;\n}\n\n.button1 {\n  padding: 14px 38px;\n  border: 1px solid #FF6A6A;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F26376;\n  text-decoration: none;\n  display: block;\n  text-align: center;\n  max-width: 211px;\n  margin: 48px auto 95px;\n  transition: box-shadow 400ms ease-out, color 400ms ease-out;\n}\n.button1:hover {\n  box-shadow: inset 0px 0px 200px 0px #F26376;\n  color: #FFFFFF;\n}\n\n.button2 {\n  width: 32px;\n  height: 32px;\n  padding-top: 2px;\n  box-sizing: border-box;\n  text-align: center;\n  background: #FFFFFF;\n  text-decoration: none;\n  display: block;\n  transition: all 400ms ease-out;\n}\n.button2:hover {\n  background: #F26376;\n}\n\n.button3 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  display: flex;\n  align-items: center;\n  text-align: center;\n  text-decoration: none;\n  color: #FFFFFF;\n  background-color: #F16D7F;\n  border: 2px solid #F16D7F;\n  border-radius: 0 10px 10px 0;\n  max-width: 100px;\n  height: 49px;\n  padding: 0 15px 0 15px;\n  transition: background-color 400ms ease-out, color 400ms ease-out;\n}\n.button3:hover {\n  background-color: #FFFFFF;\n  color: #F16D7F;\n}\n\n.footer {\n  background: #222224;\n}\n.footer1 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n}\n\n.block_footer1 {\n  min-width: 30px;\n  flex-grow: 1;\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: space-between;\n  align-items: center;\n  margin: 100px 0;\n}\n\n.footer2 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-around;\n  height: 448px;\n  background-size: cover;\n  background-position: bottom;\n  background-repeat: no-repeat;\n}\n\n.block_footer2 {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: center;\n  align-items: center;\n  max-width: 360px;\n}\n.block_footer2_1 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: center;\n  align-items: center;\n  margin-top: 32px;\n}\n\n.footer3 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.block_footer3 {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  width: 150px;\n}\n.block_footer3_1 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #FBFBFB;\n  margin: 30px 0;\n}\n\n.HPimg_block {\n  height: 200px;\n  display: flex;\n  align-items: center;\n  overflow: hidden;\n}\n.HPimg_block_height {\n  height: 60px;\n  width: 80px;\n  margin-right: 10px;\n}\n\n.HPimg {\n  width: 100%;\n  height: auto;\n}\n\n.HPcart {\n  position: relative;\n  display: flex;\n}\n.HPcart-block {\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.62);\n  border-radius: 5px;\n  box-sizing: border-box;\n  right: 9.5%;\n  top: 8%;\n  position: absolute;\n  background-color: white;\n  padding: 20px;\n  color: black;\n  width: 300px;\n  z-index: 1;\n}\n.HPcart-block:before {\n  content: \"\";\n  width: 0;\n  height: 0;\n  position: absolute;\n  top: -10px;\n  right: 2.7777777778vw;\n  border-left: 10px solid transparent;\n  border-right: 10px solid transparent;\n  border-bottom: 10px solid white;\n}\n\n.HPdel-btn {\n  margin-top: 5px;\n  margin-left: 10px;\n  background-color: #2f2a2d;\n  padding: 5px 15px;\n  border: 1px solid transparent;\n  color: #fafafa;\n  border-radius: 5px;\n  transition: all ease-in-out 0.4s;\n  cursor: pointer;\n}\n.HPdel-btn:hover {\n  background-color: #fafafa;\n  color: #2f2a2d;\n  border: 1px solid #2f2a2d;\n}\n\n.HPcart-item {\n  display: flex;\n  justify-content: space-between;\n}\n.HPcart-item:not(:last-child) {\n  margin-bottom: 20px;\n}\n\n.HPproduct-bio {\n  display: flex;\n}\n\n.HPcart-item img {\n  align-self: flex-start;\n  margin-right: 15px;\n}\n\n.HPproduct-single-price {\n  color: #474747;\n  font-size: 0.5em;\n}\n\n.HPproduct-price {\n  margin-left: 0px;\n}\n\n.HPproduct-desc {\n  max-width: 150px;\n}\n\n.HPproduct-quantity {\n  margin-top: 15px;\n  font-size: 0.75em;\n}\n\n.PRwrapper_top {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.PRtop_name {\n  text-transform: uppercase;\n  color: #F26376;\n  display: block;\n  margin: 60px 0;\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n}\n\n.PRa_top1 {\n  color: #636363;\n  display: block;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n}\n.PRa_top1:hover {\n  color: #F26376;\n}\n\n.PRa_top3 {\n  color: #F26376;\n  display: block;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n  margin-bottom: 0px;\n}\n\n.PRp4 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  color: #9F9F9F;\n  text-align: center;\n  margin-bottom: 0px;\n}\n\n.PRalignment {\n  max-width: 75vw;\n  margin: 0 auto;\n}\n\n.PRtop {\n  background: #F1E4E6;\n}\n\n.wrapper_carousel {\n  background-color: #F7F7F7;\n  min-height: 400px;\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n}\n\n.img_carousel {\n  width: 600px;\n}\n\n.button_carousel {\n  display: flex;\n  align-items: center;\n}\n\n.fa-angle-left,\n.fa-angle-right {\n  background-color: rgba(42, 42, 42, 0.15);\n  height: 47px;\n  width: 47px;\n  text-align: center;\n  padding-top: 8px;\n  font-size: 33px;\n}\n.fa-angle-left:hover,\n.fa-angle-right:hover {\n  color: #F26376;\n}\n\n.PRposter {\n  display: flex;\n  flex-flow: column nowrap;\n  align-items: center;\n  border: 1px solid #EAEAEA;\n  background-color: white;\n  transform: translateY(-60px);\n}\n.PRposter_p1 {\n  margin: 64px 0 0 0;\n  color: #F26376;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n}\n.PRposter_line1 {\n  margin: 12px 0 12px 0;\n  height: 4px;\n  width: 60px;\n  background-color: #F26376;\n}\n.PRposter_p2 {\n  margin: 48px 0 32px 0;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n  text-align: center;\n  color: #5E5E5E;\n  width: 75%;\n}\n.PRposter_p3 {\n  font-weight: 300;\n  font-size: 24px;\n  line-height: 29px;\n  color: #EF5B70;\n}\n.PRposter_line2 {\n  margin: 65px 0 65px 0;\n  width: 75%;\n  height: 1px;\n  border: 1px solid #EAEAEA;\n}\n.PRposter_flex {\n  display: flex;\n  flex-flow: row nowrap;\n}\n\n.PRp5 {\n  font-weight: 400;\n  font-size: 20px;\n  line-height: 24px;\n  text-align: center;\n  color: #222224;\n}\n\nsummary {\n  display: block;\n}\n\nsummary::-webkit-details-marker {\n  display: none;\n}\n\nsummary::after {\n  content: \">\";\n  padding-left: 0.5em;\n  padding-right: 0.5em;\n  color: gray;\n}\n\ndetails[open] > summary::after {\n  content: \"˅\";\n}\n\n.PRnumber_for_quantity {\n  width: 70px;\n  text-align: center;\n}\n\n.PRbutton5 {\n  padding: 14px 18px;\n  border: 1px solid #F26376;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F26376;\n  text-decoration: none;\n  display: block;\n  text-align: center;\n  width: 220px;\n  margin: 48px 0 48px 0;\n  transition: box-shadow 400ms ease-out, color 400ms ease-out;\n}\n.PRbutton5:hover {\n  box-shadow: inset 0px 0px 200px 0px #F26376;\n  color: white;\n}\n\n.PRproduct {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: space-between;\n  padding-bottom: 50px;\n}\n\n.RGinput {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: space-between;\n}\n\n.RGwrapper_for_input {\n  margin: 60px auto 0;\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n}\n\n.RGadress_title {\n  font-weight: 300;\n  font-size: 16px;\n  line-height: 19px;\n}\n\n.RGwrapper_input1 {\n  margin: 20px 0 0 120px;\n  flex-grow: 1;\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: flex-start;\n}\n\n.RGcustom_input + label {\n  display: inline-block;\n  transform: translateY(-1.5px);\n  font-weight: 300;\n  font-size: 11px;\n  line-height: 13px;\n  padding: 0 20px 0 10px;\n  margin: 30px 0;\n}\n\n.RGinput2 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  margin: 20px 0;\n  color: #222224;\n  opacity: 0.67;\n  background-color: white;\n  height: 49px;\n  width: 100%;\n  padding-left: 22px;\n  transition: all 400ms ease-out, background-color 400ms ease-out;\n}\n\n.RGp11 {\n  font-weight: 300;\n  font-size: 13px;\n  line-height: 16px;\n  color: #B1B1B1;\n  margin: 0 0 20px 0;\n}\n\n.RGbutton4 {\n  padding: 14px 18px;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  background-color: #F16D7F;\n  border: 2px solid #F16D7F;\n  color: #FFFFFF;\n  text-decoration: none;\n  display: block;\n  text-align: center;\n  width: 160px;\n  margin: 20px 0 50px 0;\n  transition: all 400ms ease-out;\n}\n.RGbutton4:hover {\n  background-color: #FFFFFF;\n  color: #F16D7F;\n  border: 2px solid #F16D7F;\n}\n\n.RGp12 {\n  font-weight: 300;\n  font-size: 24px;\n  line-height: 29px;\n}\n.RGp12_margin {\n  margin: 20px 0;\n}\n\n.RGmenuRight1 {\n  position: relative;\n}\n.RGmenuRight1::before {\n  content: \"\";\n  display: block;\n  height: 20px;\n  width: 20px;\n  background-color: white;\n  position: absolute;\n  top: 35px;\n  left: 7px;\n  z-index: -1;\n  transform: rotate(45deg);\n  border-top: 1px solid gray;\n  border-left: 1px solid gray;\n  transition: z-index 400ms ease-out;\n}\n.RGmenuRight1:hover .menuBlock {\n  top: 0;\n  border-top: 1px solid transparent;\n}\n.RGmenuRight1:hover::before {\n  z-index: 0;\n}\n.RGmenuRight1:hover .menuTranparent {\n  display: block;\n}\n.RGmenuRight1:hover .menuBlockWrapper {\n  top: 45px;\n  transition: top 10ms ease-out;\n}\n\n.RGmenuTranparent {\n  display: none;\n  height: 50px;\n  width: 70px;\n  background-color: transparent;\n  position: absolute;\n  top: 25%;\n  left: 0%;\n}\n\n.RGmenuBlockWrapper {\n  background-color: transparent;\n  display: block;\n  width: 280px;\n  height: 750px;\n  left: 0;\n  top: -750px;\n  position: absolute;\n  z-index: 1;\n  overflow: hidden;\n  border-radius: 5px;\n  transition: top 10ms 400ms ease-out;\n}\n\n.RGmenuBlock {\n  background-color: #FFFFFF;\n  display: flex;\n  width: 280px;\n  left: 0;\n  top: -750px;\n  padding: 0 10px 10px 10px;\n  position: absolute;\n  flex-direction: column;\n  border-radius: 5px;\n  border: 1px solid rgb(202, 198, 198);\n  transition: top 400ms ease-out;\n}\n.RGmenuBlockButtonClose {\n  text-decoration: none;\n  margin: 0 0 0 auto;\n  width: 20px;\n  text-align: center;\n  font-size: 20px;\n  color: rgb(100, 94, 94);\n}\n.RGmenuBlockButtonClose:hover {\n  color: #F16D7F;\n}\n.RGmenuBlockName {\n  display: block;\n  padding: 0 0 10px 30px;\n  font-weight: 900;\n  text-decoration: none;\n  color: #222224;\n}\n.RGmenuBlockName1 {\n  display: block;\n  padding: 10px 0 10px 30px;\n  font-weight: 900;\n  text-decoration: none;\n  color: #F16D7F;\n}\n.RGmenuBlockName2 {\n  text-decoration: none;\n  color: #222224;\n  display: block;\n  padding: 3px 0 3px 55px;\n}\n\n.RGtop {\n  background: #F1E4E6;\n}\n.RGtopTxt {\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n  text-transform: uppercase;\n  color: #F16D7F;\n}\n.RGtop__alignment {\n  padding: 60px 0;\n}\n\n.RGproduct__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: normal;\n  margin: 90px auto 0;\n}\n.RGproduct__flex_1 {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: space-between;\n  align-items: normal;\n}\n\n.RGproductBlock {\n  width: 46.875vw;\n  height: 300px;\n  position: relative;\n  margin: 15px 0;\n  background: #F8F8F8;\n  box-shadow: 10px 10px 15px #9F9F9F;\n}\n.RGproductBlock__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n\n.RGproductBlockText {\n  width: 100%;\n  min-height: 160px;\n  padding: 30px;\n}\n.RGproductBlockText__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n.RGproductBlockText__flex_row {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n.RGproductBlockText__img {\n  width: 257px;\n  height: 100%;\n  overflow: hidden;\n}\n.RGproductBlockText__txt {\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n  margin: 0 0 50px 0;\n  text-transform: uppercase;\n}\n.RGproductBlockText__txt_1 {\n  font-weight: 400;\n  font-size: 22px;\n  line-height: 26px;\n  padding: 3px 0;\n  color: #4A4A4A;\n}\n.RGproductBlockText__txt_2 {\n  font-weight: 400;\n  font-size: 22px;\n  line-height: 26px;\n  color: #F16D7F;\n}\n.RGproductBlockText__txt_3 {\n  display: inline;\n  padding: 2px 4px 2px 4px;\n  text-align: center;\n  border: 1px solid #EAEAEA;\n}\n.RGproductBlockTextButtonClose {\n  line-height: 22px;\n}\n.RGproductBlockTextButton {\n  width: 46.875vw;\n}\n.RGproductBlockTextButton__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: normal;\n}\n\n.RGimg {\n  width: 100%;\n}\n\n.RGbutton {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  padding: 14px 18px;\n  margin: 48px 0 95px 0;\n  color: #4A4A4A;\n  background: #FFFFFF;\n  box-sizing: border-box;\n  border: 1px solid #4A4A4A;\n  text-decoration: none;\n  text-align: center;\n  display: block;\n  width: 220px;\n  transition: box-shadow 400ms ease-out, color 400ms ease-out, background-color 400ms ease-out;\n}\n.RGbutton:hover {\n  box-shadow: inset 0px 0px 100px 30px #F16D7F;\n  color: #FFFFFF;\n}\n\n.RGadress__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: flex-start;\n  align-items: normal;\n  margin: 20px 0 0 120px;\n  flex-grow: 1;\n}\n.RGadress__txt {\n  font-weight: 300;\n  font-size: 16px;\n  line-height: 19px;\n}\n.RGadress__input {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  margin: 20px 0;\n  color: #222224;\n  opacity: 0.67;\n  background-color: #FFFFFF;\n  height: 49px;\n  padding: 0 20px;\n}\n.RGadress__input::placeholder {\n  transition: color 400ms ease-out;\n}\n.RGadress__input:hover::placeholder {\n  color: #FFFFFF;\n}\n.RGadress__button {\n  margin: 20px 0;\n  padding: 14px 18px;\n  width: 150px;\n}\n\n.RGgrandTotal {\n  padding: 35px 30px;\n  margin: 40px 0 0 0;\n  background-color: #F5F3F3;\n  width: 100%;\n  height: 210px;\n}\n.RGgrandTotal__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: start;\n  align-items: flex-end;\n}\n.RGgrandTotal__txt {\n  font-weight: 400;\n  font-size: 11px;\n  line-height: 13px;\n  padding: 0 0 5px 0;\n  color: #4A4A4A;\n}\n.RGgrandTotal__txt_1 {\n  font-weight: 300;\n  font-size: 16px;\n  line-height: 19px;\n}\n.RGgrandTotal__txt_2 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F16D7F;\n}\n.RGgrandTotalLine {\n  padding: 10px;\n  width: 100%;\n  border-bottom: 1px solid #9F9F9F;\n}\n.RGgrandTotal__button {\n  padding: 14px 18px;\n  margin: 20px 0 0 0;\n  box-shadow: inset 0px 0px 100px 30px #F16D7F;\n  border: 1px solid #F16D7F;\n  color: #FFFFFF;\n  width: 100%;\n}\n.RGgrandTotal__button:hover {\n  background-color: #FFFFFF;\n  color: #F16D7F;\n  border: 1px solid #F16D7F;\n  box-shadow: inset 0px 0px 100px 30px #FFFFFF;\n}\n\n.CAtop {\n  background: #F1E4E6;\n}\n\n.CAwrapper_top {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.CAtop_name {\n  text-transform: uppercase;\n  color: #F26376;\n  display: block;\n  margin: 60px 0;\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n}\n\n.CAa_top1 {\n  color: #636363;\n  display: block;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n}\n\n.CAa_top1:hover {\n  color: #F26376;\n}\n\n.CAa_top3 {\n  color: #F26376;\n  display: block;\n  font-weight: 300;\n  font-size: 14px;\n  line-height: 17px;\n  margin-bottom: 0;\n}\n\n.CAwrapper_top {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.CAp4 {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  color: #9F9F9F;\n  text-align: center;\n  margin-bottom: 0;\n}\n\n.CAfilter {\n  margin: 50px auto 50px;\n  display: flex;\n  align-items: center;\n}\n.CAfilter_left {\n  width: 26.0416666667vw;\n  position: relative;\n}\n.CAfilter_left_p {\n  margin: 0 30px 0 20px;\n  font-weight: 600;\n  font-size: 14px;\n  line-height: 17px;\n}\n.CAfilter_right {\n  display: flex;\n  position: relative;\n  align-items: center;\n  margin: 0;\n}\n.CAfilter_block_menu_transparent {\n  position: absolute;\n  top: -10px;\n  width: 22.7272727273vw;\n  padding: 20px 0;\n  pointer-events: none;\n  border-radius: 5px 5px 0 0;\n  border: 1px solid rgb(202, 198, 198);\n  border-bottom: 1px solid transparent;\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n.CAfilter_block_menu {\n  background-color: #FFFFFF;\n  display: flex;\n  top: 30px;\n  z-index: 1;\n  width: 22.7272727273vw;\n  position: absolute;\n  flex-direction: column;\n  border-radius: 0 0 5px 5px;\n  border: 1px solid rgb(202, 198, 198);\n  border-top: 1px solid transparent;\n  transition: all 400ms ease-out;\n  box-shadow: 0px 7px 8px 0px rgba(0, 0, 0, 0.15);\n}\n\n.CAfilter_left_p_last {\n  margin: 0 30px 0 20px;\n  font-weight: 600;\n  font-size: 14px;\n  line-height: 17px;\n  margin-bottom: 20px;\n}\n\ndetails[open] > .CAfilter_left_p_last {\n  margin-bottom: 0;\n}\n\nsummary {\n  display: block;\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n}\nsummary::-webkit-details-marker {\n  display: none;\n}\nsummary::after {\n  content: \">\";\n  padding-left: 0.5em;\n  padding-right: 0.5em;\n  color: gray;\n  margin: 0 27px 0 0;\n}\n\ndetails[open] > summary::after {\n  content: \"˅\";\n}\n\n.CAsummary_mutation::after {\n  content: \"\";\n}\n\ndetails[open] > .CAsummary_mutation {\n  color: #F16D7F;\n}\n\ndetails[open] > .CAsummary_mutation::after {\n  content: \"\";\n}\n\n.CAsummary_mutation_in {\n  display: flex;\n  color: #6F6E6E;\n  padding: 10px 0px 10px 0;\n  border-bottom: 1px solid grey;\n}\n.CAsummary_mutation_in::after {\n  content: \" \";\n}\n.CAsummary_mutation_in::before {\n  content: \" \";\n  margin: 0 6px 0 0;\n  background: #F16D7F;\n  width: 6px;\n}\n.CAsummary_mutation_in_p {\n  padding: 0 0 0 35px;\n  margin-bottom: 0;\n}\n.CAsummary_mutation_in_p:hover {\n  color: #F16D7F;\n}\n.CAsummary_mutation_in_p_last {\n  padding: 0 0 20px 35px;\n}\n\ndetails[open] > .CAsummary_mutation_in {\n  color: #F16D7F;\n}\n\ndetails[open] > .CAsummary_mutation_in::after {\n  content: \"\";\n}\n\n.CAfilter_right_block {\n  background-color: #FFFFFF;\n  display: flex;\n  top: 30px;\n  z-index: 2;\n  position: absolute;\n  flex-direction: column;\n  border-radius: 5px 5px 5px 5px;\n  border: 1px solid rgb(202, 198, 198);\n  border-top: 1px solid transparent;\n  transition: all 400ms ease-out;\n  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);\n}\n.CAfilter_right_block_center {\n  left: 35px;\n}\n\n.CAblock_input {\n  margin: 10px;\n  width: 80px;\n}\n\n.CAlabel_input {\n  padding: 0 0 0 5px;\n}\n.CAlabel_input:hover {\n  color: #F16D7F;\n}\n\n.form-check-input {\n  box-shadow: 0 0 0 0 #F16D7F;\n}\n\n.form-check-input:checked {\n  background-color: #F16D7F;\n  border-color: grey;\n  box-shadow: 0 0 0 0 #F16D7F;\n}\n\n.form-check-input:checked[type=checkbox] {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n\n.form-check-input:focus {\n  box-shadow: 0 0 2px 2px transparent;\n  border-color: grey;\n}\n\n.form-check-input:active {\n  box-shadow: 0 0 2px 2px #F16D7F;\n}\n\n.CApagination {\n  margin: 0 0 20px 0;\n}\n\n.CAjustify-content-center {\n  display: flex;\n  justify-content: center;\n}\n\n.CApage-link {\n  color: grey;\n  font-weight: 400;\n  font-size: 18px;\n  line-height: 22px;\n  margin: 40px -1px 90px;\n  transition: all 400ms ease-out;\n  border-left: 1px solid transparent;\n  border-right: 1px solid transparent;\n}\n.CApage-link:hover {\n  background: #F1E4E6;\n  border: 1px solid #F1E4E6;\n  color: #F26376;\n}\n\n.CApage-link.active {\n  background: #F26376;\n  border-top: 1px solid #bec2c5;\n  border-bottom: 1px solid #bec2c5;\n  border-left: 1px solid transparent;\n  border-right: 1px solid transparent;\n}\n.CApage-link.active:hover {\n  color: white;\n}\n\n.CAli {\n  list-style-type: none;\n  padding: 4px;\n}\n\n.CApage-item:first-child .CApage-link {\n  border-left: 1px solid #dee2e6;\n}\n\n.CApage-item:last-child .CApage-link {\n  border-right: 1px solid #dee2e6;\n}\n\n.CTbutton4 {\n  padding: 14px 18px;\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  background-color: #FFFFFF;\n  border: 2px solid #F16D7F;\n  color: #F16D7F;\n  text-decoration: none;\n  display: block;\n  text-align: center;\n  width: 160px;\n  margin: 20px auto 0;\n  transition: all 400ms ease-out;\n}\n.CTbutton4:hover {\n  background-color: #F16D7F;\n  color: #FFFFFF;\n  border: 2px solid #F16D7F;\n}\n\n.CTproduct__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: normal;\n  margin: 90px auto 0;\n}\n.CTproduct__flex_1 {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: space-between;\n  align-items: normal;\n}\n\n.CTproductBlock {\n  width: 46.875vw;\n  height: 300px;\n  position: relative;\n  margin: 15px 0;\n  background: #F8F8F8;\n  box-shadow: 10px 10px 15px #9F9F9F;\n}\n.CTproductBlock__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n\n.CTproductBlockText {\n  width: 100%;\n  min-height: 160px;\n  padding: 30px;\n}\n.CTproductBlockText__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n.CTproductBlockText__flex_row {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: start;\n  align-items: normal;\n}\n.CTproductBlockText__img {\n  width: 257px;\n  height: 100%;\n  overflow: hidden;\n}\n.CTproductBlockText__txt {\n  font-weight: 400;\n  font-size: 24px;\n  line-height: 29px;\n  margin: 0 0 50px 0;\n  text-transform: uppercase;\n}\n.CTproductBlockText__txt_1 {\n  font-weight: 400;\n  font-size: 22px;\n  line-height: 26px;\n  padding: 3px 0;\n  color: #4A4A4A;\n}\n.CTproductBlockText__txt_2 {\n  font-weight: 400;\n  font-size: 22px;\n  line-height: 26px;\n  color: #F16D7F;\n}\n.CTproductBlockText__txt_3 {\n  display: inline;\n  padding: 2px 4px 2px 4px;\n  text-align: center;\n  border: 1px solid #EAEAEA;\n}\n.CTproductBlockTextButtonClose {\n  text-decoration: none;\n  margin: 0 0 0 auto;\n  width: 20px;\n  text-align: center;\n  font-size: 20px;\n  color: rgb(100, 94, 94);\n  line-height: 22px;\n}\n.CTproductBlockTextButtonClose:hover {\n  color: #F16D7F;\n}\n.CTproductBlockTextButton {\n  width: 46.875vw;\n}\n.CTproductBlockTextButton__flex {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: normal;\n}\n\n.CTbutton {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  padding: 14px 18px;\n  margin: 48px 0 95px 0;\n  color: #4A4A4A;\n  background: #FFFFFF;\n  box-sizing: border-box;\n  border: 1px solid #4A4A4A;\n  text-decoration: none;\n  text-align: center;\n  display: block;\n  width: 220px;\n  transition: box-shadow 400ms ease-out, color 400ms ease-out, background-color 400ms ease-out;\n}\n.CTbutton:hover {\n  box-shadow: inset 0px 0px 100px 30px #F16D7F;\n  color: #FFFFFF;\n}\n\n.CTadress__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: flex-start;\n  align-items: normal;\n  margin: 20px 0 0 120px;\n  flex-grow: 1;\n}\n.CTadress__txt {\n  font-weight: 300;\n  font-size: 16px;\n  line-height: 19px;\n}\n.CTadress__input {\n  font-weight: 400;\n  font-size: 14px;\n  line-height: 17px;\n  margin: 20px 0;\n  color: #222224;\n  opacity: 0.67;\n  background-color: #FFFFFF;\n  height: 49px;\n  padding: 0 20px;\n}\n.CTadress__input::placeholder {\n  transition: color 400ms ease-out;\n}\n.CTadress__input:hover::placeholder {\n  color: #FFFFFF;\n}\n.CTadress__button {\n  margin: 20px 0;\n  padding: 14px 18px;\n  width: 150px;\n}\n\n.CTgrandTotal {\n  padding: 35px 30px;\n  margin: 40px 0 0 0;\n  background-color: #F5F3F3;\n  width: 100%;\n  height: 210px;\n}\n.CTgrandTotal__flex {\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: start;\n  align-items: flex-end;\n}\n.CTgrandTotal__txt {\n  font-weight: 400;\n  font-size: 11px;\n  line-height: 13px;\n  padding: 0 0 5px 0;\n  color: #4A4A4A;\n}\n.CTgrandTotal__txt_1 {\n  font-weight: 300;\n  font-size: 16px;\n  line-height: 19px;\n}\n.CTgrandTotal__txt_2 {\n  font-weight: 400;\n  font-size: 16px;\n  line-height: 19px;\n  color: #F16D7F;\n}\n.CTgrandTotalLine {\n  padding: 10px;\n  width: 100%;\n  border-bottom: 1px solid #9F9F9F;\n}\n.CTgrandTotal__button {\n  padding: 14px 18px;\n  margin: 20px 0 0 0;\n  box-shadow: inset 0px 0px 100px 30px #F16D7F;\n  border: 1px solid #F16D7F;\n  color: #FFFFFF;\n  width: 100%;\n}\n.CTgrandTotal__button:hover {\n  background-color: #FFFFFF;\n  color: #F16D7F;\n  border: 1px solid #F16D7F;\n  box-shadow: inset 0px 0px 100px 30px #FFFFFF;\n}\n\n@media (min-width: 376px) and (max-width: 768px) {\n  .alignment {\n    max-width: 90vw;\n    margin: 0 auto;\n  }\n  .alignment1 {\n    max-width: 92vw;\n    margin: 0 auto;\n  }\n  .product {\n    flex-flow: row wrap;\n  }\n  .footer1 {\n    flex-flow: column nowrap;\n    align-items: center;\n  }\n  .block_menu {\n    width: 232px;\n  }\n  .block_offer1 {\n    margin: 30px auto 90px;\n    height: 120px;\n  }\n  .wrapper_block_menu {\n    width: 232px;\n    border-radius: 5px 5px 5px 5px;\n  }\n  .menu_right1:hover .wrapper_block_menu {\n    left: -60px;\n  }\n  .block_footer1 {\n    margin: 20px 0;\n  }\n  .block_footer1:first-child {\n    margin: 60px 0 20px;\n  }\n  .block_footer1:last-child {\n    margin: 20px 0 60px;\n  }\n  .footer2 {\n    background-position: left;\n    flex-flow: column nowrap;\n    align-items: center;\n    justify-content: space-evenly;\n    height: 600px;\n  }\n  .HPcart-block {\n    right: 3%;\n  }\n  .HPcart-block:before {\n    right: 4%;\n  }\n  .block_product {\n    grid-column: span 6;\n    width: 43.6893203883vw;\n  }\n  .block_product1 {\n    width: 42.4528301887vw;\n    transition: width 400ms ease-out, transform 400ms ease-out, padding 400ms ease-out;\n  }\n  .block_product1:active {\n    width: 57.6923076923vw;\n    padding: 0 40px;\n  }\n  .p1 {\n    font-weight: 900;\n    font-size: 43px;\n    line-height: 51px;\n    color: #222222;\n  }\n  .p2 {\n    font-size: 25px;\n    line-height: 25px;\n    color: #222222;\n  }\n  .top1 {\n    margin: 0;\n  }\n  .top1_1 {\n    height: 111px;\n  }\n  .top1_2 {\n    margin-right: 0;\n    min-width: 370px;\n  }\n}\n@media (max-width: 375px) {\n  .alignment {\n    max-width: 90vw;\n    margin: 0 auto;\n  }\n  .alignment1 {\n    max-width: 92vw;\n    margin: 0 auto;\n  }\n  .menu_right2 {\n    display: none;\n  }\n  .menu_right3 {\n    display: none;\n  }\n  .offer {\n    flex-flow: column nowrap;\n  }\n  .offer1 {\n    background-size: cover;\n    background-position: center;\n    height: 85px;\n  }\n  .product {\n    flex-flow: row wrap;\n  }\n  .block_menu {\n    width: 162px;\n    left: auto;\n  }\n  .wrapper_block_menu {\n    width: 162px;\n    right: -10px;\n    border-radius: 5px 5px 5px 5px;\n  }\n  .menu_right1:hover .wrapper_block_menu {\n    left: -120px;\n  }\n  .block_product {\n    grid-column: span 12;\n    width: 100%;\n  }\n  .block_product1 {\n    width: 100%;\n  }\n  .block_product1:active {\n    width: 100%;\n    padding: 0;\n  }\n  .block_product1:nth-child(3n+2) {\n    position: relative;\n    z-index: 1;\n    margin: 15px 0;\n  }\n  .footer1 {\n    flex-flow: column nowrap;\n    align-items: center;\n  }\n  .footer2 {\n    background-position: left;\n    flex-flow: column nowrap;\n    align-items: center;\n    justify-content: space-evenly;\n    height: 600px;\n  }\n  .footer3 {\n    flex-flow: column-reverse nowrap;\n  }\n  .block_footer1 {\n    margin: 20px 0;\n  }\n  .block_footer1:first-child {\n    margin: 60px 0 20px;\n  }\n  .block_footer1:last-child {\n    margin: 20px 0 60px;\n  }\n  .block_offer1 {\n    margin: 30px auto 90px;\n    min-height: 100px;\n  }\n  .block_offer_w {\n    display: none;\n  }\n  .imgNone {\n    display: none;\n  }\n  .p1 {\n    font-weight: 900;\n    font-size: 38px;\n    line-height: 46px;\n    color: #222222;\n  }\n  .p2 {\n    font-size: 20px;\n    line-height: 20px;\n    color: #222222;\n  }\n  .top {\n    justify-content: left;\n    padding: 150px 0 150px;\n  }\n  .top1 {\n    margin: 0;\n  }\n  .top1_1 {\n    margin: 0px 10px 0 4vw;\n    height: 100px;\n    padding: 0;\n  }\n  .top1_2 {\n    margin-right: 0;\n    min-width: 0px;\n  }\n  .topImg {\n    width: 0;\n  }\n  .block_footer3 {\n    margin: 30px 0;\n  }\n  .a_menu_f {\n    padding: 10px 0 10px 0;\n  }\n  .a_menu_fw {\n    padding: 10px 0 10px 0;\n  }\n  .a_menu {\n    padding: 3px 0 3px 15px;\n  }\n  .img1 {\n    margin: 0 0 -5px 0;\n  }\n  .img4 {\n    margin: 0 0 -5px 0;\n    width: auto;\n  }\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

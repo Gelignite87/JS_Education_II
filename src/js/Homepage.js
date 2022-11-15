@@ -1,4 +1,7 @@
+import { products } from "./Product";
+
 export const homepage = {
+    components: { products },
     data(){
         return {}
     },
@@ -50,116 +53,7 @@ export const homepage = {
                 <p class="p3">Fetured Items</p>
                 <p style="margin: 6px auto 18px;" class="p4">Shop for items based on what we featured in this week
                 </p>
-                <div class="product alignment">
-                    <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product1.png"
-                                alt="Product1">
-                            <div class="block_text_product">
-                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                                <div class="block_text_product2">Known for her sculptural takes on traditional
-                                    tailoring,
-                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                                <div class="block_text_product3">$52.00</div>
-                            </div>
-                        </a>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product2.png"
-                                alt="Product2">
-                            <div class="block_text_product">
-                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                                <div class="block_text_product2">Known for her sculptural takes on traditional
-                                    tailoring,
-                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                                <div class="block_text_product3">$52.00</div>
-                            </div>
-                        </a>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product3.png"
-                                alt="Product3">
-                            <div class="block_text_product">
-                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                                <div class="block_text_product2">Known for her sculptural takes on traditional
-                                    tailoring,
-                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                                <div class="block_text_product3">$52.00</div>
-                            </div>
-                        </a>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product4.png"
-                                alt="Product4">
-                            <div class="block_text_product">
-                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                                <div class="block_text_product2">Known for her sculptural takes on traditional
-                                    tailoring,
-                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                                <div class="block_text_product3">$52.00</div>
-                            </div>
-                        </a>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text" @click.prevent="$root.updateState('catalog')">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product5.png"
-                                alt="Product5">
-                            <div class="block_text_product">
-                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                                <div class="block_text_product2">Known for her sculptural takes on traditional
-                                    tailoring,
-                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                                <div class="block_text_product3">$52.00</div>
-                            </div>
-                        </a>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block_product">
-                        <a href="product.html" @click.prevent="$root.updateState('targetproduct')"><img class="img img_block_product" src="images/Product6.png"
-                                alt="Product6">
-                            <div class="block_text_product">
-                                <div style="margin: 10px 0 0 0;" class="block_text_product1">ELLERY X M'O CAPSULE</div>
-                                <div class="block_text_product2">Known for her sculptural takes on traditional
-                                    tailoring,
-                                    Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</div>
-                                <div class="block_text_product3">$52.00</div>
-                            </div>
-                        </a>
-                        <div class="wrapper_add_to_cart">
-                            <a class="add_to_cart" href="#" @click.prevent="$root.updateState('catalog')">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p class="add_to_cart_text">Add to Cart</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <products ref="products"></products>
                 <a class="button1" @click="$root.updateState('catalog')">Browse All Product</a>
             </section>
         </div>

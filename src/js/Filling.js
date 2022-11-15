@@ -1,4 +1,5 @@
 import { navigation } from "./Navigation";
+import { error } from "./Error";
 import { homepage } from "./Homepage";
 import { catalog } from "./Catalog";
 import { targetproduct } from "./TargetProduct";
@@ -8,6 +9,7 @@ import { cartpage } from "./Cartpage";
 export const filling = {
     components: {
         navigation,
+        error,
         homepage,
         catalog,
         targetproduct,
@@ -19,10 +21,11 @@ export const filling = {
     },
     template: `
     <div>
-        <navigation ref="ng"></navigation>
-        <homepage></homepage>
+        <navigation ref="navigation"></navigation>
+        <error></error>
+        <homepage ref="homepage"></homepage>
         <targetproduct></targetproduct>
-        <catalog></catalog>
+        <catalog ref="catalog"></catalog>
         <registration></registration>
         <cartpage></cartpage>
     </div>

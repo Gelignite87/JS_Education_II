@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "front": "webpack --mode development --config webpack.config.js --watch",
-    "server": "webpack --mode development --config webpack.server.config.js --watch",
     "prod": "webpack --mode production && webpack --mode production --config webpack.server.config.js && npm start",
-    "start": "nodemon server/server.js"
+    "start": "webpack --mode development --config webpack.server.config.js && nodemon server/server.js"
   },
   "repository": {
     "type": "git",

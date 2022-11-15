@@ -10,14 +10,14 @@
             "img": "/images/Product8.png"
         },
         {
-            "quantity": 2,
+            "quantity": 1,
             "id_product": 3,
             "product_name": "Shirts",
             "price": 1200,
             "img": "/images/Product3.png"
         },
         {
-            "quantity": 1,
+            "quantity": 3,
             "id_product": 2,
             "product_name": "Knits",
             "price": 3000,

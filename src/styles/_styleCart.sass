@@ -1,0 +1,151 @@
+.CTbutton4
+    padding: 14px 18px
+    font-weight: 400
+    font-size: 16px
+    line-height: 19px
+    background-color: #FFFFFF
+    border: 2px solid #F16D7F
+    color: #F16D7F
+    text-decoration: none
+    display: block
+    text-align: center
+    width: 160px
+    margin: 20px auto 0
+    transition: all 400ms ease-out
+    &:hover
+        background-color: #F16D7F
+        color: #FFFFFF
+        border: 2px solid #F16D7F
+
+.CTproduct
+    &__flex
+        @include flx(flex, row nowrap, space-between, normal)
+        margin: 90px auto 0
+        &_1
+            @include flx(flex, column nowrap, space-between, normal)
+
+.CTproductBlock
+    width: calc($width/1.6)
+    height: 300px
+    position: relative
+    margin: 15px 0
+    background: $cWhite1
+    box-shadow: 10px 10px 15px $cGray1
+    &__flex
+        @include flx(flex, row nowrap, start, normal)
+
+//---productBlockText------------------------------------------    
+.CTproductBlockText
+    width: 100%
+    min-height: 160px
+    padding: 30px
+    &__flex
+        @include flx(flex, column nowrap, start, normal)
+        &_row
+            @include flx(flex, row nowrap, start, normal)
+    &__img
+        width: 257px
+        height: 100%
+        overflow: hidden
+    &__txt
+        @include txt(400, 24px, 29px)
+        margin: 0 0 50px 0
+        text-transform: uppercase
+        &_1
+            @include txt(400, 22px, 26px)
+            padding: 3px 0
+            color: $cGray2
+        &_2
+            @include txt(400, 22px, 26px)
+            color: $cCoral
+        &_3
+            display: inline
+            padding: 2px 4px 2px 4px
+            text-align: center
+            border: 1px solid $cGray
+    &ButtonClose
+        text-decoration: none
+        margin: 0 0 0 auto
+        width: 20px
+        text-align: center
+        font-size: 20px
+        color: rgb(100, 94, 94)
+        line-height: 22px
+        &:hover
+            color: $cCoral
+    &Button
+        width: calc($width/1.6)
+        &__flex
+            @include flx(flex, row nowrap, space-between, normal)
+//---productBlockText------------------------------------------
+
+.CTbutton
+    @include btn(400, 16px, 19px, 14px 18px, 48px 0 95px 0, $cGray2, $cWhite, border-box, 1px solid $cGray2, none, center)
+    display: block
+    width: 220px
+    transition: box-shadow 400ms ease-out, color 400ms ease-out, background-color 400ms ease-out
+    &:hover
+        box-shadow: inset 0px 0px 100px 30px $cCoral
+        color: $cWhite
+
+//---adress-------------------------------------------------------
+.CTadress
+    &__flex
+        @include flx(flex, column nowrap, flex-start, normal)
+        margin: 20px 0 0 120px
+        flex-grow: 1
+    &__txt
+        @include txt(300, 16px, 19px)
+    &__input
+        @include txt(400, 14px, 17px)
+        margin: 20px 0
+        color: $cBlack
+        opacity: 0.67
+        background-color: $cWhite
+        height: 49px
+        padding: 0 20px
+    &__input::placeholder
+        transition: color 400ms ease-out
+    &__input:hover::placeholder
+        color: $cWhite
+    &__button
+        margin: 20px 0
+        padding: 14px 18px
+        width: 150px
+//---adress-------------------------------------------------------
+
+//---grandTotal---------------------------------------------------
+.CTgrandTotal
+    padding: 35px 30px
+    margin: 40px 0 0 0
+    background-color: #F5F3F3
+    width: 100%
+    height: 210px
+    &__flex
+        @include flx(flex, column nowrap, start, flex-end)
+    &__txt
+        @include txt(400, 11px, 13px)
+        padding: 0 0 5px 0
+        color: $cGray2
+        &_1
+            @include txt(300, 16px, 19px)
+        &_2
+            @include txt(400, 16px, 19px)
+            color: $cCoral
+    &Line
+        padding: 10px
+        width: 100%
+        border-bottom: 1px solid $cGray1
+    &__button
+        padding: 14px 18px
+        margin: 20px 0 0 0
+        box-shadow: inset 0px 0px 100px 30px $cCoral
+        border: 1px solid $cCoral
+        color: $cWhite
+        width: 100%
+        &:hover
+            background-color: $cWhite
+            color: $cCoral
+            border: 1px solid $cCoral
+            box-shadow: inset 0px 0px 100px 30px $cWhite
+//---grandTotal---------------------------------------------------

@@ -1,0 +1,103 @@
+.HPimg_block
+    height: 200px
+    display: flex
+    align-items: center
+    overflow: hidden
+    &_height
+        height: 60px
+        width: 80px
+        margin-right: 10px
+
+.HPimg
+    width: 100%
+    height: auto
+
+.HPcart
+    position: relative
+    display: flex
+    &-block
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.62)
+        border-radius: 5px
+        box-sizing: border-box
+        right: 9.5%
+        top: 8%
+        position: absolute
+        background-color: white
+        padding: 20px
+        color: black
+        width: 300px
+        z-index: 1
+        &:before
+            content: ''
+            width: 0
+            height: 0
+            position: absolute
+            top: -10px
+            right: calc($width/27)
+            border-left: 10px solid transparent
+            border-right: 10px solid transparent
+            border-bottom: 10px solid white
+
+.HPdel-btn
+    margin-top: 5px
+    margin-left: 10px
+    background-color: #2f2a2d
+    padding: 5px 15px
+    border: 1px solid transparent
+    color: #fafafa
+    border-radius: 5px
+    transition: all ease-in-out .4s
+    cursor: pointer
+    &:hover
+        background-color: #fafafa
+        color: #2f2a2d
+        border: 1px solid #2f2a2d
+
+.HPcart-item
+    display: flex
+    justify-content: space-between
+    &:not(:last-child)
+        margin-bottom: 20px
+
+.HPproduct-bio
+    display: flex
+
+.HPcart-item img
+    align-self: flex-start
+    margin-right: 15px
+
+.HPproduct-single-price
+    color: #474747
+    font-size: 0.5em
+
+.HPproduct-price
+    margin-left: 0px
+
+.HPproduct-desc
+    max-width: 150px
+
+.HPproduct-quantity
+    margin-top: 15px
+    font-size: 0.75em
+
+// .search-form
+//     position: relative
+//     margin-right: 50px
+//     display: inline-block
+
+// .search-field:focus
+//     outline: none
+
+// .search-field
+//     box-sizing: border-box
+//     width: 200px
+//     color: #fafafa
+//     padding: 10px
+//     background-color: transparent
+//     border: none
+//     border-bottom: 2px solid #fafafa
+
+// .error-block
+//     width: 600px
+//     margin: auto
+//     color: red
